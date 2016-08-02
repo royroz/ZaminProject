@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -138,10 +139,19 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zamin.Models\Zamin.Models.csproj">
+      <Project>{197746c4-95cf-414c-8131-d2f2eb26a167}</Project>
+      <Name>Zamin.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zamin.Repositories\Zamin.Repositories.csproj">
+      <Project>{163f14b3-7d4a-48ae-9b5e-ae7570cfee97}</Project>
+      <Name>Zamin.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
