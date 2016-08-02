@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Web;
 //using System.Web.Routing;
 //using System.Web.Security;
-using cys.Models.Membership;
-//using Zamin.Models.Membership;
+using Zamin.Models.Membership;
+using Zamin.Models.Membership;
 
 
 namespace Zamin.Repositories.CFMembership

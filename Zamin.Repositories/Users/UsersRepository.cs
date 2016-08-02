@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using cys.Models.Membership;
+using Zamin.Models.Membership;
 
-namespace cys.Repositories.Users
+namespace Zamin.Repositories.Users
 {
     public class UsersRepository : RepositoryBase<DataContext>, IUsersRepository
     {
