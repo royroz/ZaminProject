@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Zamin.Models.Membership;
+using Zamin.Repositories;
+using Zamin.Repositories.Users;
 
 namespace Zamin.Repositories.Users
 {

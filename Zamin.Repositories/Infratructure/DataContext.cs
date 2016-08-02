@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using Zamin.Models;
 using Zamin.Models.Membership;
 
+
 namespace Zamin.Repositories
 {
    public class DataContext : DbContext, IDisposedTracker
     {
         public bool IsDisposed { get; set; }
 
-        //public DbSet<User> Users { get; set; }
-        //public DbSet<Role> Roles { get; set; }
+
+       public DbSet<User> Users { get; set; }
+       public DbSet<Role> Roles { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

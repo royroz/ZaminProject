@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Routing;
+using System.Web.Security;
 //using System.Web.Routing;
 //using System.Web.Security;
 using Zamin.Models.Membership;
-using Zamin.Models.Membership;
+//using Zamin.Models.Membership;
 
 
 namespace Zamin.Repositories.CFMembership

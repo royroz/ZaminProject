@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using System.Web.Security;
+using System.Web.Security;
 using Zamin.Models.Membership;
-//using Zamin.Models.Membership;
+
 
 
 namespace Zamin.Repositories.CFMembership
@@ -27,9 +27,9 @@ namespace Zamin.Repositories.CFMembership
             }
             using (DataContext Context = new DataContext())
             {
-                Role Role = null;
-                Role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
-                if (Role != null)
+                Role role = null;
+                role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
+                if (role != null)
                 {
                     return true;
                 }
@@ -52,18 +52,18 @@ namespace Zamin.Repositories.CFMembership
             }
             using (DataContext Context = new DataContext())
             {
-                User User = null;
-                User = Context.Users.Include(u => u.Roles).FirstOrDefault(Usr => Usr.Username == username);
-                if (User == null)
+                User user = null;
+                user = Context.Users.Include(u => u.Roles).FirstOrDefault(Usr => Usr.Username == username);
+                if (user == null)
                 {
                     return false;
                 }
-                Role Role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
-                if (Role == null)
+                Role role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
+                if (role == null)
                 {
                     return false;
                 }
-                return User.Roles.Contains(Role);
+                return user.Roles.Contains(role);
             }
         }
 
@@ -100,11 +100,11 @@ namespace Zamin.Repositories.CFMembership
             }
             using (DataContext Context = new DataContext())
             {
-                Role Role = null;
-                Role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
-                if (Role != null)
+                Role role = null;
+                role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
+                if (role != null)
                 {
-                    return Role.Users.Select(Usr => Usr.Username).ToArray();
+                    return role.Users.Select(Usr => Usr.Username).ToArray();
                 }
                 else
                 {
@@ -162,9 +162,9 @@ namespace Zamin.Repositories.CFMembership
             {
                 using (DataContext Context = new DataContext())
                 {
-                    Role Role = null;
-                    Role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
-                    if (Role == null)
+                    Role role = null;
+                    role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
+                    if (role == null)
                     {
                         Role NewRole = new Role
                         {
@@ -186,24 +186,24 @@ namespace Zamin.Repositories.CFMembership
             }
             using (DataContext Context = new DataContext())
             {
-                Role Role = null;
-                Role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
-                if (Role == null)
+                Role role = null;
+                role = Context.Roles.FirstOrDefault(Rl => Rl.RoleName == roleName);
+                if (role == null)
                 {
                     return false;
                 }
                 if (throwOnPopulatedRole)
                 {
-                    if (Role.Users.Any())
+                    if (role.Users.Any())
                     {
                         return false;
                     }
                 }
                 else
                 {
-                    Role.Users.Clear();
+                    role.Users.Clear();
                 }
-                Context.Roles.Remove(Role);
+                Context.Roles.Remove(role);
                 Context.SaveChanges();
                 return true;
             }
