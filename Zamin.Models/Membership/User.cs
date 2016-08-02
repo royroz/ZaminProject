@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cys.Models.Membership
+namespace Zamin.Models.Membership
 {
     public class User
     {
