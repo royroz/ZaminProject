@@ -11,11 +11,11 @@ namespace Zamin.Server
     {
         protected void Application_Start()
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<Repositories.DataContext, Repositories.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Repositories.DataContext, Repositories.Migrations.Configuration>());
 
-            //AreaRegistration.RegisterAllAreas();
-            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }
