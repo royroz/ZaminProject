@@ -32,7 +32,7 @@ namespace Zamin.Server.Controllers
             {
                 Data = new
                 {
-                    Succcess = true,
+                    Success = true,
                     UserId = user.UserId,
                     userName = user.Username,
                 }
