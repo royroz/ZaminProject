@@ -1,0 +1,11 @@
+{
+  "name": "Zamin.Server",
+  "description": "Final Project",
+  "main": "",
+  "authors": [
+    "Roy Rozentouler"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true
+}
