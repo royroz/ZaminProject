@@ -10,6 +10,8 @@
     .module('zamin', [
       'ui.router',
       'ui.bootstrap',
-      'home'
+      'home',
+      'login',
+      'signup'
     ]);
 }());
