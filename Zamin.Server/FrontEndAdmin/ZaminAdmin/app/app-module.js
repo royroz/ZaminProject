@@ -8,8 +8,17 @@
    */
   angular
     .module('zaminAdmin', [
+      'ngAria',
+      'ngMaterial',
       'ui.router',
-      'ui.bootstrap',
-      'home'
-    ]);
+      'home',
+      'login',
+      'userManagement',
+      'categoriesManagement',
+      'contentManagement',
+      'coursesManagement',
+      'userCreate'
+    ]).constant("consts", {
+       serverUrl: "http://zamin/"
+    })
 }());

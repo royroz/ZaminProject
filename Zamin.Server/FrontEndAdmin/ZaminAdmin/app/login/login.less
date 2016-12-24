@@ -1,0 +1,37 @@
+@color-1: #0c457d;
+@color-2: #6bd2db;
+@color-3: #0DADB0;
+@color-4: #e8702a;
+@color-5: #ffbe4f;
+
+@white: #ffffff;
+@black: #000000;
+
+
+
+.login {
+    margin: auto;
+    /*color: @white;*/
+    > div, md-content {
+        /*background: @color-1;*/
+        direction: rtl;
+        text-align: right;
+    }
+
+    md-input-container.md-input-has-value label:not(.md-no-float), md-input-container.md-input-focused label:not(.md-no-float) {
+        /*transform: translate3d(50px, 6px, 0) scale(0.75);*/
+    }
+
+    .md-input-message-animation {
+        text-align: right;
+    }
+}
+
+md-input-container label, md-input-container label:not(.md-no-float):not(.md-container-ignore), md-input-container .md-placeholder {
+    /*color: @white;*/
+    text-align: right;
+    direction: rtl;
+    right: 0;
+     left: 99%;
+    /*width: 100%;*/
+}

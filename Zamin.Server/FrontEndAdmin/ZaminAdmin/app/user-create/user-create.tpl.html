@@ -1,0 +1,62 @@
+<h2>
+  <i class="fa fa-users"></i>&nbsp; יצירת משתמש
+</h2>
+<div layout="row">
+
+  <form name="newUser" novalidate="">
+    <div flex="100" style="    padding-top: 3px;">
+      <md-input-container class="md-block no-margin">
+        <label>שם משתמש</label>
+        <input ng-model="userEmail" required=""  />
+        <!-- ng-pattern="/^.+@.+\..+$/" -->
+        <div ng-messages="newUser.user.email.$error">
+          <div ng-message="required">שדה חובה</div>
+        </div>
+      </md-input-container>
+    </div>
+    &nbsp;&nbsp;
+    <div flex="20">
+      <button ng-click="checkUserEmail()" class="md-raised md-button md-ink-ripple md-primary" type="button">
+        <i class="fa fa-check"></i>
+        <div class="md-ripple-container"></div>
+      </button>
+    </div>
+      <div ng-show="isEmailTaken && afterEmailCheck">שם משתמש קיים כבר במערכת!</div>
+      <!-- <div ng-show="!isEmailTaken">!שם משתמש פנוי</div> -->
+    </div>
+  </form>
+  </div>
+<div layout="row">
+  <div class="chooseRole" ng-show="!isEmailTaken"  flex="20">
+    <md-input-container class="md-block no-margin">
+      <label>בחר הרשאה</label>
+      <md-select ng-model="roleId">
+        <md-option ng-value="role.Id" ng-repeat="role in roles"> {{role.Name }} </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+  <div class="chooseGrade" ng-show="roleId == 2|| roleId == 3 && !isEmailTaken " flex="20">
+    <md-input-container class="md-block no-margin">
+      <label>בחר שכבה</label>
+      <md-select ng-model="grade">
+        <md-option ng-value="grade" ng-repeat="grade in grades"> {{grade.GradeName }} </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+  <div class="chooseClassroom" ng-show="roleId == 3 && !isEmailTaken" flex="20">
+    <md-input-container class="md-block no-margin">
+      <label>בחר כיתה</label>
+      <md-select ng-model="classroomId">
+        <md-option ng-value="classroom.Id" ng-repeat="classroom in grade.ClassRooms"> {{classroom.Name }} </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+</div>
+<div flex="20" ng-show="!isEmailTaken">
+  <button ng-click="save()" class="md-raised md-button md-ink-ripple md-primary" type="button">
+    <i class="fa fa-save"></i>
+    <div class="md-ripple-container"></div>
+  </button>
+</div>

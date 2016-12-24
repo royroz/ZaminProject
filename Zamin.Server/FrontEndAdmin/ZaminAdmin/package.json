@@ -15,7 +15,6 @@
     "find-up": "^1.0.0",
     "glob": "^5.0.1",
     "gulp": "^3.8.7",
-    "gulp-add-src": "^0.2.0",
     "gulp-angular-filesort": "^1.0.4",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-concat": "^2.3.4",

@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -9,9 +9,17 @@
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: 'home/home.tpl.html',
-        controller: 'HomeCtrl',
-        controllerAs: 'home'
+        views: {
+          'mainView': {
+            templateUrl: 'home/home.tpl.html',
+            controller: 'HomeCtrl',
+            controllerAs: 'home'
+          },
+          'menuView': {
+              templateUrl: 'sideNav.html'
+          }
+        }
+
       });
   }
 }());

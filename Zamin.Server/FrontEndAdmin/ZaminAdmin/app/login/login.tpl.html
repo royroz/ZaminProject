@@ -1,0 +1,40 @@
+<div class="login" layout="column" flex="50" layout-align="center center">
+  <div layout-align="center center" layout="row" layout-padding>
+    <md-content layout-align="center center" style="text-align:center;">
+      <!-- <img src="images/logo.jpg" style="width:200px;"/> -->
+      <md-subheader ng-show="invalidUsernameOrPassword" class="md-warn">
+        שם משתמש או סיסמא לא נכונים.
+      </md-subheader>
+      <form name="loginForm" novalidate>
+        <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+          <label for="input_27">
+            שם</label>
+          <input ng-model="user.userName" class="md-input" name="username" required>
+          <div ng-messages="loginForm.username.$error" ng-show="loginForm.$submitted">
+            <div ng-message="required" ng-show="loginForm.username.$error.required">
+              שדה זה הוא חובה.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block flex-gt-sm" flex-gt-sm="">
+          <label for="input_27">
+            סיסמא</label>
+          <input ng-model="user.password" class="md-input" name="password" required type="password">
+          <div ng-messages="loginForm.username.$error" ng-show="loginForm.$submitted">
+            <div ng-message="required" ng-show="loginForm.username.$error.required">שדה זה הוא חובה.</div>
+          </div>
+        </md-input-container>
+        <span>
+          <button class="md-primary md-button" type="submit" ng-click="signIn(loginForm.$valid)">כניסה</button>
+          <div class="error-message" ng-show="errorMessage != ''">{{errorMessage}}</div>
+        </span>
+        <div class="bottom" ng-click="forgotDialog($event)">
+          <a class="forgotPassLink" >  שכחתי סיסמא?</a>
+
+        </div>
+      </form>
+
+    </md-content>
+  </div>
+
+</div>

@@ -1,0 +1,109 @@
+
+<h2>
+  <i class="fa fa-users"></i>&nbsp;
+ניהול משתמשים
+  </h2>
+
+
+<!-- <div>
+  <button ng-click="exportCsv()" class="md-fab md-button md-ink-ripple create-button" type="button">
+    <i class="fa fa-file-excel-o"></i>
+    <div class="md-ripple-container"></div>
+  </button>
+</div>
+<div>
+  <md-datepicker ng-model="filter.from" md-placeholder="From date" md-open-on-focus></md-datepicker>
+  <md-datepicker ng-model="filter.to" md-placeholder="To date" md-open-on-focus></md-datepicker>
+  <button ng-click="getInvitationsReport()" class="md-raised md-button md-ink-ripple md-primary" type="button">
+    <i class="fa fa-search"></i>
+    <div class="md-ripple-container"></div>
+  </button>
+  <button ng-click="clearFilter()" class="md-raised md-button md-ink-ripple" type="button">
+    <i class="fa fa-refresh"></i>
+    <div class="md-ripple-container"></div>
+  </button>
+</div> -->
+<br/>
+<div layout="row">
+  <div flex="20" style="padding-top: 3px;">
+    <md-input-container class="md-block no-margin">
+      <label>שכבה</label>
+      <md-select ng-model="gradeId">
+        <md-option ng-value="undefined">All</md-option>
+        <md-option ng-value="grade" ng-repeat="grade in grades"> {{grade.Name }} </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+  <div flex="20" style="padding-top: 3px;">
+    <md-input-container class="md-block no-margin">
+      <label>כיתה</label>
+      <md-select ng-model="classRoomId">
+        <md-option ng-value="undefined">All</md-option>
+        <md-option ng-value="classRoom" ng-repeat="classRoom in grade.ClassRooms">{{ classRoom.Name }}</md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+
+  <div flex="20" style="padding-top: 3px;">
+    <md-input-container class="md-block no-margin">
+      <label>חיפוש</label>
+      <input ng-model="filter.query">
+    </md-input-container>
+  </div>
+
+
+  &nbsp;&nbsp;
+  <div flex="20">
+    <button ng-click="filterUsers()" class="md-raised md-button md-ink-ripple md-primary" type="button">
+      <i class="fa fa-search"></i>
+      <div class="md-ripple-container"></div>
+    </button>
+
+    <button ng-click="clearFilter()" class="md-raised md-button md-ink-ripple" type="button">
+      <i class="fa fa-refresh"></i>
+      <div class="md-ripple-container"></div>
+    </button>
+
+  </div>
+  <div flex="20">
+    <button ng-click="goToCreateUser()" class="md-raised md-button md-ink-ripple md-accent md-hue-1" type="button">
+      <i class="fa fa-plus"></i>
+      <div class="md-ripple-container"></div>
+    </button>
+  </div>
+</div>
+
+<div>
+  <md-subheader class="md-no-sticky">
+    <div layout-gt-sm="row" class="layout-gt-sm-row">
+      <span class="md-block flex-gt-sm tableHeader " flex-gt-sm="">
+        שכבה/כיתה
+      </span>
+
+      <span class="md-block flex-gt-sm tableHeader " flex-gt-sm="">
+        שם
+      </span>
+      <span class="md-block flex-gt-sm tableHeader " flex-gt-sm="">
+        שם משתמש
+      </span>
+      <span class="md-block flex-gt-sm tableHeader " flex-gt-sm="">&nbsp;</span>
+    </div>
+  </md-subheader>
+  <div class="table-body">
+    <md-list-item ng-repeat="user in users">
+      <span class="md-block flex-gt-sm" flex-gt-sm="">{{user.GradeName || user.ClassRoomName }}</span>
+      <span class="md-block flex-gt-sm" flex-gt-sm="">{{ user.FirstName }} {{user.LastName}}</span>
+      <span class="md-block flex-gt-sm" flex-gt-sm="">{{user.Username}}</span>
+      <span class="md-block flex-gt-sm text-right" flex-gt-sm="">
+        <button ng-click="updateUser(user)" class="md-fab md-primary md-button md-ink-ripple" type="button" >
+          <i class="fa fa-pencil"></i>
+          <div class="md-ripple-container"></div>
+        </button>
+
+
+      </span>
+    </md-list-item>
+  </div>
+
+</div>
