@@ -1,0 +1,62 @@
+.card-item .img-responsive {
+  height: 10vw;
+  margin: auto;
+}
+.card .card-offset button:nth-child(2) {
+  left: 50px;
+}
+.imageRemoveIcon{
+  position: absolute;
+border-radius: 50%;
+width: 2vw;
+height: 2vw;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.thumbnail-large {
+  max-height: 7vw;
+  max-width: 7vw;
+  padding: 0;
+  cursor: pointer;
+  img {
+    width: 100%;
+  }
+  .thumbnail-img{
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    i {
+      color: white;
+    }
+  }
+  .thumbnail-hover {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    i {
+      color: white;
+    }
+  }
+  .thumbnail-add {
+    display: flex;
+    width: 7vw;
+    height: 7vw;
+    position: relative;
+  }
+}
+.thumbnail-large:hover .thumbnail-hover {
+  display: flex;
+}
+
+.custom-form {
+  .card {
+    padding: 20px;
+  }
+}

@@ -1,4 +1,4 @@
-# ZaminAdmin
+# slice
 
 *Generated with [ng-poly](https://github.com/dustinspecker/generator-ng-poly/tree/v0.13.0) version 0.13.0*
 

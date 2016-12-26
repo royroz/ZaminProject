@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>
+קטגוריות
+  </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>שם</th>
+                <th>
+                  תמונה
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="cat in categories track by $index">
+                <td>{{$index+1}}</td>
+                <td class="col-xs-5">
+                  <span ng-hide="cat.edit">{{cat.Name}}</span>
+                  <span ng-show="cat.edit">
+                    <input class="mda-form-control" ng-model="cat.Name" >
+                  </span>
+                </td>
+                <td>
+                  <span ng-hide="cat.edit">
+                    <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{cat.ImageUrl}}?v={{imageVersion}}"/>
+                  </span>
+                  <span ng-show="cat.edit">
+                    <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{cat.ImageUrl}}" ng-show="cat.Image == undefined"/>
+                    <img class="imageThumbnail" ngf-thumbnail="cat.Image" />
+                    <div ngf-select ng-model="cat.Image" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                      <button class="btn btn-primary" type="file">
+                        <i class="fa fa-plus"></i></button>
+                    </div>
+                  </span>
+                </td>
+                <td>
+                  <a ng-hide="cat.edit" class="mb-sm btn btn-warning" type="button" title="עריכה" ng-click="setEditMode(cat)"><i class="fa fa-pencil"></i></a>
+                  <a ng-show="cat.edit" class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="update(cat)" ng-disabled="cat.Name == ''"><i class="fa fa-check"></i></a>
+                  <a class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(cat, $index, $event)"><i class="fa fa-trash-o"></i></a>
+                    <a href="#menu-item/{{cat.Id}}/{{cat.Name}}" class=" mb-sm btn btn-primary" type="button">פריטים&nbsp;<i class="fa fa-chevron-left"></i></a>
+                </td>
+              </tr>
+              <!-- new item row -->
+              <tr ng-show="newCategory != undefined">
+                <td></td>
+                <td class="col-xs-5">
+                  <input class="mda-form-control" ng-model="newCategory.Name" placeholder="שם">
+                </td>
+                <td>
+                    <img class="imageThumbnail" ngf-thumbnail="newCategory.Image">
+                    <div ngf-select ng-model="newCategory.Image" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                      <button class="btn btn-primary" type="file">
+                        <i class="fa fa-plus"></i></button>
+                    </div>
+                </td>
+                <td>
+                  <button class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="create()" ng-disabled="newCategory.Name == ''"><i class="fa fa-check"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<md-button class="md-fab md-fab-bottom-right md-primary" title="הוספה" ng-click="addItem()">
+  <i class="fa fa-plus"></i>
+</md-button>

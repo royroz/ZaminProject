@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -9,14 +9,14 @@
     $stateProvider
       .state('home', {
         url: '/home',
-        views: {
-          'mainView': {
+        views:{
+          'mainView':{
             templateUrl: 'home/home.tpl.html',
             controller: 'HomeCtrl',
             controllerAs: 'home'
           },
-          'menuView': {
-              templateUrl: 'sideNav.html'
+          'layoutView':{
+              templateUrl: 'partials/layoutView.html'
           }
         }
 

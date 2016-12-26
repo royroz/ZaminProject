@@ -27,6 +27,7 @@ $ = require('gulp-load-plugins')({
 
 _.merge(config, buildConfig);
 
+config.appComponents = path.join(config.appDir, 'components/**/*');
 config.appFiles = path.join(config.appDir, '**/*');
 config.appFontFiles = path.join(config.appDir, 'fonts/**/*');
 config.appImageFiles = path.join(config.appDir, 'images/**/*');

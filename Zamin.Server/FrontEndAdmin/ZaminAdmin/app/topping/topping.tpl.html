@@ -1,0 +1,100 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>
+      פיצה - תוספות
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-10 col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>שם</th>
+                <th ng-repeat="size in pizzaSizes | orderBy : 'Id' ">
+                  {{size.Name}}
+                  - מחיר
+                </th>
+                <th>
+                  תמונה
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="top in toppings  track by $index">
+                <td>{{$index+1}}</td>
+                <td>
+                  <span ng-hide="top.edit">{{top.Name}}</span>
+                  <span ng-show="top.edit">
+                    <input class="mda-form-control" ng-model="top.Name">
+                  </span>
+                </td>
+                <td ng-repeat="toppingPrice in top.ToppingPrices | orderBy : 'PizzaSizeId'">
+                  <span ng-hide="top.edit">
+                    {{toppingPrice.Price}}
+                  </span>
+                  <span ng-show="top.edit">
+                    <input class="mda-form-control" ng-model="toppingPrice.Price">
+                  </span>
+                </td>
+                <td>
+                  <span ng-hide="top.edit">
+                    <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{top.ImageUrl}}?v={{imageVersion}}"/>
+                  </span>
+                  <span ng-show="top.edit" >
+                    <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{top.ImageUrl}}" ng-show="top.ImageFile == undefined"/>
+                    <img class="imageThumbnail" ngf-thumbnail="top.ImageFile" />
+                    <div ngf-select ng-model="top.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                      <button class="btn btn-primary" type="file">
+                        <i class="fa fa-plus"></i></button>
+                    </div>
+                  </span>
+                </td>
+                <td>
+                  <button ng-hide="top.edit" class="mb-sm btn btn-warning" type="button" title="עריכה" ng-click="setEditMode(top)">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button ng-show="top.edit" class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="update(top)">
+                    <i class="fa fa-check"></i>
+                  </button>
+                  <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(top, $index, $event)">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- new item row -->
+              <tr ng-show="newTopping != undefined">
+                <td></td>
+                <td>
+                  <input class="mda-form-control" ng-model="newTopping.Name" placeholder="שם">
+                </td>
+                <td ng-repeat="price in newTopping.ToppingPrices">
+                  <input class="mda-form-control" ng-model="price.Price" placeholder="{{price.Name}}">
+                </td>
+
+                <td>
+                    <img class="imageThumbnail" ngf-thumbnail="newTopping.ImageFile">
+                    <div ngf-select ng-model="newTopping.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                      <button class="btn btn-primary" type="file">
+                        <i class="fa fa-plus"></i></button>
+                    </div>
+                </td>
+                <td>
+                  <button class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="create()">
+                    <i class="fa fa-check"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<md-button class="md-fab md-fab-bottom-right md-primary" title="הוספה" ng-click="addItem()">
+  <i class="fa fa-plus"></i>
+</md-button>

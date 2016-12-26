@@ -1,0 +1,24 @@
+<md-dialog class="deleteDialog">
+        <md-toolbar class="md-warn ">
+            <div class="md-toolbar-tools">
+                <h4>מחיקה</h4>
+            </div>
+        </md-toolbar>
+        <h3 class="dialog-title">האם אתה בטוח שברצונך למחוק את
+                '{{itemToDelete.Name}}'
+            ?</h3>
+
+        <div layout-gt-sm="row" class="layout-gt-sm-row">
+            <div>
+                <button class="md-raised md-warn md-button md-ink-ripple" type="submit" ng-click="delete()">
+                    <span class="ng-scope">   <i class="fa fa-trash-o"></i>&nbsp;מחיקה</span>
+                    <div class="md-ripple-container"></div>
+                </button>
+                <button class="md-raised md-button md-ink-ripple" ng-click="hideDialog()">
+                    <span class="ng-scope"><i class="fa fa-times"></i>&nbsp;ביטול</span>
+                    <div class="md-ripple-container"></div>
+                </button>
+            </div>
+        </div>
+
+</md-dialog>

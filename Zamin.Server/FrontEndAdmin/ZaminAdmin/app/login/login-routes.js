@@ -9,15 +9,17 @@
     $stateProvider
       .state('login', {
         url: '/login',
-        views: {
-                'mainView': {
-                    templateUrl: 'login/login.tpl.html',
-                    controller: 'LoginCtrl',
-                    controllerAs: 'login'
-                },
-                'menuView': {
-                }
-            }
+        views:{
+          'mainView':{
+            templateUrl: 'login/login.tpl.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'login'
+          },
+          'layoutView':{
+            
+          }
+        }
+
       });
   }
 }());

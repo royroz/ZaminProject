@@ -1,0 +1,81 @@
+<form class="custom-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 ng-show="editMode">
+        עריכה -
+        {{::user.FirstName}}
+      </h3>
+      <h3 ng-hide="editMode">
+          משתמש חדש
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">שם פרטי</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="user.FirstName">
+            </div>
+            <label class="col-sm-2 control-label">שם משפחה</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="user.LastName">
+            </div>
+          </div>
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">דוא"ל</label>
+            <div class="col-sm-3">
+              <input class="form-control" ng-model="user.Email" ng-disabled="editMode">
+            </div>
+            <label class="col-sm-2 control-label">טלפון</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="user.Phone" />
+            </div>
+          </div>
+          <br />
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">סיסמא</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="user.Password" />
+            </div>
+          </div>
+          <br/>
+
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">משתמש רשת</label>
+            <div class="col-sm-1">
+              <md-checkbox ng-model="user.IsFranchiseAdmin" aria-label="" ng-change="roleChange('franchise')"></md-checkbox>
+            </div>
+          </div>
+          <br/>
+
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">משתמש סניף</label>
+            <div class="col-sm-1">
+              <md-checkbox ng-model="user.IsBranchAdmin" aria-label="" ng-change="roleChange('branch')"></md-checkbox>
+            </div>
+            <div class="col-sm-3">
+               <!-- <md-input-container> -->
+              <!-- <label>בחר סניף</label> -->
+              <md-select ng-model="user.BranchId"  placeholder="בחר סניף" style="margin-top:0 !important;" ng-disabled="user.IsFranchiseAdmin">
+                <md-option ng-repeat="branch in branches" ng-value="branch.Id" >
+                  {{branch.Name}}
+                </md-option>
+              </md-select>
+              <!-- </md-input-container> -->
+            </div>
+          </div>
+          <br/>
+
+
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-lg btn-success" ng-click="save()">
+    שמור
+  </button>
+</form>

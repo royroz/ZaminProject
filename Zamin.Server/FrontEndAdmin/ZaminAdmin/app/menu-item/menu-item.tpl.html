@@ -1,0 +1,66 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>
+{{categoryName}}
+-
+פריטים
+  </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>שם</th>
+                <th>מחיר</th>
+                <th>מידע נוסף</th>
+                <th>
+                    תוספות
+                </th>
+                <th>
+                  תמונה
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in items track by $index">
+                <td>{{$index+1}}</td>
+                <td>
+                    {{item.Name}}
+                </td>
+                <td>
+                    {{item.Price}}
+                </td>
+                <td>
+                  {{item.Information}}
+                </td>
+                <td>
+                    <div ng-repeat="garnish in item.Garnishes">
+                      {{garnish.Name}} -
+                      {{garnish.Price}}
+                    </div>
+                </td>
+                <td>
+                    <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{item.ImageUrl}}"/>
+                </td>
+                <td>
+                  <a href="#item-form/{{categoryId}}/{{categoryName}}/{{item.Id}}" class="mb-sm btn btn-warning" type="button" title="עריכה"><i class="fa fa-pencil"></i></a>
+                  <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(item, $index, $event)"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<a href="#item-form/{{categoryId}}/{{categoryName}}" class="md-button md-fab md-fab-bottom-right md-primary" title="הוספה">
+  <i class="fa fa-plus"></i>
+</a>

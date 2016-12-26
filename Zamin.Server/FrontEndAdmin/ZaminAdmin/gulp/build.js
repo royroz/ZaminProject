@@ -17,7 +17,8 @@ module.exports = function (gulp, $, config) {
   // compile markup files and copy into build directory
   gulp.task('markup', ['clean'], function () {
     return gulp.src([
-      config.appMarkupFiles
+      config.appMarkupFiles,
+      '!' + config.appComponents
     ])
       .pipe(gulp.dest(config.buildDir));
   });
@@ -25,7 +26,8 @@ module.exports = function (gulp, $, config) {
   // compile styles and copy into build directory
   gulp.task('styles', ['clean'], function () {
     return gulp.src([
-      config.appStyleFiles
+      config.appStyleFiles,
+      '!' + config.appComponents
     ])
       .pipe($.plumber({errorHandler: function (err) {
         $.notify.onError({
@@ -66,6 +68,7 @@ module.exports = function (gulp, $, config) {
     return gulp.src([
       config.appScriptFiles,
       config.buildDir + '**/*.html',
+      '!' + config.appComponents,
       '!**/*_test.*',
       '!**/index.html'
     ])
@@ -83,6 +86,7 @@ module.exports = function (gulp, $, config) {
       .pipe($.if(isProd, $.ngAnnotate()))
       .pipe($.if(isProd, $.uglify()))
       .pipe($.if(isProd, $.rev()))
+      .pipe($.addSrc($.mainBowerFiles({filter: /webcomponents/})))
       .pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest(config.buildJs))
       .pipe(jsFilter.restore);
@@ -95,11 +99,21 @@ module.exports = function (gulp, $, config) {
     return gulp.src(config.buildDir + 'index.html')
       .pipe($.inject(gulp.src([
           config.buildCss + '**/*',
-          config.buildJs + '**/*'
+          config.buildJs + '**/*',
+          '!**/webcomponents.js'
         ])
         .pipe(jsFilter)
         .pipe($.angularFilesort())
         .pipe(jsFilter.restore), {
+          addRootSlash: false,
+          ignorePath: config.buildDir
+        })
+      )
+      .pipe($.inject(gulp.src([
+          config.buildJs + 'webcomponents.js'
+        ]), {
+          starttag: '<!-- inject:head:{{ext}} -->',
+          endtag: '<!-- endinject -->',
           addRootSlash: false,
           ignorePath: config.buildDir
         })
@@ -168,6 +182,7 @@ module.exports = function (gulp, $, config) {
     } else {
       return gulp.src(config.buildDir + 'index.html')
         .pipe($.wiredep.stream({
+          exclude: [/webcomponents/],
           ignorePath: '../../' + bowerDir.replace(/\\/g, '/'),
           fileTypes: {
             html: {
@@ -186,6 +201,53 @@ module.exports = function (gulp, $, config) {
         }))
         .pipe(gulp.dest(config.buildDir));
     }
+  });
+
+  // compile components and copy into build directory
+  gulp.task('components', ['bowerInject'], function () {
+    var polymerBowerAssetsToCopy
+      , styleFilter = $.filter('**/*.less', {restore: true});
+
+    // List all Bower component assets that should be copied to the build
+    // directory. The Bower directory is automatically prepended via the
+    // map function.
+    polymerBowerAssetsToCopy = [
+      'polymer/polymer*.html'
+    ].map(function (file) {
+      return bowerDir + file;
+    });
+
+    return gulp.src(config.appComponents)
+      .pipe($.addSrc(polymerBowerAssetsToCopy, {base: bowerDir}))
+      .pipe($.sourcemaps.init())
+      .pipe(styleFilter)
+      .pipe($.less())
+      .pipe(styleFilter.restore)
+      .pipe($.sourcemaps.write('.'))
+      .pipe(gulp.dest(config.buildComponents));
+  });
+
+  // inject components
+  gulp.task('componentsInject', ['components'], function () {
+    // List all Polymer and custom copmonents that should be injected
+    // into index.html. The are injected in the order listed and the
+    // components directory is automatically prepended via the
+    // map function.
+    var polymerAssetsToInject = [
+      'polymer/polymer.html'
+    ].map(function (file) {
+      return config.buildComponents + file;
+    });
+
+    return gulp.src(config.buildDir + 'index.html')
+      .pipe($.inject(gulp.src(polymerAssetsToInject), {
+          starttag: '<!-- inject:html -->',
+          endtag: '<!-- endinject -->',
+          addRootSlash: false,
+          ignorePath: config.buildDir
+        })
+      )
+      .pipe(gulp.dest(config.buildDir));
   });
 
   // copy Bower fonts and images into build directory
@@ -219,7 +281,7 @@ module.exports = function (gulp, $, config) {
       .pipe(gulp.dest(config.buildImages));
   });
 
-  gulp.task('copyTemplates', ['bowerInject'], function () {
+  gulp.task('copyTemplates', ['componentsInject'], function () {
     // always copy templates to testBuild directory
     var stream = $.streamqueue({objectMode: true});
 
@@ -241,6 +303,7 @@ module.exports = function (gulp, $, config) {
       .on('end', function () {
         $.del([
           config.buildDir + '*',
+          '!' + config.buildComponents,
           '!' + config.buildCss,
           '!' + config.buildFonts,
           '!' + config.buildImages,

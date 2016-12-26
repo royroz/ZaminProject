@@ -2,10 +2,10 @@
   'use strict';
 
   angular
-    .module('zaminAdmin')
+    .module('slice')
     .config(config);
 
   function config($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/home');
   }
 }());

@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   /**
@@ -12,12 +12,40 @@
     .module('login')
     .factory('Login', Login);
 
-  function Login() {
+  function Login($http, consts) {
     var LoginBase = {};
-    LoginBase.someValue = 'Login';
-    LoginBase.someMethod = function () {
-      return 'Login';
-    };
+
+    LoginBase.signIn = function(username, password) {
+      return $http({
+        method: "POST",
+        url: consts.serverUrl + "Account/Login",
+        data: {
+          username: username,
+          password: password
+        }
+      });
+    },
+
+    LoginBase.forgotPassword = function(email) {
+      return $http({
+        method: "POST",
+        url: consts.serverUrl + "Account/ForgotPassword",
+        data: {
+          username: email
+        }
+      });
+    }
+
+
+    LoginBase.getCurrentUser = function() {
+      return $http({
+        method: "GET",
+        url: consts.serverUrl + "Account/GetCurrentUser"
+      });
+    }
+
+
+
     return LoginBase;
   }
 }());

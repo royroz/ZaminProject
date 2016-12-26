@@ -1,0 +1,98 @@
+<div class="panel panel-default pizzaForm">
+  <div class="panel-heading">
+    <h3>
+    פיצות
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>שם</th>
+                <th>תיאור</th>
+                <th ng-repeat="size in pizzaSizes | orderBy : 'Id' ">
+                  {{size.Name}}
+                  - מחיר
+                </th>
+                <th>תוספות</th>
+                <th>תמונה</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="pizza in pizzas  track by $index">
+                <td>{{$index+1}}</td>
+                <td>
+                  <span ng-hide="pizza.edit">{{pizza.Name}}</span>
+                  <span ng-show="pizza.edit">
+                    <input class="mda-form-control" ng-model="pizza.Name">
+                  </span>
+                </td>
+                <td>
+                  <span ng-hide="pizza.edit">{{pizza.Description}}</span>
+                  <span ng-show="pizza.edit">
+                    <input class="mda-form-control" ng-model="pizza.Description">
+                  </span>
+                </td>
+
+                <td ng-repeat="pizzaPrice in pizza.PizzaPrices | orderBy : 'PizzaSizeId'">
+                  <span ng-hide="pizza.edit">
+                    {{pizzaPrice.Price}}
+                  </span>
+                  <span ng-show="pizza.edit">
+                    <input class="mda-form-control" ng-model="pizzaPrice.Price">
+                  </span>
+                </td>
+
+
+                <td>
+                  <span ng-hide="pizza.edit">
+                    <div ng-repeat="top in pizza.PizzaToppings">
+                      {{top.Topping.Name}}
+                      <span ng-hide="$last">, </span>
+                    </div>
+                  </span>
+                  <span ng-show="pizza.edit">
+                    <md-select ng-model="pizza.toppings" name="category" placeholder="תוספות" multiple>
+                      <md-option ng-value="top" ng-repeat="top in toppings">{{ top.Name }}</md-option>
+                    </md-select>
+                  </span>
+                </td>
+                <td>
+                  <span ng-hide="pizza.edit">
+                      <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{pizza.ImageUrl}}?v={{imageVersion}}"/>
+                  </span>
+                  <span ng-show="pizza.edit">
+                      <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{pizza.ImageUrl}}" ng-show="pizza.ImageFile == undefined"/>
+                      <img class="imageThumbnail" ngf-thumbnail="pizza.ImageFile" />
+                      <div ngf-select ng-model="pizza.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                        <button class="btn btn-primary" type="file">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                  </span>
+                </td>
+                <td>
+          <a href="#pizza-form/{{pizza.Id}}" class="mb-sm btn btn-warning" type="button" title="עריכה" >
+            <i class="fa fa-pencil"></i>
+          </a>
+          <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(pizza, $index, $event)">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </td>
+        </tr>
+
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<a href="#pizza-form" class="md-button md-fab md-fab-bottom-right md-primary" title="הוספה" >
+  <i class="fa fa-plus"></i>
+</a>

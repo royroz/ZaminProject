@@ -2,7 +2,7 @@
   "generator-ng-poly": {
     "appScript": "js",
     "controllerAs": true,
-    "directiveTemplateUrl": false,
+    "directiveTemplateUrl": true,
     "e2eTestFramework": "jasmine",
     "markup": "html",
     "ngRoute": false,
