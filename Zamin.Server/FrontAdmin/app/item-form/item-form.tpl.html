@@ -1,0 +1,102 @@
+<form class="custom-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 ng-show="editMode">
+        עריכה -
+        {{itemOriginal.Name}}
+      </h3>
+      <h3 ng-hide="editMode">
+        {{categoryName}}
+        -
+        הוספת פריט
+      </h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          <div class="row form-group">
+            <label class="col-sm-1 control-label">שם</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="item.Name">
+            </div>
+            <div class="col-xs-1"> </div>
+            <label class="col-sm-1 control-label">מחיר</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="number" ng-model="item.Price">
+            </div>
+          </div>
+          <div class="row form-group">
+            <label class="col-sm-1 control-label">מידע נוסף</label>
+            <div class="col-sm-3">
+              <textarea class="form-control" ng-model="item.Information"></textarea>
+            </div>
+          </div>
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">
+              תמונה
+              <div ngf-select ng-model="item.Image" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                <button class="btn btn-primary" type="file">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </label>
+            <div class="col-sm-10" layout="row">
+              <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{item.ImageUrl}}" ng-show="item.Image == undefined && item.ImageUrl != undefined" />
+              <img class="imageThumbnail" ngf-thumbnail="item.Image" />
+            </div>
+          </div>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">תוספות</label>
+            <div class="col-sm-10">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>שם</th>
+                    <th>מחיר</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="garnish in item.Garnishes track by $index">
+                    <td>{{$index+1}}</td>
+                    <td>
+                      <span ng-hide="garnish.edit">
+                        {{garnish.Name}}
+                      </span>
+                      <span ng-show="garnish.edit">
+                        <input class="form-control" type="text" ng-model="garnish.Name"/>
+                      </span>
+                    </td>
+                    <td>
+                      <span ng-hide="garnish.edit">
+                        {{garnish.Price}}
+                      </span>
+                      <span ng-show="garnish.edit">
+                        <input class="form-control" type="number" ng-model="garnish.Price"/>
+                      </span>
+                    </td>
+                    <td>
+                      <button class="mb-sm btn btn-warning" type="button" title="עריכה" ng-hide="garnish.edit" ng-click="setEditMode(garnish)"><i class="fa fa-pencil"></i></button>
+                      <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(garnish, $index, $event)"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <md-button ng-click="addItem()" class="md-primary" title="הוספה">
+                <i class="fa fa-plus"></i> &nbsp; הוסף פריט
+              </md-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <md-button ng-click="save()" class="btn-primary">
+          שמור
+    </md-button>
+  </div>
+</form>

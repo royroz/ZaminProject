@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>
+פיצה - סוגי בצק
+  </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>שם</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="type in doughTypes track by $index">
+                <td>{{$index+1}}</td>
+                <td class="col-xs-5">
+                  <span ng-hide="type.edit">{{type.Name}}</span>
+                  <span ng-show="type.edit">
+                <input class="mda-form-control" ng-model="type.Name" >
+              </span>
+                </td>
+                <td>
+                  <button ng-hide="type.edit" class="mb-sm btn btn-warning" type="button" title="עריכה" ng-click="setEditMode(type)"><i class="fa fa-pencil"></i></button>
+                  <button ng-show="type.edit" class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="update(type)" ng-disabled="type.Name == ''"><i class="fa fa-check"></i></button>
+                  <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(type, $index, $event)"><i class="fa fa-trash-o"></i></button>
+                </td>
+              </tr>
+              <!-- new item row -->
+              <tr ng-show="newDoughType != undefined">
+                <td></td>
+                <td class="col-xs-5">
+                  <input class="mda-form-control" ng-model="newDoughType.Name" placeholder="שם">
+                </td>
+                <td>
+                  <button class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="create()" ng-disabled="newDoughType.Name == ''"><i class="fa fa-check"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<md-button class="md-fab md-fab-bottom-right md-primary" title="הוספה" ng-click="addItem()">
+  <i class="fa fa-plus"></i>
+</md-button>

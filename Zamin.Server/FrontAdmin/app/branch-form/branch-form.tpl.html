@@ -1,0 +1,125 @@
+<form class="custom-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 ng-show="editMode">
+        עריכה -
+        {{::branch.Name}}
+      </h3>
+      <h3 ng-hide="editMode">
+          יצירת סניף
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">שם הסניף</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.Name">
+            </div>
+            <label class="col-sm-2 control-label">כתובת</label>
+            <div class="col-sm-3">
+              <input class="form-control" ng-model="branch.GooglePlaceAddress" g-places-autocomplete>
+            </div>
+          </div>
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">טלפון</label>
+            <div class="col-sm-3">
+              <input class="form-control" ng-model="branch.BranchPhone" g-places-autocomplete>
+            </div>
+            <label class="col-sm-2 control-label">טלפון 2</label>
+            <div class="col-sm-3">
+              <input class="form-control" ng-model="branch.BranchPhone2">
+            </div>
+          </div>
+          <br/>
+
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">שם מנהל</label>
+            <div class="col-sm-3">
+              <input class="form-control" ng-model="branch.ManagerName">
+            </div>
+            <label class="col-sm-2 control-label">טלפון מנהל</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.ManagerPhone">
+            </div>
+          </div>
+          <br/>
+
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">פלאפון מנהל</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.ManagerMobile">
+            </div>
+            <label class="col-sm-2 control-label">סיסמת מנהל</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.ManagerPassword">
+            </div>
+          </div>
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label"> זמן משלוח (בדקות)</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.DeliveryTimeInMinutes">
+            </div>
+            <label class="col-sm-2 control-label">זמן איסוף (בדקות)</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.TakeawayTimeInMinutes">
+            </div>
+          </div>
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">תמונה</label>
+            <div class="col-sm-3">
+              <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{branch.ImageUrl}}" ng-show="branch.ImageFile == undefined" />
+              <img class="imageThumbnail" ngf-thumbnail="branch.ImageFile" />
+              <div ngf-select ng-model="branch.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                <button class="btn btn-primary" type="file">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <label class="col-sm-2 control-label">דוא"ל</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" ng-model="branch.ManagerEmail">
+            </div>
+
+          </div>
+          <br />
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover day-working-tbl">
+              <thead>
+                <tr>
+                  <th>יום</th>
+                  <th>פתיחה</th>
+                  <th>סגירה</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="day in branch.DayWorkingHours">
+                  <td>
+                    {{day.DayName}}
+                  </td>
+                  <td>
+                        <mdp-time-picker class="time-picker"  mdp-placeholder="" mdp-auto-switch="true" ng-model="day.StartTime"></mdp-time-picker>
+                  </td>
+                  <td>
+                      <mdp-time-picker  class="time-picker" mdp-placeholder="" mdp-auto-switch="true" ng-model="day.FinishTime"></mdp-time-picker>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br />
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-lg btn-success" ng-click="save()">
+    שמור
+  </button>
+</form>

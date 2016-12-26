@@ -1,0 +1,175 @@
+<form class="custom-form combos">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <!-- <h3 ng-show="editMode">
+        עריכה -
+        {{franchiseOriginal.Name}}
+      </h3> -->
+      <h3 ng-hide="editMode">
+      יצירת מבצע
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">שם המבצע</label>
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="combo.Name">
+            </div>
+          </div>
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">תיאור המבצע</label>
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="combo.Description">
+            </div>
+          </div>
+          <br />
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">מחיר</label>
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="combo.Price">
+            </div>
+          </div>
+          <br />
+          <div class="row form-group">
+            <label class="col-sm-2 control-label">תמונה</label>
+            <div class="col-sm-10">
+              <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{combo.ImageUrl}}" ng-show="combo.ImageFile == undefined" />
+              <img class="imageThumbnail" ngf-thumbnail="combo.ImageFile" />
+              <div ngf-select ng-model="combo.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                <button class="btn btn-primary" type="file">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="row form-group col-sm-12">
+            <label class="col-sm-2 control-label">תאריך התחלה</label>
+            <mdp-date-picker class="col-sm-3" ng-model="startDate"></mdp-date-picker>
+
+            <label class="col-sm-2 control-label">שעת התחלה</label>
+            <mdp-time-picker class="col-sm-3" mdp-auto-switch="true" ng-model="startTime"></mdp-time-picker>
+          </div>
+          <br/>
+          <div class="row form-group col-sm-12">
+            <label class="col-sm-2 control-label">תאריך סיום</label>
+            <mdp-date-picker class="col-sm-3" ng-model="endDate"></mdp-date-picker>
+
+            <label class="col-sm-2 control-label">שעת סיום</label>
+            <mdp-time-picker class="col-sm-3" mdp-auto-switch="true" ng-model="endTime"></mdp-time-picker>
+          </div>
+          <br/>
+          <md-card>
+            <h2>פיצות</h2>
+            <div class="row form-group">
+              <label class="col-sm-2 control-label">בחר פיצה</label>
+              <div class="col-sm-5">
+                <!-- combo.PizzaCombos -->
+                <md-select ng-model="combo.Pizzas" placeholder="בחר פיצות" multiple="true" ng-change="pizzasListChange()">
+                  <md-option ng-value="pizza" ng-repeat="pizza in pizzas">{{ pizza.Name }}</md-option>
+                </md-select>
+              </div>
+            </div>
+            <br/>
+
+            <div class="table-responsive" ng-show="combo.Pizzas.length > 0">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>פיצה</th>
+                    <th> כמות</th>
+                    <th>גודל</th>
+                    <th>תוספות לבחירה</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="pizza in combo.Pizzas track by $index">
+                    <td>{{$index+1}}</td>
+                    <td>{{pizza.Name}}</td>
+                    <td style="width:20%;">
+                      <input ng-show="pizza.pizzaComboId == undefined" ng-model="pizza.Quantity" class="form-control" required="" type="number" step="any" name="rate" min="1" max="100">
+                      <span ng-show="pizza.pizzaComboId != undefined">{{pizza.Quantity}}</span>
+                    </td>
+                    <td style="width:20%;">
+                      <md-select ng-model="pizza.SizeId" class="no-margin" ng-disabled="pizza.pizzaComboId != undefined">
+                        <md-option ng-value="size.Id" ng-repeat="size in pizzaSizes">{{ size.Name }}</md-option>
+                      </md-select>
+                    </td>
+                    <td style="width:20%;">
+                      <input ng-show="pizza.pizzaComboId == undefined" ng-model="pizza.MaxToppings" class="form-control" required="" type="number" step="any" name="rate" min="1" max="100">
+                      <span ng-show="pizza.pizzaComboId != undefined">{{pizza.MaxToppings}}</span>
+                    </td>
+                    <td>
+                      <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteTableRow(0, $index, $event)">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </md-card>
+          <br />
+
+          <md-card>
+            <h2>פריטים</h2>
+            <h4 ng-click="addItem()"> + הוסף פריט</h4>
+            <br />
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>שם</th>
+                  <th> כמות</th>
+                  <th>פריטים לבחירה</th>
+                  <th> מספר תוספות מקסימלי</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="itemCombo in combo.ItemCombos track by $index">
+                  <td>{{$index+1}}</td>
+                  <td>
+                    <input ng-show="itemCombo.Id == undefined" class="form-control" type="text" ng-model="itemCombo.Name">
+                    <span ng-show="itemCombo.Id != undefined">{{itemCombo.Name}}</span>
+                  </td>
+                  <td style="width:20%;">
+                    <input ng-show="itemCombo.Id == undefined" class="form-control" type="text" ng-model="itemCombo.Quantity">
+                    <span ng-show="itemCombo.Id != undefined">{{itemCombo.Quantity}}</span>
+                  </td>
+                  <td style="width:20%;">
+                    <md-select class="no-margin" ng-model="itemCombo.Items" name="category" placeholder="בחר פריטים" multiple="true" ng-disabled="itemCombo.Id != undefined">
+                      <md-optgroup ng-repeat="category in categories" label="{{category.Name}}">
+                        <md-option ng-value="item" ng-repeat="item in category.Items">{{item.Name}}</md-option>
+                      </md-optgroup>
+                    </md-select>
+                  </td>
+                  <td style="width:20%;">
+                    <input ng-show="itemCombo.Id == undefined" class="form-control" type="text" ng-model="itemCombo.MaxGarnishes">
+                      <span ng-show="itemCombo.Id != undefined">{{itemCombo.MaxGarnishes}}</span>
+                  </td>
+                  <td>
+                    <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteTableRow(1, $index, $event)">
+                      <i class="fa fa-trash-o"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-card>
+          <br />
+          <br/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-lg btn-success" ng-click="save()">
+    שמור
+  </button>
+</form>

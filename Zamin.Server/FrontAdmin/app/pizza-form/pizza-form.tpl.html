@@ -1,0 +1,64 @@
+<form class="custom-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 ng-show="editMode">
+        עריכה -
+        {{::pizza.Name}}
+      </h3>
+      <h3 ng-hide="editMode">
+        הוספת פיצה
+      </h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">שם</label>
+        <div class="col-sm-3">
+          <input class="form-control" ng-model="pizza.Name" placeholder="שם">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">תיאור</label>
+        <div class="col-sm-3">
+          <input class="form-control" ng-model="pizza.Description" placeholder="תיאור">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">מידע נוסף</label>
+        <div class="col-sm-3">
+          <textarea class="form-control" ng-model="pizza.Information" placeholder="תיאור"></textarea>
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">תוספות</label>
+        <md-select class="col-sm-3" ng-model="pizza.toppings" name="category" placeholder="תוספות" multiple>
+          <md-option ng-value="top" ng-repeat="top in toppings">{{ top.Name }}</md-option>
+        </md-select>
+      </div>
+      <div class="row form-group" ng-repeat="price in pizza.PizzaPrices">
+        <label class="col-sm-1 control-label">מחיר {{price.PizzaSizeName}}</label>
+        <div class="col-sm-3">
+          <input class="form-control" ng-model="price.Price" placeholder="{{price.PizzaSizeName}}">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-2 control-label">
+          תמונה
+          <div ngf-select ng-model="pizza.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+            <button class="btn btn-primary" type="file">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </label>
+        <div class="col-sm-10" layout="row">
+          <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{pizza.ImageUrl}}" ng-show="pizza.ImageFile == undefined && pizza.ImageUrl != undefined" />
+          <img class="imageThumbnail" ngf-thumbnail="pizza.ImageFile" />
+        </div>
+      </div>
+    </div>
+
+    <md-button ng-click="save()" class="btn-primary">
+          שמור
+    </md-button>
+  </div>
+</form>

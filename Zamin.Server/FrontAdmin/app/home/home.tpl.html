@@ -1,0 +1,72 @@
+<div class="content-wrapper ng-fadeInUp">
+  <h3 class="ng-scope">
+    <!-- START Language list-->
+    <div class="pull-right">
+      <div class="btn-group dropdown" uib-dropdown="" is-open="language.listIsOpen">
+        <button class="btn btn-default ng-binding dropdown-toggle" type="button" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">English<span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right animated fadeInUpShort" role="menu">
+          <!-- ngRepeat: (localeId, langName) in language.available -->
+          <li ng-repeat="(localeId, langName) in language.available" class="ng-scope">
+            <a ng-click="language.set(localeId, $event)" href="#" class="ng-binding">English</a>
+          </li>
+          <!-- end ngRepeat: (localeId, langName) in language.available -->
+          <li ng-repeat="(localeId, langName) in language.available" class="ng-scope">
+            <a ng-click="language.set(localeId, $event)" href="#" class="ng-binding">Español</a>
+          </li>
+          <!-- end ngRepeat: (localeId, langName) in language.available -->
+        </ul>
+      </div>
+    </div><!-- END Language list    -->Zamin<small class="ng-binding">מידע למנהל האתר זמין</small>
+  </h3>
+  <div class="download-btns">
+    <button class="btn btn-primary" type="button" title="">
+      <i class="fa fa-file-excel-o"></i>
+      <span>הורדת כל המשתמשים</span>
+    </button>
+    <button class="btn btn-warning" type="button" title="">
+      <i class="fa fa-download"></i>
+      <span>רשימת טלפונים</span>
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">הצטרפות משתמשים חדשים</div>
+        </div>
+        <div class="panel-wrapper in collapse">
+          <div class="panel-body">
+            <flot dataset="incomeByDate.barData" options="incomeByDate.barOptions" height="300px">
+            </flot>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">מחנכים / הורים</div>
+        </div>
+        <div class="panel-wrapper in collapse">
+          <div class="panel-body">
+            <flot dataset="incomeByCashCredit.pieData" options="incomeByCashCredit.pieOptions" height="300px"></flot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title"> צפייה בתכני האתר</div>
+      </div>
+      <div class="panel-wrapper in collapse">
+        <div class="panel-body">
+          <flot dataset="incomeByBusiness.barData" options="incomeByBusiness.barOptions" height="300px">
+          </flot>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

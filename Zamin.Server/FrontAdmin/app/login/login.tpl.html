@@ -1,0 +1,22 @@
+<div class="login" layout="column" flex="50" layout-align="center center">
+  <div layout-align="center center" layout="row" layout-padding>
+    <h3  ng-show="invalidUsernameOrPassword" style="color:red;">שם משתמש או סיסמא לא נכונים</h3>
+    <form name="loginForm" novalidate>
+      <label for="input_27"> שם</label>
+      <input ng-model="username" class="md-input" name="username" required>
+      <div ng-messages="loginForm.username.$error" ng-show="loginForm.$submitted">
+        <div ng-message="required" ng-show="loginForm.username.$error.required"> שדה זה הוא חובה.</div>
+      </div>
+
+      <label for="input_27"> סיסמא</label>
+      <input ng-model="password" class="md-input" name="password" required type="password">
+      <div ng-messages="loginForm.username.$error" ng-show="loginForm.$submitted">
+        <div ng-message="required" ng-show="loginForm.username.$error.required">שדה זה הוא חובה.</div>
+      </div>
+      <span>
+                    <button class="md-primary md-button" type="submit" ng-click="signIn(loginForm.$valid)">כניסה</button>
+                </span>
+    </form>
+  </div>
+
+</div>

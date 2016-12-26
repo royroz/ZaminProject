@@ -1,0 +1,18 @@
+<md-dialog class="errorDialog">
+        <md-toolbar class="md-warn ">
+            <div class="md-toolbar-tools">
+                <h4>שגיאה</h4>
+            </div>
+        </md-toolbar>
+        <h3 class="dialog-title">{{errorMassage}}</h3>
+
+        <div layout-gt-sm="row" class="layout-gt-sm-row">
+            <div>
+                <button class="md-raised md-button md-ink-ripple" ng-click="hideDialog()">
+                    <span class="ng-scope"><i class="fa fa-times"></i>&nbsp;אישור</span>
+                    <div class="md-ripple-container"></div>
+                </button>
+            </div>
+        </div>
+
+</md-dialog>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en' data-ng-app='slice'>
+
+<head>
+  <title>Zamin</title>
+  <meta name='viewport' content='width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes'>
+  <!-- inject:head:js -->
+  <!-- endinject -->
+  <!-- inject:html -->
+  <!-- endinject -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+
+<body ng-controller="AppCtrl">
+  <div class="wrapper">
+    <div data-ui-view="layoutView"></div>
+    <section>
+      <!-- Page content-->
+      <div class="content-wrapper" data-ui-view="mainView" autoscroll="false" ng-class="app.viewAnimation"></div>
+    </section>
+    <div id="loader">
+      <ng-include src="'partials/loader.html'"></ng-include>
+    </div>
+  </div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt7uIHEJ8u054rY_EPV5Ns2diPOmIplU4&libraries=places&language=iw"></script>
+
+  <!-- bower:js -->
+  <!-- endbower -->
+  <!-- inject:js -->
+  <!-- endinject -->
+
+</body>
+
+</html>
