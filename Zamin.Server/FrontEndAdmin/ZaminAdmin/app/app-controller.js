@@ -83,7 +83,7 @@
           // $rootScope.user.FranchiseId = 1;
         }
       });
-      $scope.getFranchises();
+      // $scope.getFranchises();
     }
 
     $scope.setCurrentFranchiseById = function(franchiseId){

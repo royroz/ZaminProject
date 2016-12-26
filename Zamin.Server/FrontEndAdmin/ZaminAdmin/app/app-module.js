@@ -48,7 +48,7 @@
       'userForm',
       'pizzaForm'
     ]).constant("consts", {
-      serverUrl: 'http://slice/'
+      serverUrl: 'http://zamin/'
     });;
 }());
 
