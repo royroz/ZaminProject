@@ -16,7 +16,7 @@
     $scope.users = [];
 
     $scope.getAllUsers = function(){
-      showLoader();
+      // showLoader();
       User.getAllUsers($rootScope.user.FranchiseId).then(function(response){
         $scope.users = response.data;
         hideLoader();

@@ -42,7 +42,7 @@
           </div>
           <br/>
 
-          <div class="row form-group">
+          <!-- <div class="row form-group">
             <label class="col-sm-2 control-label">משתמש רשת</label>
             <div class="col-sm-1">
               <md-checkbox ng-model="user.IsFranchiseAdmin" aria-label="" ng-change="roleChange('franchise')"></md-checkbox>
@@ -56,18 +56,16 @@
               <md-checkbox ng-model="user.IsBranchAdmin" aria-label="" ng-change="roleChange('branch')"></md-checkbox>
             </div>
             <div class="col-sm-3">
-               <!-- <md-input-container> -->
-              <!-- <label>בחר סניף</label> -->
+
               <md-select ng-model="user.BranchId"  placeholder="בחר סניף" style="margin-top:0 !important;" ng-disabled="user.IsFranchiseAdmin">
                 <md-option ng-repeat="branch in branches" ng-value="branch.Id" >
                   {{branch.Name}}
                 </md-option>
               </md-select>
-              <!-- </md-input-container> -->
+
             </div>
           </div>
-          <br/>
-
+          <br/> -->
 
           <br />
         </div>

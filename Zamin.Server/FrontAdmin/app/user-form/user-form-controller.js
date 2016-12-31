@@ -12,7 +12,7 @@
     .module('userForm')
     .controller('UserFormCtrl', UserFormCtrl);
 
-  function UserFormCtrl($scope,$mdDialog , $rootScope,$location,$stateParams, $state, UserForm, Branch) {
+  function UserFormCtrl($scope,$mdDialog,$rootScope,$location,$stateParams, $state, UserForm) {
 
     $scope.user = {IsBranchAdmin:true, FranchiseId:$rootScope.user.FranchiseId};
     $scope.branches = [];
@@ -20,20 +20,11 @@
     $scope.errorMassage="";
 
 
-
-    $scope.getBranches = function(){
-      Branch.getAll($rootScope.user.FranchiseId).then(function(response){
-          $scope.branches = response.data;
-      });
-    };
-
-
     $scope.getUser = function(){
       UserForm.getUser($stateParams.userId).then(function(response){
           $scope.user = response.data;
       });
     };
-
 
     $scope.save = function(){
       if($scope.user.BranchId=="" || $scope.user.BranchId == undefined && $scope.user.IsBranchAdmin){
@@ -95,6 +86,5 @@
     }
 
     if($scope.editMode) $scope.getUser();
-    $scope.getBranches();
   }
 }());

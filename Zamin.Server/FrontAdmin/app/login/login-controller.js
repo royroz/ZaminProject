@@ -33,8 +33,7 @@
             Id: response.data.UserId,
             Username: response.data.userName
           }
-          // $scope.setFranchisesFromLocalStorage();
-          $scope.getFranchises();
+        
           $location.url('/home');
         } else {
           $scope.username = '';

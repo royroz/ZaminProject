@@ -30,23 +30,11 @@
       'login',
       'forgotPassword',
       'resetPassword',
-      'pizzaSize',
       'doughType',
-      'topping',
-      'franchise',
-      'franchiseForm',
-      'category',
-      'menuItem',
-      'itemForm',
-      'pizza',
-      'combo',
-      'comboForm',
       'mdPickers',
-      'branch',
-      'branchForm',
       'user',
-      'userForm',
-      'pizzaForm'
+      'userForm'
+
     ]).constant("consts", {
       serverUrl: 'http://zamin/'
     });;

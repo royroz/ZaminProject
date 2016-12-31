@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   /**
@@ -15,13 +15,10 @@
   function User($http, consts) {
     var UserBase = {};
 
-    UserBase.getAllUsers = function (franchiseId) {
+    UserBase.getAllUsers = function() {
       return $http({
         method: "GET",
         url: consts.serverUrl + "User/GetAllUsers",
-        params:{
-          franchiseId : franchiseId
-        }
       });
     };
 
