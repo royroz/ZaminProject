@@ -67,7 +67,7 @@
 
             showLoader();
             var price = $scope.signupInfo.PriceListItem.Price;
-          
+
             if ($scope.signupInfo.isDiskOnKey) {
                 price += 100;
             }
@@ -196,8 +196,8 @@
             });
         }
 
-        $scope.getCurrentUser();
-        $scope.changeBg();
-        $scope.getPriceList();
-        $scope.isLogedIn();
+        // $scope.getCurrentUser();
+        // $scope.changeBg();
+        // $scope.getPriceList();
+        // $scope.isLogedIn();
     });

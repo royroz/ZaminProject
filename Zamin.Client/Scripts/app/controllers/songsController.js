@@ -7,7 +7,7 @@
         $scope.currentGenre = {};
         $scope.currentSongIndex = 0;
         $scope.currentSongPlayingObject = undefined;
-        
+
         $scope.showPause = false;
 
         $scope.getSongsFromBucket = function () {
@@ -114,6 +114,6 @@
         createjs.Sound.on("fileload", $scope.handleFileLoad);
 
         $scope.changeBg($location.path());
-         $scope.getSongsFromBucket();
-        $scope.getPriceList();
+        //  $scope.getSongsFromBucket();
+        // $scope.getPriceList();
     })

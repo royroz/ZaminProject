@@ -25,7 +25,7 @@
         $scope.songs = [];
 
         $scope.location = $location.path();
-        $scope.$on('$routeChangeStart', function(next, current) { 
+        $scope.$on('$routeChangeStart', function(next, current) {
             $scope.location = $location.path();
         });
         //--------------------------------------login functions-----------------------------------------------
@@ -188,7 +188,7 @@
         }
 
         $scope.removeBg();
-        $scope.isLogedIn();
+        // $scope.isLogedIn();
         $scope.checkIfCodeExists();
         $scope.checkIfResetPasswordRequested();
 
