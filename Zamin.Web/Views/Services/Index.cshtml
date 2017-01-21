@@ -1,0 +1,52 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Services/ServicesController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Services/ServicesService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+<script src="@Url.Content("~/Scripts/App/Shared/MetaDataService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<div>@Muze.ContentHeader("fa-suitcase", "Services")</div>
+<div ng-controller="servicesCtrl" id="servicesIndex">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="service in services">
+                    <td>
+                        <span ng-hide="service.edit">{{service.Name}}</span>
+                        <span ng-show="service.edit"><input type="text" ng-model="service.Name" class="form-control"/></span>
+                    </td>
+                    <td>
+                        <span ng-hide="service.edit">{{service.Description}}</span>
+                        <span ng-show="service.edit"><input type="text" ng-model="service.Description" class="form-control" /></span>
+                    </td>
+                    <td>
+                        <span ng-hide="service.edit">{{service.Price}}</span>
+                        <span ng-show="service.edit"><input type="text" ng-model="service.Price" class="form-control" /></span>
+                    </td>
+                    <td>
+                        <span ng-hide="service.edit"><button class="btn btn-warning" ng-click="showEditService(service)"><i class="fa fa-edit"></i>&nbsp;Edit</button></span>
+                        <span ng-show="service.edit"><button class="btn btn-info" ng-click="updateService(service)"><i class="fa fa-check"></i>&nbsp;Save</button></span>
+                        <span><button class="btn btn-danger" ng-click="deleteService(service)"><i class="fa fa-trash-o"></i>&nbsp;Delete</button></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" ng-model="newService.Name" class="form-control" /></td>
+                    <td><input type="text" ng-model="newService.Description" class="form-control" /></td>
+                    <td><input type="text" ng-model="newService.Price" class="form-control" /></td>
+                    <td><button class="btn btn-success" ng-click="saveService()"><i class="fa fa-plus"></i>&nbsp;Add</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

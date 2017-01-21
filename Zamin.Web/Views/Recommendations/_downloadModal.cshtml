@@ -1,0 +1,23 @@
+﻿<div id="downloadZipModal" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>Download recommendation</h4>
+            </div>
+            <div class="modal-body">
+                This process may take a while
+            </div>
+
+            <div class="modal-footer">
+                <div ng-show="downloadSelected" style="text-align: right; margin-right: 25px;">Email will be sent at the end of the process...</div>
+                <br />
+                <button class="btn btn-success" ng-click="downloadFiles();" ng-show="!downloadSelected"><i class="fa fa-file-zip-o"></i>&nbsp;Download</button>
+                <button class="btn btn-danger" data-dismiss="modal" ng-show="!downloadSelected"><i class="fa fa-times"></i>&nbsp;Cancel</button>
+                <button class="btn btn-default" data-dismiss="modal" ng-show="downloadSelected" ng-click="enableDownload()"><i class="fa fa-check"></i>&nbsp;OK</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

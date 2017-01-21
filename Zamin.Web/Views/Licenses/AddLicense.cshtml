@@ -1,0 +1,96 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Licenses/LicenseController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Licenses/LicenseService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+<script src="@Url.Content("~/Scripts/App/Shared/MetaDataService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+<script>
+    @*var offlineLicensePrice = "@GlobalConsts.OfflineLicensePrice";
+    var onlineLicensePrice = "@GlobalConsts.OnlineLicensePrice";*@
+    var tranzilaSupplierName = "@TranzilaConsts.TranzilaSupplierName";
+    var tranzilaPw = "@TranzilaConsts.TranzilaPW";
+</script>
+
+<div>@Muze.ContentHeader("fa-suitcase", "Add license")</div>
+<div ng-controller="licenseCtrl" id="licenses">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Client</label>
+                    <div class="col-md-2">{{client.FirstName}} {{client.LastName}}</div>
+                </div>
+                @*<div class="form-group">
+                    <label class="col-md-2 control-label">License type</label>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="licenseType" ng-options="type as type.Name for type in licenseTypes" ng-change="licenseTypeChanged()"></select>
+                        <div ng-show="submitted && licenseType == undefined" class="invalid-input">Please choose license type</div>
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Nickname</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" ng-model="nickname" />
+                        @*<div ng-show="submitted && nickname == ''" class="invalid-input">Please enter nickname</div>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Business Size</label>
+                    <div class="col-md-2">
+                        <select class="form-control" ng-model="businessSize" ng-options="price.Name for price in priceList track by price.Id" ng-change="businessSizeChanged()"></select>
+                        <div ng-show="submitted && businessSize == undefined" class="invalid-input">Please choose license type</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">From</label>
+                    <div class="col-md-2">
+                        <input type="text" ng-model="start" class="datepicker form-control" id="startDate" />
+                        <div ng-show="submitted && start == ''" class="invalid-input">Please choose date</div>
+                    </div>
+                    <label class="col-md-1 control-label">
+                        &nbsp;
+                        To
+                    </label>
+                    <div class="col-md-2">
+                        <input type="text" ng-model="end" class="datepicker form-control" id="endDate" />
+                        <div ng-show="submitted && end == ''" class="invalid-input">Please choose date</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Price</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="text" ng-model="licensePrice"/>
+                        <div ng-show="submitted && licensePrice == ''" class="invalid-input">Please enter price</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Comments</label>
+                    <div class="col-md-2">
+                        <textarea class="form-control" type="text" ng-model="comments"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Payment</label>
+
+                        <label class="radio-inline col-md-1" ng-repeat="type in paymentTypes">
+                            <input type="radio" name="paymentType" ng-model="paymentType.Id" ng-value="type.Id"/>{{type.Name}}
+                        </label>
+             
+                </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">&nbsp;</label>
+                        <div class="col-md-2">
+                            <button class="btn btn-success" ng-click="openLicensePaymentModal()"><i class="fa fa-plus"></i>&nbsp;Add</button>
+                        </div>
+                    </div>
+</form>
+
+        </div>
+    </div>
+    @Html.Partial("_creditPaymentModal")
+    @Html.Partial("_checkPaymentModal")
+</div>

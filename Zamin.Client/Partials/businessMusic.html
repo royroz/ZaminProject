@@ -1,0 +1,146 @@
+﻿<div id="businessMusic">
+    <div class="bg-text">
+        מוסיקה מותאמת אישית<br />
+        לבית העסק שלך<br />
+        ללא צורך בתשלום נוסף<br />
+        לאגודות ולחברות מוסיקה
+    </div>
+    <div class="businessMusic">
+        <!------------------------------------Player-------------------------------------->
+        <div class="row">
+            <div class=" player row-height">
+                <div class="col-xs-1 col-height genre" ng-repeat="genre in genres track by $index" ng-click="playGenre($index, currentGenre.id == genre.id && showPause)">
+                    <img ng-src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/genres/{{genre.id}}.png" />
+                    <div class="genre-text" ng-class="{'active': currentGenre.id == genre.id}">{{genre.text}}</div>
+                    <div class="genre-play" ng-class="{'active': currentGenre.id == genre.id}">
+                        <img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/play.png" ng-hide="currentGenre.id == genre.id && showPause" />
+                        <img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/pause.png" ng-show="currentGenre.id == genre.id && showPause" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!------------------------------------ icons ------------------------------------->
+        <div class="row icons">
+            <div class="col-sm-3">
+                <div class="row">
+                    <img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/icon-5.png" />
+                </div>
+                <div class="row">
+                    <p>
+                        מוסיקה בהתאמה אישית
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/lib-icon-2.png" />
+                </div>
+                <div class="row">
+                    <p>מחיר מנצח</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/lib-icon-3.png" />
+                </div>
+                <div class="row">
+                    <p>
+                        ממשק ידידותי למשתמש
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/lib-icon-4.png" />
+                </div>
+                <div class="row">
+                    <p>
+                        נוסחה ייחודית לכל בית עסק
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------Table row------------------------------------->
+        <br />
+        <div class="row">
+            <div class="col-md-6 desc">
+                מוסיקה לעסקים מאפשרת להנות ממוסיקת אווירה בבית העסק בהתאמה אישית
+                וכל זאת במחירים חסרי תקדים.
+                ניתן לקבל את השירות באמצעות חשבון אישי באינטרנט עם עשרות אלפי שירים שמתעדכנים מרחוק. הנגן מכיל הפקות מקוריות,
+                גרסאות כיסוי איכותיות ללהיטים עכשיווים ולקלאסיקות מכל הזמנים, פלייליסטים בבנייה אישית (עצב בעצמך את האווירה בבית העסק).
+                כל זאת מבלי לשלם לגופים נוספים עבור השימוש בשירים ועבור זכויות יוצרים.
+                לאחר ההתחברות הראשונית אין צורך באינטרנט על מנת לנגן.
+            </div>
+            <div class="col-md-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div>
+                                    נגן אינטרנטי <br />
+                                    ONLINE
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <!--<a ng-click="openPricesTable()">לחץ לטבלת מחירים</a>-->
+                                    <a ng-click="openPricesTable()">לחץ לקבלת טבלת מחירים ולרכישה</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-md-2 table-side">
+                <ul style="margin-right: -7%;">
+                    <li>
+                        המחיר אינו כולל מע"מ ועבור עמדה אחת (בית עסק יחיד)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div id="pricesTable" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <table class="table pricesTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div>שטח בית העסק</div>
+                            </th>
+                            <th>
+                                <div>עלות שנתית</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in pricesTable track by $index">
+                            <td>
+                                <div ng-click="goToSignUp(item.Id)">
+                                    {{item.Name}}
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-click="goToSignUp(item.Id)">{{item.Price}}&nbsp;&#8362;</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model List<Music4Biz.WebModels.CsvWebModel>
+@{
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";
+}
+<h2>Licenses</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td><strong>@Music4Biz.Resources.Charts.LicenseId</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>@Music4Biz.Resources.Charts.LicenseName</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>@Music4Biz.Resources.Charts.UserId</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>@Music4Biz.Resources.Charts.UserName</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>@Music4Biz.Resources.Charts.ExpirationDate</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>@Music4Biz.Resources.Charts.IsActive</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var column in Model)
+        {
+            <tr>
+                <td>@column.ColumnOne</td>
+                <td>&nbsp;</td>
+                <td>@column.ColumnTwo</td>
+                <td>&nbsp;</td>
+                <td>@column.ColumnThree</td>
+                <td>&nbsp;</td>
+                <td>@column.ColumnFour</td>
+                <td>&nbsp;</td>
+                <td>@column.ColumnFive</td>
+                <td>&nbsp;</td>
+                <td>@column.ColumnSix</td>
+            </tr>
+        }
+    </tbody>
+</table>

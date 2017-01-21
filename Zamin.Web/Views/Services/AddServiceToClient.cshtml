@@ -1,0 +1,58 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+<script src="@Url.Content("~/Scripts/App/Services/ServicesController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+<script src="@Url.Content("~/Scripts/App/Services/ServicesService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Shared/MetaDataService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+<script>
+    var offlineLicensePrice = "@GlobalConsts.OfflineLicensePrice";
+    var onlineLicensePrice = "@GlobalConsts.OnlineLicensePrice";
+    var tranzilaSupplierName = "@TranzilaConsts.TranzilaSupplierName";
+    var tranzilaPw = "@TranzilaConsts.TranzilaPW";
+</script>
+<div>@Muze.ContentHeader("fa-suitcase", "Add Service to client")</div>
+<div ng-controller="servicesCtrl" id="services">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Client</label>
+                    <div class="col-md-2">
+                        {{client.FirstName}} {{Client.LastName}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Service</label>
+                    <div class="col-md-2 ">
+                        <select class="form-control" ng-model="service" ng-options="service as service.Name for service in services"></select>
+                        <div ng-show="submitted && service.Id == undefined" class="invalid-input">Please choose a service</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Price</label>
+                    <div class="col-md-2">
+                        <input class="form-control" type="number" ng-model="service.Price"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Payment</label>
+
+                    <label class="radio-inline col-md-1" ng-repeat="type in paymentTypes">
+                        <input type="radio" name="paymentType" ng-model="paymentType.Id" ng-value="type.Id" />{{type.Name}}
+                    </label>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">&nbsp;</label>
+                    <div class="col-md-2">
+                        <button class="btn btn-success" ng-click="openPaymentModal()"><i class="fa fa-plus"></i>&nbsp; Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @Html.Partial("_creditPaymentModal")
+    @Html.Partial("_checkPaymentModal")
+</div>

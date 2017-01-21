@@ -1,0 +1,314 @@
+﻿@using Music4Biz.Consts
+@{
+    var currentController = ViewContext.RouteData.Values["controller"] as string ?? "home";
+    currentController = currentController.ToLower();
+    var currentAction = ViewContext.RouteData.Values["action"] as string ?? "index";
+    currentAction = currentAction.ToLower();
+}
+
+<!DOCTYPE html>
+<html ng-app="music4BizApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music4Biz</title>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/endless-skin.css" rel="stylesheet" />
+    <link href="~/Content/endless.min.css" rel="stylesheet" />
+    <link href="~/Content/toastr-responsive.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-timepicker.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap3-wysihtml5.css" rel="stylesheet" />
+    @*<link href="~/Content/wysiwyg-color.css" rel="stylesheet" />*@
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    @*<link href="~/Content/datepicker.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/main.css?v=" + GlobalConsts.ScriptsVersion)" rel="stylesheet" />
+
+</head>
+<body>
+    <style>
+        .logout {
+            margin-top: 7px;
+            color: #ffffff;
+        }
+
+            .logout:hover {
+                background-color: #ffffff;
+            }
+    </style>
+    <div id="wrapper">
+        <div id="top-nav" class="fixed skin-6 hideOnPrint">
+            <a href="@Url.Action("Index", "Home")" class="brand">
+                <span>Music4Biz</span>
+            </a>
+            <a class="btn pull-right logout" style="" href="/Account/LogOff">
+                Log out &nbsp;<i class="fa fa-power-off"></i>
+            </a>
+        </div>
+        <aside class="fixed skin-6 hideOnPrint">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                <div class="sidebar-inner scrollable-sidebar" style="overflow: hidden; width: auto; height: 100%;">
+                    <div class="user-block clearfix">
+                        <div class="detail">
+                        </div>
+                    </div>
+                    <div class="main-menu">
+                        <ul>
+                            <li class="openable @(currentController == "songs" ? "active " : "")">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-music fa-lg"></i>
+                                    </span>
+                                    <span class="text">Music</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="@(currentController == "songs" && currentAction == "index" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Songs")">
+                                            <span class="submenu-label">
+                                                @Music4Biz.Resources.Global.songs
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "songs" && currentAction == "tag" ? "active " : "")">
+                                        <a href="@Url.Action("Tag", "Songs")">
+                                            <span class="submenu-label">
+                                                @Music4Biz.Resources.Global.tag
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="@(currentController == "recommendations" ? "active " : "")">
+                                <a href="@Url.Action("Index", "Recommendations")">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-headphones fa-lg"></i>
+                                    </span>
+                                    <span class="text"> @Music4Biz.Resources.Global.Recommendations</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+                            </li>
+                            <li class="@(currentController == "playerHelp" ? "active " : "")">
+                                <a href="@Url.Action("Index", "PlayerHelp")">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-info-circle fa-lg"></i>
+                                    </span>
+                                    <span class="text"> @Music4Biz.Resources.Global.PlayerHelp</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+                            </li>
+                            @*<li class="">
+                                    <a href="https://eu5.salesforce.com" target="_blank">
+                                        <span class="menu-icon">
+                                            <i class="fa fa-suitcase fa-lg"></i>
+                                        </span>
+                                        <span class="text">@Music4Biz.Resources.Global.CRM</span>
+                                        <span class="menu-hover"></span>
+                                    </a>
+                                </li>*@
+                            <li class="openable @(currentController == "leads" || currentController  =="clients"? "active" : "")">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-suitcase fa-lg"></i>
+                                    </span>
+                                    <span class="text">CRM</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="@(currentController == "clients" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Clients")">
+                                            <span class="submenu-label">
+                                                <span class="text">Clients</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "leads" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Leads")">
+                                            <span class="submenu-label">
+                                                <span class="text"> Leads</span>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="@(currentController == "services" ? "active " : "")">
+                                <a href="@Url.Action("Index", "Services")">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-suitcase fa-lg"></i>
+                                    </span>
+                                    <span class="text">@Music4Biz.Resources.Global.Services</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+                            </li>
+                            <li class="openable @(currentController == "cms" ? "active" : "")">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-desktop fa-lg"></i>
+                                    </span>
+                                    <span class="text">CMS</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+                                <ul class="submenu">
+                                    <li class="@(currentController == "cms" && currentAction == "pdf" ? "active " : "")">
+                                        <a href="@Url.Action("Pdf", "Cms")">
+                                            <span class="submenu-label">
+                                                <span class="text"> Pdf Files</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "cms" && currentAction == "portfolioitems" ? "active " : "")">
+                                        <a href="@Url.Action("PortfolioItems", "Cms")">
+                                            <span class="submenu-label">
+                                                <span class="text"> Portfolio</span>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="openable @(currentController == "nicknames" || currentController == "genres" || currentController == "publishers" || currentController == "bpm"
+                                                  || currentController == "atmospheres" || currentController == "performers" ? "active" : "")">
+                                <a href="#">
+                                    <span class="menu-icon">
+                                        <i class="fa fa-cogs fa-lg"></i>
+                                    </span>
+                                    <span class="text">Settings</span>
+                                    <span class="menu-hover"></span>
+                                </a>
+
+
+                                <ul class="submenu">
+                                    <li class="@(currentController == "nicknames" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Nicknames")">
+                                            <span class="submenu-label">
+                                                <span class="text"> @Music4Biz.Resources.Global.nicknamesSideBar</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "genres" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Genres")">
+                                            <span class="submenu-label">
+                                                <span class="text"> @Music4Biz.Resources.Global.genresSideBar</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "publishers" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Publishers")">
+                                            <span class="submenu-label">
+                                                <span class="text"> @Music4Biz.Resources.Global.publishersSideBar</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "atmospheres" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Atmospheres")">
+                                            <span class="submenu-label">
+                                                <span class="text"> @Music4Biz.Resources.Global.atmospheresSideBar</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "performers" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Performers")">
+                                            <span class="submenu-label">
+                                                <span class="text">@Music4Biz.Resources.Global.performersSideBar</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="@(currentController == "bpm" ? "active " : "")">
+                                        <a href="@Url.Action("Index", "Bpm")">
+                                            <span class="submenu-label">
+                                                <span class="text">@Music4Biz.Resources.Global.bpmSideBar</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+
+
+        <div id="main-container" class="container body-content" style="width: 80%;">
+
+            <div class="padding-md">
+                @RenderBody()
+                <div id="loader" style="display: none;">
+                    <div id="fountainG">
+                        <div id="fountainG_1" class="fountainG">
+                        </div>
+                        <div id="fountainG_2" class="fountainG">
+                        </div>
+                        <div id="fountainG_3" class="fountainG">
+                        </div>
+                        <div id="fountainG_4" class="fountainG">
+                        </div>
+                        <div id="fountainG_5" class="fountainG">
+                        </div>
+                        <div id="fountainG_6" class="fountainG">
+                        </div>
+                        <div id="fountainG_7" class="fountainG">
+                        </div>
+                        <div id="fountainG_8" class="fountainG">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <footer class="hideOnPrint">
+                <p>&copy; @DateTime.Now.Year - Muze.NET Software</p>
+            </footer>
+        </div>
+
+
+
+           <script src="~/Scripts/lib/wysihtml5-0.3.0_rc2.min.js"></script>
+        <script src="~/Scripts/lib/jquery-2.1.1.min.js"></script>
+        <script src="~/Scripts/lib/jquery.cookie.js"></script>
+        <script src="~/Scripts/lib/jquery.popupoverlay.min.js"></script>
+        <script src="~/Scripts/lib/jquery.slimscroll.min.js"></script>
+        <script src="~/Scripts/lib/jquery.colorbox.min.js"></script>
+        <script src="~/Scripts/lib/jquery.flot.min.js"></script>
+        <script src="~/Scripts/lib/jquery.cookies.2.2.0.min.js"></script>
+        <script src="~/Scripts/lib/jquery.flot.pie.min.js"></script>
+        <script src="~/Scripts/lib/jquery.flot.time.js"></script>
+        <script src="~/Scripts/lib/jquery-ui.min.js"></script>
+        <script src="~/Scripts/lib/angular.min.js"></script>
+        <script src="~/Scripts/lib/modernizr-2.8.3.js"></script>
+        <script src="~/Scripts/lib/jquery.sparkline.min.js"></script>
+        <script src="~/Scripts/lib/rapheal.min.js"></script>
+
+        <script src="~/Scripts/lib/morris.min.js"></script>
+        <script src="~/Scripts/lib/endless.js"></script>
+        <script src="~/Scripts/lib/endless_dashboard.js"></script>
+        <script src="~/Scripts/lib/endless_form.js"></script>
+        <script src="~/Scripts/lib/endless_wizard.js"></script>
+        <script src="~/Scripts/lib/pace.min.js"></script>
+        <script src="~/Scripts/lib/bootstrap.min.js"></script>
+        <script src="~/Scripts/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+        <script src="~/Scripts/lib/bootstrap-datepicker.min.js"></script>
+        <script src="~/Scripts/lib/bootstrap-timepicker.min.js"></script>
+     
+        <script src="~/Scripts/lib/bootstrap3-wysihtml5.js"></script>
+        <script src="~/Scripts/lib/bootstrap3-wysihtml5.all.min.js"></script>
+        <script src="~/Scripts/lib/jquery.ui.datepicker-he.js"></script>
+        <script src="~/Scripts/App/Directives/messages.js"></script>
+        <script src="~/Scripts/App/Directives/sortable.js"></script>
+
+        <script src="~/Scripts/lib/toastr.js"></script>
+        <script src="@Url.Content("~/Scripts/App/main.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+
+
+        @RenderSection("scripts", required: false)
+
+    </div>
+</body>
+</html>

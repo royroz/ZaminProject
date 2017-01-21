@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/lib/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        angular.module('myApp')
+    .controller('paymentCtrl', function ($scope, paymentService) {
+        $scope.discount = 0;
+        $scope.selectedLicence = null;
+        $scope.licenseSalesForceId = 'a0024000001pvDd';// Change to dynamic from razor
+        $scope.total = function () { return (1 - $scope.discount / 100) * $scope.selectedLicence.PriceRatio }
+        paymentService.getLicenseExtensionOptions($scope.licenseSalesForceId).then(function (response) {
+            $scope.extensionOptions = response;
+            $scope.selectedLicence = response[0];
+        });
+       
+    });
+        angular.module('myApp').factory('paymentService', function ($q, $http, $rootScope) {
+            return {
+                getLicenseExtensionOptions: function (licenseSalesForceId) {
+                    var deferred = $q.defer();
+                    $http.get('/website/GetLicenseExtensionOptions?licenseSalesForceId=' + licenseSalesForceId).then(function (response) {
+                        deferred.resolve(response.data);
+                    });
+                    return deferred.promise;
+                }
+            };
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="paymentCtrl">
+        <ul>
+            <li ng-repeat="option in extensionOptions">
+                <input name="selectedLicence" type="radio" ng-model="$parent.selectedLicence" value="option" />
+                {{option.Name}}
+            </li>
+        </ul>
+
+        <input type="number" name="discount" ng-model="discount" />
+        {{total()}}
+    </div>
+
+    @*<iframe src="https://direct.tranzila.com/music4biz/iframe.php?lang=il&nologo=1&trButtonColor=f7931e&trTextColor=010101&sum=20" scrolling="no" style="width:500px;height:280px;border: none;"
+        seamless="seamless"></iframe>*@
+
+
+
+
+</body>
+</html>

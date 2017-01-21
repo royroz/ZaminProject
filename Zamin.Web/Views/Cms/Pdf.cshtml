@@ -1,0 +1,37 @@
+﻿@Muze.ContentHeader("fa-upload", "Pdf files")
+
+
+
+@using (Html.BeginForm("Pdf", "Cms", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        <label for="eula" class="col-lg-2 control-label">Eula</label>
+        <div class="col-lg-10">
+            <input type="file" name="eula" id="eula" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="faq" class="col-lg-2 control-label">Faq</label>
+        <div class="col-lg-10">
+            <input type="file" name="faq" id="faq" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="instructions" class="col-lg-2 control-label">Instructions</label>
+        <div class="col-lg-10">
+            <input type="file" name="instructions" id="instructions" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-success btn-lg">
+                <i class="fa fa-upload"></i>
+                Upload
+            </button>
+        </div>
+    </div>
+}
+

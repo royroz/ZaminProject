@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music4biz website</title>
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/earlyaccess/opensanshebrewcondensed.css" rel="stylesheet" />
+    <!--<link href="/Content/css/accordionImageMenu.css" rel="stylesheet" />-->
+    <link href="/Content/css/galleriffic-2.css" rel="stylesheet" />
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/css/main.css" rel="stylesheet" />
+</head>
+<body class="container" ng-app="music4BizWebsite" ng-cloak>
+    <div ng-controller="userCtrl">
+        <header>
+            <!------------------------------------------------ header --------------------------------------------------->
+            <!------------------------------------------------ menu --------------------------------------------------->
+            <nav class="navbar navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div id="navbar" class="row navbar-collapse collapse pull-right">
+                    <ul class="nav navbar-nav">
+                        <li class="col-md-3" ng-class="{'active-tab':isActive('/')}">
+                            <a href="#/">&nbsp;דף הבית&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="col-md-3" ng-class="{'active-tab':isActive('/libraries')}">
+                            <a href="#libraries">&nbsp;ספריות מוסיקה&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="col-md-3" ng-class="{'active-tab':isActive('/portfolio')}">
+                            <a href="#portfolio">&nbsp;תיק עבודות&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="col-md-3" ng-class="{'active-tab':isActive('/businessMusic')}">
+                            <a href="#businessMusic">&nbsp;מוסיקה לעסקים&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="col-md-3 menu-login" ng-class="{'active-tab':isActive('/login')}" ng-show="!logedIn">
+                            <a href="#login">&nbsp; כניסה למשתמשים&nbsp;&nbsp;</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="login" class="row" ng-show="!logedIn">
+                    <div class="col-xs-7"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/logo1.png" /></div>
+                    <div class="col-xs-5 pointer" ng-click="loginModal()">
+                        <a style="color: #000000">
+                            <b>כניסה למשתמשים</b>
+                        </a>
+                    </div>
+                </div>
+                <div id="logedIn" class="row" ng-show="logedIn">
+                    <div class="col-xs-7"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/logo1.png" /></div>
+                    <div class="col-xs-5 pointer">
+                        <a style="color: #000">
+                            <a href="#account">שלום {{userName}},</a>
+                            <span ng-click="logOut()">יציאה</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div id="forgot-password-modal" class="modal fade header-modal">
+                <div class="modal-dialog">
+                    <div class="modal-body">
+                        <input type="text" ng-model="forgotPasswordEmail" placeholder="הכנס דואר אלקטרוני" />
+                        <span ng-show="emailDoesntExists" style="color: red;">אימייל לא קיים במערכת</span>
+                        <br />
+                        <br />
+                        <div ng-click="forgotPassword()" class="pointer send">
+                            שלח אימייל לדואר האלקטרוני
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="login-modal" class="modal fade header-modal">
+                <div class="modal-dialog">
+                    <div class="modal-body">
+                        <div class="row">
+                            <form name="loginForm" novalidate>
+                                <div class="row">
+                                    <input type="text" placeholder="דואר אלקטרוני" ng-model="email" required />
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <input type="password" placeholder="סיסמא" ng-model="password" required />
+                                </div>
+                                <div class="invalid-username" ng-show="showInvalidUserNameMessage">שם משתמש או סיסמא לא נכונים</div>
+                                <br />
+                                <div class="row login-footer">
+                                    <div class="col-xs-8 remember-me">
+                                        <input type="checkbox" id="remember-me-input" ng-model="rememberMe" />
+                                        <label for="remember-me-input"><span>זכור אותי</span></label>
+                                        <br />
+                                        <a ng-click="forgotPasswordModal()">שכחת סיסמא? </a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="row pull-left pointer" ng-click="login()">כניסה</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div>
+            <section class="content-wrapper main-content clear-fix">
+                <div id="loader" style="display: none;">
+                    <div id="fountainG">
+                        <div id="fountainG_1" class="fountainG">
+                        </div>
+                        <div id="fountainG_2" class="fountainG">
+                        </div>
+                        <div id="fountainG_3" class="fountainG">
+                        </div>
+                        <div id="fountainG_4" class="fountainG">
+                        </div>
+                        <div id="fountainG_5" class="fountainG">
+                        </div>
+                        <div id="fountainG_6" class="fountainG">
+                        </div>
+                        <div id="fountainG_7" class="fountainG">
+                        </div>
+                        <div id="fountainG_8" class="fountainG">
+                        </div>
+                    </div>
+                </div>
+                <div id="ng-view" ng-view></div>
+            </section>
+        </div>
+        <footer ng-controller="userCtrl">
+            <div id="contact-us-row" class="row">
+                <div class="row-height">
+                    <div class="col-md-1 col-height" style="width: 3%">&nbsp;</div>
+                    <div class="col-md-2 col-height" id="who-are-we">
+                        <div>מי אנחנו?</div>
+                        <p>
+                            ״מוסיקה לעסקים״ חרטה על דגלה לייצר עולם שלם של תוכן מוסיקלי עבור עסקים.<br />
+                            אצלנו תמצא/י את הפתרון האולטימטיבי בין אם הצורך הוא מוסיקת רקע לבית הקפה שלך או בין אם את/ה מפיקים פרסומת או עורכים תוכניות.<br />
+                            כל סוגי המוסיקה, כל ההפקות, יצירות מיוחדות, גרסאות כיסוי איכותיות ויצירות מקוריות.
+                        <p />
+                    </div>
+                    <div class="col-md-1 col-height footer-line"></div>
+                    <div class="col-md-2 col-height" id="contact-us">
+                        <div class="row">
+                            <div>
+                                <a href="/pdfs/Eula.pdf" target="_blank">תקנון ותנאי שימוש</a>
+                            </div>
+                            <div>
+                                <a href="/pdfs/PrivecyPolicy.pdf" target="_blank">מדיניות הגנת פרטיות</a>
+                            </div>
+                            <div>
+                                <a href="/pdfs/Instructions.pdf" target="_blank">הוראות והתקנה</a>
+                            </div>
+                            <div>
+                                <a href="/pdfs/Faq.pdf" target="_blank">שאלות ותשובות</a>
+                            </div>
+                            <div class="row">
+                                <a class="col-xs-4" href="http://facebook.com"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/facebook.png"/></a>
+                                <a class="col-xs-4" href="#"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/youtube.png"/></a>
+                                <a class="col-xs-4" href="#"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/twitter.png"/></a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-height footer-line"></div>
+                    <div class="col-md-2 col-height" id="contact-us">
+                        <div class="row">
+                            <div>
+                                <a>גני התערוכה, מרכז הירידים, תל-אביב</a>  
+                            </div>
+                            <div>
+                                <a href="mailto:info@music4.biz" target="_blank" ng-hide="location == '/libraries'">info@music4.biz</a>
+                                <a href="mailto:nissim@music4.biz" target="_blank" ng-show="location == '/libraries'">nissim@music4.biz</a>
+                            </div>
+                            <div>
+                                <a href="tel:036733369" target="_blank">03-6733369</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-height footer-line">
+                    </div>
+                    <form class="col-md-2 col-height" id="contact-us-details" name="contactUsForm" novalidate ng-show="!contactUsThanks">
+                        <div class="row header">צור קשר</div>
+                        <div class="row">
+                            <input type="text" placeholder="שם מלא" name="name" ng-model="contactUs.name" required="" />
+                            <div class="contactUsValidation" ng-show="contactUsFormSubmitted && contactUs.name == ''">
+                                <span><b>אנא הכנס שם </b></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input type="email" placeholder="דואר אלקטרוני" name="email" ng-model="contactUs.email" required="" />
+                            <div class="contactUsValidation" ng-show="contactUsFormSubmitted && contactUsForm.email.$error.required">
+                                <span><b>אנא הכנס אימייל</b></span>
+                            </div>
+                            <div class="contactUsValidation" ng-show="(contactUsForm.email.$dirty && contactUsForm.email.$invalid) || (contactUsFormSubmitted && contactUsForm.email.$invalid)">
+                                <span ng-show="contactUsForm.email.$error.email"><b>אימייל לא תקין</b></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <textarea placeholder="כתוב כאן" ng-model="contactUs.text" required=""></textarea>
+                        </div>
+                        <div class="row" id="send-btn" ng-click="contactUsRequest();">
+                            שלח
+                        </div>
+                    </form>
+                    <div class="col-md-3 col-height contactUsThanks" ng-show="contactUsThanks">
+                        תודה, ניצור איתך קשר בהקדם
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="/Scripts/lib/jquery-2.1.1.min.js"></script>
+    <script src="/Scripts/lib/jquery-ui-1.8.10.custom.min_.js"></script>
+    <script src="/Scripts/lib/angular.min.js"></script>
+    <script src="/Scripts/lib/angular-route.min.js"></script>
+    <script src="/Scripts/lib/jquery.galleriffic.js"></script>
+    <script src="/Scripts/lib/jquery.opacityrollover.js"></script>
+    <script src="Scripts/lib/jquery.cookie.js"></script>
+    <script src="Scripts/lib/jquery.cookies.2.2.0.min.js"></script>
+    <script src="Scripts/lib/soundjs-0.6.0.min.js"></script>
+    <script src="/Scripts/lib/bootstrap.min.js"></script>
+
+    <script src="/Scripts/app/app.js"></script>
+    <script src="/Scripts/app/services/accountService.js"></script>
+    <script src="/Scripts/app/controllers/accountController.js"></script>
+    <script src="/Scripts/app/controllers/userController.js"></script>
+    <script src="Scripts/app/services/userService.js"></script>
+    <script src="Scripts/app/controllers/songsController.js"></script>
+    <script src="Scripts/app/services/songsService.js"></script>
+    <script src="Scripts/app/controllers/licenseController.js"></script>
+    <script src="Scripts/app/services/licenseService.js"></script>
+    <script src="Scripts/app/controllers/librariesCtrl.js"></script>
+    <script src="Scripts/app/controllers/portfolioCtrl.js"></script>
+    <script src="Scripts/app/services/portfolioService.js"></script>
+    <script src="Scripts/app/controllers/homeCtrl.js"></script>
+
+</body>
+</html>

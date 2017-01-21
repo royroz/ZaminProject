@@ -1,0 +1,139 @@
+﻿<div id="signUp" ng-show="signUp">
+    <h2>
+        הרשמה
+    </h2>
+    <form name="signupForm" novalidate>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">שם מלא*</label>
+            <div class="col-md-3">
+                <input type="text" class="form-control" ng-model="signupInfo.FullName" name="fullName" ng-required="true" maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.fullName.$dirty && signupForm.fullName.$invalid) || (signupFormSubmitted && signupForm.fullName.$invalid)">
+                    <span ng-show="signupForm.fullName.$error.required"><b>אנא הכנס שם </b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">שם בית העסק*</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.BusinessName" name="businessName" ng-required="true" maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.businessName.$dirty && signupForm.businessName.$invalid) || (signupFormSubmitted && signupForm.businessName.$invalid)">
+                    <span ng-show="signupForm.businessName.$error.required"><b>אנא הכנס שם בית עסק</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">מספר בית העסק/ח.פ*</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.BusinessNumber" name="businessNumber" ng-required="true" maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.businessNumber.$dirty && signupForm.businessNumber.$invalid) || (signupFormSubmitted && signupForm.businessNumber.$invalid)">
+                    <span ng-show="signupForm.businessNumber.$error.required"><b>אנא הכנס מספר בית עסק</b></span>
+                </div>
+                <div style="color: red; font-size: 12px;" ng-show="businessNumberExists">
+                    <span><b>בית העסק כבר קיים במערכת</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">Email*</label>
+            <div class="col-md-3 ">
+                <input type="email" class="form-control" ng-model="signupInfo.Email" name="email" maxlength="250" required />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.email.$dirty && signupForm.email.$invalid) || (signupFormSubmitted && signupForm.email.$invalid)">
+                    <span ng-show="signupForm.email.$error.required"><b>אנא הכנס אימייל</b></span>
+                </div>
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.email.$dirty && signupForm.email.$invalid) || (signupFormSubmitted && signupForm.email.$invalid)">
+                    <span ng-show="signupForm.email.$error.email"><b>אימייל לא תקין</b></span>
+                </div>
+                <div style="color: red; font-size: 12px;" ng-show="emailExists">
+                    <span><b>אימייל קיים במערכת</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">כתובת בית העסק*</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.Address" name="address" maxlength="250" required />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">סיסמא*</label>
+            <div class="col-md-3 ">
+                <input type="password" class="form-control" ng-model="signupInfo.Password" name="password" required maxlength="30" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.password.$dirty && signupForm.password.$invalid) || (signupFormSubmitted && signupForm.password.$invalid)">
+                    <span ng-show="signupForm.password.$error.required"><b>אנא הכנס סיסמא</b></span>
+                </div>
+                <div style="color: red; font-size: 12px;" ng-show="passwordTooShort">
+                    <span><b>הסיסמא צריכה להכיל 6 תווים לפחות</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">חזור על הסיסמא*</label>
+            <div class="col-md-3 ">
+                <input type="password" class="form-control" ng-model="signupInfo.ConfirmPassword" name="passwordConfirm" required maxlength="30" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.passwordConfirm.$dirty && signupForm.passwordConfirm.$invalid) || (signupFormSubmitted && signupForm.passwordConfirm.$invalid)">
+                    <span ng-show="signupForm.passwordConfirm.$error.required && !wrongPassword"><b>אנא חזור על הסיסמא</b></span>
+                </div>
+                <div ng-show="wrongPassword" style="color: red; font-size: 12px;">
+                    <span><b>הסיסמאות לא תואמות</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">מספר טלפון</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.Phone" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">מספר נייד*</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.CellPhone" name="cellPhone" required maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.cellPhone.$dirty && signupForm.cellPhone.$invalid) || (signupFormSubmitted && signupForm.cellPhone.$invalid)">
+                    <span ng-show="signupForm.cellPhone.$error.required"><b>אנא הכנס מספר נייד</b></span>
+                </div>
+                <!--<div style="color: red; font-size: 12px;" ng-show="(signupForm.cellPhone.$dirty && signupForm.cellPhone.$invalid) || (signupFormSubmitted && signupForm.cellPhone.$invalid)">
+                    <span ng-show="!signupForm.cellPhone.$valid && !signupForm.cellPhone.$error.required"><b>מספר לא תקין</b></span>
+                </div>-->
+            </div>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">שטח העסק*</label>
+            <div class="col-md-3 ">
+                <select type="text" class="form-control" ng-model="signupInfo.PriceListItem" name="priceItem" ng-options="item.Text for item in pricesitems" required></select>
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.PriceListItem.$dirty && signupForm.PriceListItem.$invalid) || (signupFormSubmitted && signupForm.PriceListItem.$invalid)">
+                    <span ng-show="signupForm.PriceListItem.$error.required"><b>אנא הכנס שטח עסק</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">כינוי (שם הסניף)</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.Nickname" name="nickname" maxlength="180" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 control-label">&nbsp;</label>
+            <div class="col-md-3 ">
+                <label>
+                    <input type="checkbox" ng-model="signupInfo.isDiskOnKey"> להזמנת דיסק.און.קי סמן כאן
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-md-2 control-label">&nbsp;</label>
+            <div class="col-md-3">
+                <button type="submit" ng-click="signUp();signupFormSubmitted = true;" id="purchaseBtn">
+                    הרשמה
+                </button>
+                <p style="font-size: 11pt; text-align: center;">לחיצה על הכפתור מהווה הסכמה <a href="/pdfs/Eula.pdf" target="_blank">לתנאי התקנון</a></p>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+<div ng-show="!signUp"></div>

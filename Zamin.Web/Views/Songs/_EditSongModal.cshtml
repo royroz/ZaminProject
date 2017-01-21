@@ -1,0 +1,112 @@
+﻿
+<div class="modal fade" id="editSongModal">
+    <div class="modal-dialog" style="width: 85%; max-height: 86%; overflow-y: auto;">
+        <div class="modal-content">
+            <div class="panel panel-default">
+                <div class="panel panel-body">
+
+                    <form class="form-horizontal no-margin form-border">
+                        <div class="form-group" ng-show="!editMultiple">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.PlaySong</label>
+                            <div class="col-lg-10">
+                                <a href="{{songUrl}}" onclick=" window.open(this.href, 'mywin', 'left=20,top=20,width=350,height=150,resizable=0'); return false; "><i class="fa fa-play btn btn-success btn-xs"></i></a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Performer</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" ng-model="performer" ng-options="performer.Name for performer in performers track by performer.Id">
+                                    <option value="">Select Performer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="selectedSongs.length <= 1 && !editMultiple">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Song_Name</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" type="text" placeholder="song name" ng-model="songName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Publisher</label>
+                            <div class="col-lg-10">
+                                <select class="form-control" ng-model="publisher" ng-options="publisher.Name for publisher in publishers track by publisher.Id">
+                                    <option value="">Select Publisher</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Bpm</label>
+                            <div class="col-lg-10">
+                                @*<input class="form-control" type="text" ng-model="bpm" placeholder="Bpm">*@
+                                <select class="form-control" ng-model="bpm" ng-options="bpm.Name for bpm in bpms track by bpm.Id">
+                                    <option value="">Select Bpm</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Packages</label>
+                            <div class="row">
+                                <label class="label-checkbox inline col-md-2" ng-repeat="package in packages">
+                                    <input type="checkbox" ng-model="package.Selected">
+                                    <span class="custom-checkbox"></span>
+                                    {{package.Name}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Atmospheres</label>
+                            <div class="col-md-8">
+                                <ul>
+                                    <li class="repeat-li" ng-repeat="atmosphere in atmospheres">
+                                        <label class="label-checkbox inline">
+                                            <input type="checkbox" ng-model="atmosphere.Selected">
+                                            <span class="custom-checkbox"></span>
+                                            {{atmosphere.Name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Genres</label>
+                            <div class="col-md-8">
+                                <ul>
+                                    <li class="repeat-li" ng-repeat="genre in genres">
+                                        <label class="label-checkbox inline">
+                                            <input type="checkbox" ng-model="genre.Selected">
+                                            <span class="custom-checkbox"></span>
+                                            {{genre.Name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">@Music4Biz.Resources.Song.Nicknames</label>
+                            <div class="col-md-8">
+                                <ul>
+                                    <li class="repeat-li" ng-repeat="nickname in nicknames">
+                                        <label class="label-checkbox inline">
+                                            <input type="checkbox" ng-model="nickname.Selected">
+                                            <span class="custom-checkbox"></span>
+                                            {{nickname.Name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label"></label>
+                            <div class="col-lg-10">
+                                <a class="btn btn-lg btn-success" ng-click="updateSong()"><i class="fa fa-plus"></i>&nbsp; @Music4Biz.Resources.Global.Save</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+
+</div>

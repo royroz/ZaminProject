@@ -1,0 +1,26 @@
+﻿@model List<Music4Biz.WebModels.CsvWebModel>
+@{
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";
+}
+
+<h2>Incomes @ViewBag.fromDate - @ViewBag.toDate</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td><strong>@Music4Biz.Resources.Charts.Date</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>@Music4Biz.Resources.Charts.TotalIncomes</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var column in Model)
+        {
+            <tr>
+                <td>@column.ColumnOne</td>
+                <td>&nbsp;</td>
+                <td>@column.ColumnTwo</td>
+            </tr>
+        }
+    </tbody>
+</table>

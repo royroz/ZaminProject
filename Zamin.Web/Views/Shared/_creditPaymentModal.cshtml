@@ -1,0 +1,24 @@
+﻿<div id="creditPaymentModal" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>License payment</h4>
+            </div>
+            <div ng-show="client.Ccno != null">
+                <div class="modal-body">
+                    @* התשלום יתבצע מכרטיס שמסתיים בספרות {{client.Ccno}}*@
+                    <iframe ng-src="{{iframeUrl}}"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="addLicense()"><i class="fa fa-check"></i>&nbsp;</button>
+                </div>
+            </div>
+
+            <div class="modal-body" ng-show="client.Ccno == null">
+                <iframe ng-src="{{iframeUrl}}" style="height: 460px;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music4biz website</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/earlyaccess/opensanshebrewcondensed.css" rel="stylesheet" />
+    <link href="~/Content/css/accordionImageMenu.css" rel="stylesheet" />
+    <link href="~/Content/css/galleriffic-2.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+</head>
+<body class="container" ng-app="music4BizWebsite">
+    <header>
+        @Html.Partial("_Header")
+    </header>
+    <div>
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        @Html.Partial("_Footer")
+    </footer>
+
+    <script src="~/Scripts/lib/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/lib/jquery-ui-1.8.10.custom.min_.js"></script>
+    <script src="~/Scripts/lib/angular.min.js"></script>
+    <script src="~/Scripts/lib/angular-route.min.js"></script>
+    <script src="~/Scripts/lib/accordionImageMenu-0.4.min_.js"></script>
+    <script src="~/Scripts/lib/jquery.galleriffic.js"></script>
+    <script src="~/Scripts/lib/jquery.opacityrollover.js"></script>
+    <script src="~/Scripts/lib/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/controllers/accountController.js"></script>
+    <script src="~/Scripts/app/services/accountService.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#menu').AccordionImageMenu({
+                'openDim': 300,
+                'closeDim': 130,
+                'height': 315
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('div.navigation').css({ 'width': '100%', 'float': 'left', 'height': '315px' });
+            var onMouseOutOpacity = 0.67;
+            $('#thumbs ul.thumbs li').opacityrollover({
+                mouseOutOpacity: onMouseOutOpacity,
+                mouseOverOpacity: 1.0,
+                fadeSpeed: 'fast',
+                exemptionSelector: '.selected'
+            });
+            $('#thumbs-2 ul.thumbs li').opacityrollover({
+                mouseOutOpacity: onMouseOutOpacity,
+                mouseOverOpacity: 1.0,
+                fadeSpeed: 'fast',
+                exemptionSelector: '.selected'
+            });
+            // Initialize Advanced Galleriffic Gallery
+            $('#thumbs').galleriffic({
+                numThumbs: 9,
+                enableTopPager: true,
+                enableBottomPager: false,
+                maxPagesToShow: 7,
+                imageContainerSel: '#slideshow'
+            });
+            $('#thumbs-2').galleriffic({
+                numThumbs: 9,
+                enableTopPager: true,
+                enableBottomPager: false,
+                maxPagesToShow: 7,
+                imageContainerSel: '#slideshow'
+            });
+        });
+    </script>
+
+</body>
+</html>

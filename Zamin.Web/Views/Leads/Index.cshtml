@@ -1,0 +1,103 @@
+﻿@using Music4Biz.Consts
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/App/Leads/leadsCtrl.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Leads/leadsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+
+}
+
+
+@Muze.ContentHeader("fa-comment", "Leads")
+
+<br /><br />
+
+<div class="panel panel-default table-responsive portfolio" ng-controller="leadsCtrl">
+    <div class="row">
+        <div class="col-md-3">
+
+            <input type="text" class="input-sm ng-pristine ng-valid" style="height: 34px;" placeholder="search here..." ng-model="searchText">
+            &nbsp;
+            <a class="btn btn-success" ng-click="clearFilter();"><i class="fa fa-refresh"></i></a>
+        </div>
+        <div class="col-md-6">
+            &nbsp;
+        </div>
+    </div>
+    <br /><br />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Content</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="lead in leads | filter: searchText" ng-class="{'allBold': lead.IsRead != true, 'warning': lead.IsStared == true}">
+                <td>
+
+                    <span ng-click="changeStarStatus($index)" class="pointer">
+                        <i class="fa fa-star" ng-show="lead.IsStared"></i>
+                        <i class="fa fa-star-o" ng-hide="lead.IsStared"></i>
+                    </span>
+
+                </td>
+                <td>
+                    {{lead.Date}}
+                </td>
+                <td>{{lead.Time}}</td>
+                <td>{{lead.Name}}</td>
+                <td>{{lead.Email}}</td>
+                <td>
+                    <p class="truncate">
+                        {{lead.Content}}
+                    </p>
+                </td>
+                <td>
+                    <a ng-click="enlarge($index)" class="pointer">
+                        <i class="fa  fa-external-link-square"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr ng-show="leads.length == 0">
+                <td colspan="6">
+                    No Leads
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="leadModal" class="modal fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4>Lead recieved @@ {{lead.Date}} &nbsp; {{lead.Time}}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Name</th>
+                            <td>{{lead.Name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{lead.Email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Content</th>
+                            <td>{{lead.Content}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,149 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Clients/ClientUpdateController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Clients/ClientsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Shared/MetaDataService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<div ng-controller="clientUpdateCtrl">
+    <div>@Muze.ContentHeader("fa-users", "Client Details")</div>
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <form class="form-horizontal" ng-submit="updateClient()">
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">First name</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.FirstName}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Last name</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.LastName}}
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Email</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.Email}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Business name</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.BusinessName}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Business number</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.BusinessNumber}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Cell phone</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.CellPhone}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Phone</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.Phone}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Address</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.Address}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Comments</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.Comments}}
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <label class="col-md-2 control-label">License password</label>
+                    <div class="col-md-4 p-t-5">
+                        {{client.LicensePassword}}
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Licenses</label>
+                    <div class="col-md-7">
+                        <table class="table table-bordered" ng-show="client.Licenses.length > 0">
+                            <thead>
+                            <tr>
+                                <th>Nickname</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Size</th>
+                                <th>Comments</th>
+                                <th>Start Date</th>
+                                <th>Expiration Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="license in client.Licenses">
+                                <td>{{license.LicenseNickname}}</td>
+                                <td>{{license.LicenseUserName}}</td>
+                                <td>{{client.LicensePassword}}</td>
+                                <td>{{license.LicensePriceListName}}</td>
+                                <td><pre style="border: 0;background: transparent;">{{license.LicenseComments}}</pre></td>
+                                <td>{{license.StartDateStr}}</td>
+                                <td>{{license.ExpirationStr}}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <a href="/Licenses/AddLicense/{{client.Id}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Add License</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Services</label>
+                    <div class="col-md-4">
+                        <table class="table table-bordered" ng-show="client.Services.length > 0">
+                            <thead>
+                            <tr>
+                                <th>Service name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="service in client.Services">
+                                <td>{{service.ServiceName}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a href="/Services/AddServiceToClient/{{client.Id}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Add Service</a>
+                    </div>
+                </div>
+               <div class="form-group">
+                    <div class="col-lg-offset-2 col-md-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fa fa-check"></i>
+                            Save
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

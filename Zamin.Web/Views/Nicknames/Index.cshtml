@@ -1,0 +1,58 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Nicknames/NicknamesController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Nicknames/NicknamesService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+
+}
+
+@Muze.ContentHeader("fa-group", Music4Biz.Resources.Global.Nicknames)
+
+<div class="panel panel-default table-responsive" ng-controller="nicknamesCtrl">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="search-block">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" placeholder="search here..." ng-init="filter.keyword = ''" ng-model="filter.keyword" ng-change="filterChange()" style="margin-bottom: 12px;">
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td ng-click="orderList()" style="cursor: pointer;">
+                            <i class="fa fa-sort-up" ng-show="orderDescending == true"></i><i class="fa fa-sort-down" ng-show="orderDescending == false"></i><strong style="margin-left: 8px;">&nbsp; @Music4Biz.Resources.Global.Name</strong>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="nickname in nicknames | filter: filterFunction ">
+                        <td>
+                            <span ng-show="nickname.IsEdit == undefined">{{nickname.Name}}</span>
+                            <input ng-show="nickname.IsEdit != undefined" type="text" class="form-control input-sm" ng-model="nickname.Name" />
+
+                        </td>
+                        <td style="width: 9%;">
+                            <a class="btn btn-warning btn-sm" ng-click="nickname.IsEdit = true" ng-show="nickname.IsEdit == undefined"><i class="fa fa-edit"></i>&nbsp; @Music4Biz.Resources.Global.Edit</a>
+                            <a class="btn btn-success btn-sm" ng-click="nickname.IsEdit = undefined ;editNickname(nickname)" ng-show="nickname.IsEdit != undefined"><i class="fa fa-check"></i>&nbsp; @Music4Biz.Resources.Global.Save</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" ng-click="removeNickname(nickname)"><i class="fa fa-trash-o"></i> &nbsp; @Music4Biz.Resources.Global.Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control input-sm" placeholder="add nickname..." ng-model="newNickname" />
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-success" ng-click="addNickname()" ng-disabled="newNickname == ''"><i class="fa fa-plus"></i> &nbsp; @Music4Biz.Resources.Global.Add </a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

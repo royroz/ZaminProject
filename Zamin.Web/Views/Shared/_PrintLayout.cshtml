@@ -1,0 +1,34 @@
+﻿<style>
+    body td,tr{
+        font-size: 10px;
+    }
+</style>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>print_layout</title>
+    <script src="~/Scripts/lib/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+
+
+<div class="container">
+    @RenderBody()
+</div>
+
+
+
+<script type="text/javascript">
+    $(function() {
+        window.print();
+    });
+</script>
+@RenderSection("scripts", false)
+</body>
+
+</html>
+

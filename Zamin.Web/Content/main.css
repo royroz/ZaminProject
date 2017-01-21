@@ -1,0 +1,541 @@
+﻿@font-face {
+    font-family: 'FontAwesome';
+    src: url('../Content/fonts/fontawesome-webfont.eot?v=4.2.0');
+    src: url('../Content/fonts/fontawesome-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'),url('../Content/fonts/fontawesome-webfont.woff?v=4.2.0') format('woff'),url('../Content/fonts/fontawesome-webfont.ttf?v=4.2.0') format('truetype'),url('../Content/fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.allBold {
+    font-weight: bold;
+}
+
+.warning {
+    background-color: #f3ce85;
+}
+
+.truncate {
+    width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.invalid-input {
+    font-size: 15px;
+    color: red;
+}
+
+.portfolio img {
+    width: 20%;
+}
+
+.ui-sortable-handle {
+    cursor: move;
+}
+
+.ui-sortable-helper td {
+    display: none;
+}
+
+    .ui-sortable-helper td:first-child {
+        display: block;
+    }
+
+.ui-sortable-helper img {
+    width: 10%;
+}
+
+.radio-inline input[type="radio"] {
+    opacity: 1;
+    width: 20px !important;
+    height: 20px !important;
+    margin-top: -2px;
+    margin-left: -30px;
+}
+
+.radio-inline {
+    padding-left: 45px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.selectFilter {
+    height: 35px;
+    border-radius: 5px;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.print {
+    display: none;
+}
+
+.t-a-l {
+    text-align: left;
+}
+
+.t-a-c {
+    text-align: center;
+}
+
+.p-t-5 {
+    padding-top: 5px;
+}
+
+#servicesIndex .form-control {
+    width: initial;
+}
+
+#songReco .songsList {
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+    #songReco .songsList li {
+        width: 40%;
+        margin-bottom: 10px;
+        display: inline-table;
+        margin-right: 10%;
+        border-bottom: 1px solid #dddddd;
+        padding-bottom: 4px;
+    }
+
+        #songReco .songsList li .col-md-7 {
+            padding-top: 6px;
+        }
+
+.repeat-li {
+    display: inline-block;
+    width: 20%;
+    margin-top: 5px;
+}
+
+.songsView {
+    margin-top: 20px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.positionInput {
+    width: 20%;
+    vertical-align: super;
+}
+
+#licenses input {
+    min-width: 0 !important;
+    width: 100%;
+}
+
+#licenses .form-group div.col-md-2, #services .form-group div.col-md-2 {
+    padding-top: 5px;
+}
+
+#licenses iframe, #services iframe {
+    width: 100%;
+    height: 240px;
+}
+
+#licenses .modal-content {
+    /*height: 565px;*/
+}
+
+#checkPaymentModal .modal-dialog {
+    width: 80%;
+}
+
+.pagination ul > li > a, .pagination ul > li > span {
+    float: left;
+    padding: 4px 12px;
+    line-height: 20px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left-width: 0;
+}
+
+    .pagination ul > li > a.active {
+        z-index: 2;
+        color: #fff;
+        cursor: default;
+        background-color: #337ab7;
+        border-color: #337ab7;
+    }
+
+        .pagination ul > li > a.active:hover {
+            z-index: 2;
+            color: #fff;
+            cursor: default;
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+
+.pagination-centered {
+    text-align: center;
+}
+
+.pagination.pagination-split li {
+    margin-right: 0;
+}
+
+.pagination {
+    display: inherit;
+}
+
+#fountainG {
+    position: relative;
+    width: 240px;
+    height: 29px;
+}
+
+.fountainG {
+    position: absolute;
+    top: 1000%;
+    margin-left: 143%;
+    background-color: #ffffff;
+    width: 29px;
+    height: 29px;
+    -moz-animation-name: bounce_fountainG;
+    -moz-animation-duration: 1.3s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: linear;
+    -moz-transform: scale(.3);
+    -moz-border-radius: 19px;
+    -webkit-animation-name: bounce_fountainG;
+    -webkit-animation-duration: 1.3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: linear;
+    -webkit-transform: scale(.3);
+    -webkit-border-radius: 19px;
+    -ms-animation-name: bounce_fountainG;
+    -ms-animation-duration: 1.3s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-direction: linear;
+    -ms-transform: scale(.3);
+    -ms-border-radius: 19px;
+    -o-animation-name: bounce_fountainG;
+    -o-animation-duration: 1.3s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-direction: linear;
+    -o-transform: scale(.3);
+    -o-border-radius: 19px;
+    animation-name: bounce_fountainG;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-direction: linear;
+    transform: scale(.3);
+    border-radius: 19px;
+}
+
+#fountainG_1 {
+    left: 0;
+    -moz-animation-delay: 0.52s;
+    -webkit-animation-delay: 0.52s;
+    -ms-animation-delay: 0.52s;
+    -o-animation-delay: 0.52s;
+    animation-delay: 0.52s;
+}
+
+#fountainG_2 {
+    left: 30px;
+    -moz-animation-delay: 0.65s;
+    -webkit-animation-delay: 0.65s;
+    -ms-animation-delay: 0.65s;
+    -o-animation-delay: 0.65s;
+    animation-delay: 0.65s;
+}
+
+#fountainG_3 {
+    left: 60px;
+    -moz-animation-delay: 0.78s;
+    -webkit-animation-delay: 0.78s;
+    -ms-animation-delay: 0.78s;
+    -o-animation-delay: 0.78s;
+    animation-delay: 0.78s;
+}
+
+#fountainG_4 {
+    left: 90px;
+    -moz-animation-delay: 0.91s;
+    -webkit-animation-delay: 0.91s;
+    -ms-animation-delay: 0.91s;
+    -o-animation-delay: 0.91s;
+    animation-delay: 0.91s;
+}
+
+#fountainG_5 {
+    left: 120px;
+    -moz-animation-delay: 1.04s;
+    -webkit-animation-delay: 1.04s;
+    -ms-animation-delay: 1.04s;
+    -o-animation-delay: 1.04s;
+    animation-delay: 1.04s;
+}
+
+#fountainG_6 {
+    left: 150px;
+    -moz-animation-delay: 1.17s;
+    -webkit-animation-delay: 1.17s;
+    -ms-animation-delay: 1.17s;
+    -o-animation-delay: 1.17s;
+    animation-delay: 1.17s;
+}
+
+#fountainG_7 {
+    left: 180px;
+    -moz-animation-delay: 1.3s;
+    -webkit-animation-delay: 1.3s;
+    -ms-animation-delay: 1.3s;
+    -o-animation-delay: 1.3s;
+    animation-delay: 1.3s;
+}
+
+#fountainG_8 {
+    left: 210px;
+    -moz-animation-delay: 1.43s;
+    -webkit-animation-delay: 1.43s;
+    -ms-animation-delay: 1.43s;
+    -o-animation-delay: 1.43s;
+    animation-delay: 1.43s;
+}
+
+@-moz-keyframes bounce_fountainG {
+    0% {
+        -moz-transform: scale(1);
+        background-color: #65cea7;
+    }
+
+    100% {
+        -moz-transform: scale(.3);
+        background-color: #FFFFFF;
+    }
+}
+
+@-webkit-keyframes bounce_fountainG {
+    0% {
+        -webkit-transform: scale(1);
+        background-color: #65cea7;
+    }
+
+    100% {
+        -webkit-transform: scale(.3);
+        background-color: #FFFFFF;
+    }
+}
+
+@-ms-keyframes bounce_fountainG {
+    0% {
+        -ms-transform: scale(1);
+        background-color: #65cea7;
+    }
+
+    100% {
+        -ms-transform: scale(.3);
+        background-color: #FFFFFF;
+    }
+}
+
+@-o-keyframes bounce_fountainG {
+    0% {
+        -o-transform: scale(1);
+        background-color: #65cea7;
+    }
+
+    100% {
+        -o-transform: scale(.3);
+        background-color: #FFFFFF;
+    }
+}
+
+@keyframes bounce_fountainG {
+    0% {
+        transform: scale(1);
+        background-color: #65cea7;
+    }
+
+    100% {
+        transform: scale(.3);
+        background-color: #FFFFFF;
+    }
+}
+
+#loader {
+    z-index: 10000;
+    position: absolute;
+    background-color: aliceblue;
+    min-width: 100%;
+    top: 0;
+    opacity: 0.7;
+    min-height: 100%;
+    left: 0;
+}
+
+/* 5.5 Plugins - Datepicker */
+
+.datepicker table tr td.today,
+.datepicker table tr td.today:hover,
+.datepicker table tr td.today.disabled,
+.datepicker table tr td.today.disabled:hover {
+    background: #eee !important;
+}
+
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active:hover:hover,
+.datepicker table tr td.active.disabled:hover,
+.datepicker table tr td.active.disabled:hover:hover,
+.datepicker table tr td.active:focus,
+.datepicker table tr td.active:hover:focus,
+.datepicker table tr td.active.disabled:focus,
+.datepicker table tr td.active.disabled:hover:focus,
+.datepicker table tr td.active:active,
+.datepicker table tr td.active:hover:active,
+.datepicker table tr td.active.disabled:active,
+.datepicker table tr td.active.disabled:hover:active,
+.datepicker table tr td.active.active,
+.datepicker table tr td span.active.active,
+.datepicker table tr td.active:hover.active,
+.datepicker table tr td.active.disabled.active,
+.datepicker table tr td.active.disabled:hover.active,
+.open .dropdown-toggle.datepicker table tr td.active,
+.open .dropdown-toggle.datepicker table tr td.active:hover,
+.open .dropdown-toggle.datepicker table tr td.active.disabled,
+.open .dropdown-toggle.datepicker table tr td.active.disabled:hover {
+    background: #348fe2 !important;
+    color: #fff !important;
+}
+
+.datepicker {
+    min-width: 250px !important;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+    z-index: 9999;
+}
+
+    .datepicker.dropdown-menu {
+        min-width: 250px;
+        border: 1px solid #ddd !important;
+        -webkit-box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.2) !important;
+        -moz-box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.2) !important;
+    }
+
+.datepicker-dropdown:before {
+    border-bottom-color: #ddd !important;
+}
+
+.datepicker-dropdown.datepicker-orient-bottom:before {
+    border-top-color: #ddd !important;
+}
+
+.datepicker table {
+    width: 100%;
+}
+
+
+/* 3.7 Component - Pagination & pager */
+
+.pager li > a,
+.pager li > span,
+.pagination > li > a {
+    border-color: #e2e7eb;
+    color: #242a30;
+}
+
+.pager.pager-without-border li > a,
+.pager.pager-without-border li > span,
+.pagination.pagination-without-border > li > a {
+    border-color: #fff;
+}
+
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus,
+.pager > .disabled > span,
+.pager > .disabled > a {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    border-color: #ddd;
+}
+
+.pagination > li > a {
+    color: #242a30;
+    margin-left: 5px;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+}
+
+.pagination > li:first-child > a {
+    margin-left: 0;
+}
+
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+    font-size: 10px;
+    margin-left: 4px;
+}
+
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+    font-size: 14px;
+    margin-left: 6px;
+}
+
+.pager li > a:hover,
+.pager li > a:focus,
+.pager li > span:hover,
+.pager li > span:focus,
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+    color: #242a30;
+    background: #e2e7eb;
+    border-color: #d8dde1;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background: #242a30 !important;
+    border-color: #242a30 !important;
+}
+
+
+
+@media print {
+    .hideOnPrint {
+        display: none;
+    }
+
+    .print {
+        display: block;
+    }
+
+    #main-container {
+        width: 100% !important;
+        padding-top: 0;
+    }
+
+    .padding-md {
+        padding: 10px !important;
+    }
+}

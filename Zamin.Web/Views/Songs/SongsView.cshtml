@@ -1,0 +1,79 @@
+﻿@using Music4Biz.Consts
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Music4Biz</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/main.css?v=" + GlobalConsts.ScriptsVersion)" rel="stylesheet" />
+    
+</head>
+<body ng-app="music4BizApp">
+    <div ng-controller="songsCtrl" class="songsView">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Performer</th>
+                    <th>Name</th>
+                    <th>Publisher</th>
+                    <th>Packages</th>
+                    <th>Atmospheres</th>
+                    <th>Genres</th>
+                    <th>NickNames</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="song in songsView">
+                    <td>{{song.Id}}</td>
+                    <td>{{song.Performer}}</td>
+                    <td>{{song.Name}}</td>
+                    <td>{{song.Publisher}}</td>
+                    <td>{{song.Packages}}</td>
+                    <td>{{song.Atmospheres}}</td>
+                    <td>{{song.Genres}}</td>
+                    <td>{{song.NickNames}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="loader" style="display: none;">
+            <div id="fountainG">
+                <div id="fountainG_1" class="fountainG">
+                </div>
+                <div id="fountainG_2" class="fountainG">
+                </div>
+                <div id="fountainG_3" class="fountainG">
+                </div>
+                <div id="fountainG_4" class="fountainG">
+                </div>
+                <div id="fountainG_5" class="fountainG">
+                </div>
+                <div id="fountainG_6" class="fountainG">
+                </div>
+                <div id="fountainG_7" class="fountainG">
+                </div>
+                <div id="fountainG_8" class="fountainG">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/lib/jquery-2.1.1.min.js"></script>
+    <script src="~/Scripts/lib/angular.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap.min.js"></script>
+    <script src="~/Scripts/lib/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/lib/bootstrap-timepicker.min.js"></script>
+    <script src="~/Scripts/lib/jquery.ui.datepicker-he.js"></script>
+
+    <script src="@Url.Content("~/Scripts/App/main.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Songs/SongsController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Songs/SongsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    
+
+</body>
+</html>

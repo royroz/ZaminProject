@@ -1,0 +1,65 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Bpm/BpmController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Bpm/BpmService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+@Muze.ContentHeader("fa-tachometer", Music4Biz.Resources.Global.Bpm)
+<body>
+    <div class="panel panel-default table-responsive" ng-controller="bpmCtrl">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="search-block">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm" placeholder="bpm name..." ng-init="filter.keyword = ''" ng-model="filter.keyword" ng-change="filterChange()" style="margin-bottom: 12px;">
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td ng-click="orderList()" style="cursor: pointer;">
+                                <i class="fa fa-sort-up" ng-show="orderDescending == true"></i><i class="fa fa-sort-down" ng-show="orderDescending == false"></i><strong style="margin-left: 8px;">&nbsp; @Music4Biz.Resources.Global.Name</strong>
+                            </td>
+                            <td style="padding-left: 0;">
+                                <strong>&nbsp; @Music4Biz.Resources.Global.Comment</strong>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="bpm in bpms | filter: filterFunction">
+                            <td>
+                                <span ng-show="bpm.IsEdit == undefined">{{bpm.Name}}</span>
+                                <input ng-show="bpm.IsEdit != undefined" type="text" class="form-control input-sm" ng-model="bpm.Name" />
+                            </td>
+                            <td>
+                                <span ng-show="bpm.IsEdit == undefined">{{bpm.Comment}}</span>
+                                <input ng-show="bpm.IsEdit != undefined" type="text" class="form-control input-sm" ng-model="bpm.Comment" />
+                            </td>
+                            <td style="width: 9%;">
+                                <a class="btn btn-warning btn-sm" ng-click="bpm.IsEdit = true" ng-show="bpm.IsEdit == undefined"><i class="fa fa-edit"></i>&nbsp; @Music4Biz.Resources.Global.Edit</a>
+                                <a class="btn btn-success btn-sm" ng-click="bpm.IsEdit = undefined ;EditBpm(bpm)" ng-show="bpm.IsEdit != undefined"><i class="fa fa-check"></i>&nbsp; @Music4Biz.Resources.Global.Save</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-danger" ng-click="removeBpm(bpm)"><i class="fa fa-trash-o"></i>&nbsp; @Music4Biz.Resources.Global.Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control input-sm" placeholder="bpm name..." ng-model="newBpm.Name" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" placeholder="comment..." ng-model="newBpm.Comment" />
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-success" ng-click="addBpm()" ng-disabled="newBpm.Name == ''"><i class="fa fa-plus"></i> &nbsp; @Music4Biz.Resources.Global.Add </a>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

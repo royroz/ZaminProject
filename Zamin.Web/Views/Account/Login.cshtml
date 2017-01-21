@@ -1,0 +1,105 @@
+﻿@model Music4Biz.Web.Models.LoginViewModel
+
+
+@{
+    Layout = null;
+}
+<script src="~/Scripts/lib/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/lib/bootstrap.min.js"></script>
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-timepicker.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/endless-skin.css" rel="stylesheet" />
+<link href="~/Content/endless.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @*@Html.AntiForgeryToken()
+        <h4>Use a local account to log in.</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Log in" class="btn btn-default" />
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Register", "Register") if you don't have a local account.
+        </p>*@
+    
+    @Html.ValidationSummary()
+
+    <div class="login-wrapper">
+
+        <div class="login-widget animation-delay1">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="pull-left">
+                        <i class="fa fa-lock fa-lg"></i> Login
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 30px;">
+                    <div class="form-group">
+                        <label>Username</label>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-sm bounceIn animation-delay4" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm bounceIn animation-delay4" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                    @*<div class="form-group">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox inline">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    <span class="custom-checkbox info bounceIn animation-delay4"></span>
+                                </label>Remember me
+                            </div>
+                        </div>*@
+                    <hr>
+                    <div class="form-group">
+                        <div class="controls text-right">
+                            <input type="submit" value="Log in" class="btn btn-success btn-sm bounceIn animation-delay5 login-link pull-right" />
+                        </div>
+                        @*<div>
+                            @Html.ActionLink("Sign up", "Register")
+                        </div>*@
+                    </div>
+
+                </div>
+            </div><!-- /panel -->
+        </div><!-- /login-widget -->
+    </div>
+    <hr />
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

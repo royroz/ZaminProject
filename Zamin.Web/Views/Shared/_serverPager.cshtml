@@ -1,0 +1,9 @@
+﻿<div class="pagination pagination-split pagination-centered" ng-show="numberOfPages > 1">
+    <ul>
+        <li ng-show="showLeftPage"><a href="#" ng-click="prevPages()"><<</a></li>
+        <li ng-repeat="i in getPagesNum(numberOfPages) track by $index ">
+            <a href="#" ng-click="getPage($index)" ng-class="{active: $index == currentPage}" ng-show="indexInPagesRange($index)">{{$index + 1}}</a>
+        </li>
+        <li ng-show="showRightPage"><a href="#" ng-click="nextPages()">>></a></li>
+    </ul>
+</div>

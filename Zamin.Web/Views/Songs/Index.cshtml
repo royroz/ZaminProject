@@ -1,0 +1,147 @@
+﻿@using Music4Biz.Consts
+@model int?
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/App/Songs/SongsController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Songs/SongsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<script>
+    var performerId = @(Model);
+</script>
+
+
+<style>
+    #songsIndex .panel-heading {
+        min-height: 40px;
+    }
+
+    #songsIndex .container {
+        width: 80%;
+    }
+</style>
+
+@Muze.ContentHeader("fa-music", @Music4Biz.Resources.Song.Songs)
+
+
+<div class="panel panel-default table-responsive" ng-controller="songsCtrl" id="songsIndex">
+    <div class="panel panel-default table-responsive">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    Select Recommendation:
+                    <select class="selectFilter" ng-options="rec.Name for rec in recommendations track by rec.Id" ng-model="recommendation"></select>
+                    &nbsp;
+                    <a class="btn btn-success" ng-click="getSongsCsv()">
+                        <i class="fa fa-file-excel-o"></i>
+                        Export
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-primary" ng-click="songsViewHref()">
+                        <i class="fa fa-list"></i>
+                        View
+                    </a>
+                </div>
+                <div class="pull-right" style="padding-right: 15px;">
+                    <a class="btn btn-warning" data-toggle="modal" ng-click="editSelected()"><i class="fa fa-edit"></i>&nbsp; Edit Selected</a>
+                    <div class="invalid-input" ng-show="editMultiple && selectedSongsToEdit.length == 0">Please Select Songs</div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-3">
+
+                    <input type="text" class="input-sm" style="height: 34px;" placeholder="search here..." ng-model="keyword">
+                    &nbsp;
+                    <a class="btn btn-info" ng-click="getFilteredData(true);"><i class="fa fa-search"></i>&nbsp;search</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Filter By Genre:
+                            <select class="selectFilter" ng-options="genre.Name for genre in genresFilter track by genre.Id" ng-model="genreFilter" ng-change="getSongsByGenre(true);"></select>
+                            &nbsp;
+                            @* <a class="btn btn-info" ng-click="getSongsByGenre(true);"><i class="fa fa-search"></i></a>*@
+                            &nbsp;
+                        </div>
+
+                        <div class="col-md-6" style="padding-top: 1%;" ng-show="showFavoriteCheckbox"> Total Favorites: {{totalFavorites}}</div>
+                    </div>
+
+
+                </div>
+            </div>
+            <hr /><br />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>
+                            <label class="label-checkbox inline">
+                                <input type="checkbox" ng-model="selectAll" ng-click="selectAllSongsToEdit(selectAll)" />
+                                <span class="custom-checkbox"></span>
+                            </label>
+                        </td>
+                        <td><strong>@Music4Biz.Resources.Song.Id</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Performer</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Song_Name</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Favorite</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Publisher</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Bpm</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Atmospheres</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Genres</strong></td>
+                        <td><strong>@Music4Biz.Resources.Song.Nicknames</strong></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="song in indexSongs">
+                        <td>
+                            <label class="label-checkbox inline">
+                                <input type="checkbox" ng-model="song.selected" />
+                                <span class="custom-checkbox"></span>
+                            </label>
+                        </td>
+                        <td>{{song.Id}}</td>
+                        <td>{{song.Performer.Name}}</td>
+                        <td>
+                            <div class="pull-left" style="max-width: 80%;">
+                                @*{{song.FullName}}*@
+                                {{song.SongName}}
+                            </div>
+                            <a href="{{song.SongUrl}}" ng-hide="song.FileName == null" onclick=" window.open(this.href, 'mywin', 'left=20,top=20,width=350,height=150,resizable=0'); return false; " class="pull-right">
+                                <i class="fa fa-play btn btn-success btn-xs"></i>
+                            </a>
+                            &nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td class="t-a-c">
+                            <label class="label-checkbox inline">
+                                <input type="checkbox" ng-model="song.IsFavorite" ng-change="saveSongsIsFavorite(song)"/>
+                                <span class="custom-checkbox"></span>
+                            </label>
+                        </td>
+                        <td>{{song.Publisher.Name}}</td>
+                        <td>{{song.Bpm.Name}}</td>
+                        <td>
+                            <span ng-repeat="atmosphere in song.Atmospheres">{{atmosphere.Name}},</span>
+
+                        </td>
+                        <td>
+                            <span ng-repeat="genre in song.Genres"> {{genre.Name}},</span>
+
+                        </td>
+                        <td>
+                            <span ng-repeat="nickname in song.Nicknames"> {{nickname.Name}},</span>
+
+                        </td>
+                        <td><a href="#editSongModal" data-toggle="modal" ng-click="EditSong(song.Id)" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>&nbsp; @Music4Biz.Resources.Global.Edit</a></td>
+                        <td><a href="#deleteSongModal" data-toggle="modal" ng-click="SaveSongId(song.Id)" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>&nbsp; @Music4Biz.Resources.Global.Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @Html.Partial("_EditSongModal")
+    @Html.Partial("_DeleteSongModal")
+    @Html.Partial("_serverPager")
+</div>
+
+

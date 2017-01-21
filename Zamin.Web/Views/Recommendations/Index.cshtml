@@ -1,0 +1,45 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/App/Recommendation/RecommendationsController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Recommendation/RecommendationsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+
+@Muze.ContentHeader("fa-headphones", Music4Biz.Resources.Recommendations.Title)
+
+<div class="panel panel-default table-responsive" ng-controller="recommendationsCtrl" id="recommendations">
+    <div class="panel panel-heading">
+        <div class="btn btn-success"><a href="/Recommendations/Recommendation"><i class="fa fa-plus fa-2x text-white">&nbsp; Create</i></a></div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>@Music4Biz.Resources.Recommendations.Name</td>
+                    <td>@Music4Biz.Resources.Recommendations.Genres</td>
+                    <td>@Music4Biz.Resources.Recommendations.Atmospheres</td>
+                    <td>@Music4Biz.Resources.Recommendations.Bpm</td>
+                    <td>@Music4Biz.Resources.Recommendations.Nicknames</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody class="ui-sortable" ui-sortable="sortableRecom" ng-model="recommendations">
+                <tr ng-repeat="recommendation in recommendations">
+                    <td>{{recommendation.Name}}</td>
+                    <td><span ng-repeat="genre in recommendation.Genres">{{genre.Name}},&nbsp;</span></td>
+                    <td><span ng-repeat="atm in recommendation.Atmospheres">{{atm.Name}},&nbsp;</span></td>
+                    <td><span ng-repeat="bpm in recommendation.Bpms">{{bpm.Name}},&nbsp;</span></td>
+                    <td><span ng-repeat="nickname in recommendation.Nicknames">{{nickname.Name}},&nbsp;</span></td>
+                    <td>
+                        <a href="/Recommendations/Recommendation#?id={{recommendation.Id}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>&nbsp; @Music4Biz.Resources.Global.Edit</a>
+                        <a href="/Recommendations/SongRecomendationPositions/{{recommendation.Id}}" class="btn btn-info btn-sm"><i class="fa fa-music"></i>&nbsp; @Music4Biz.Resources.Global.EditSongs</a>
+                        <a data-toggle="modal" data-target="#downloadZipModal" class="btn btn-default btn-sm" ng-click="setRecommendationToDownload(recommendation.Id)" style="background-color: lightgrey"><i class="fa fa-file-zip-o"></i>&nbsp;@Music4Biz.Resources.Global.Download</a>
+                        <a href="#" ng-click="deleteRecommendation(recommendation.Id)" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i>&nbsp; @Music4Biz.Resources.Global.Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @Html.Partial("_downloadModal")
+</div>

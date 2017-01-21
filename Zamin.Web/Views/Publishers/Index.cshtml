@@ -1,0 +1,55 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Publisher/PublishersController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Publisher/PublishersService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+@Muze.ContentHeader("fa-briefcase ", Music4Biz.Resources.Global.Publishers)
+
+<div class="panel panel-default table-responsive" ng-controller="publishersCtrl">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="search-block">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" placeholder="search here..." ng-init="filter.keyword = ''" ng-model="filter.keyword" ng-change="filterChange()" style="margin-bottom: 12px;">
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td ng-click="orderList()" style="cursor: pointer;">
+                            <i class="fa fa-sort-up" ng-show="orderDescending == true"></i><i class="fa fa-sort-down" ng-show="orderDescending == false"></i><strong style="margin-left: 8px;">Name</strong>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="publisher in publishers | filter: filterFunction">
+                        <td>
+                            <span ng-show="publisher.IsEdit  == undefined">{{publisher.Name}}</span>
+                            <input ng-show="publisher.IsEdit  != undefined" type="text" class="form-control input-sm" ng-model="publisher.Name" />
+                        </td>
+                        <td style="width: 9%;">
+                            <a class="btn btn-warning btn-sm" ng-click="publisher.IsEdit = true" ng-show="publisher.IsEdit == undefined"><i class="fa fa-edit"></i>Edit</a>
+                            <a class="btn btn-success btn-sm" ng-click="publisher.IsEdit = undefined ;editPublisher(publisher)" ng-show="publisher.IsEdit != undefined"><i class="fa fa-check"></i>Save</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" ng-click="removePublisher(publisher)"><i class="fa fa-trash-o"></i> Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control input-sm" placeholder="add publisher..." ng-model="newPublisherName" />
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-success" ng-click="addPublisher()" ng-disabled="newPublisherName == ''"><i class="fa fa-plus"></i> Add </a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,298 @@
+﻿@using Music4Biz.Consts
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/App/Songs/SongsController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Songs/SongsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<style>
+    .label-checkbox {
+        font-weight: normal;
+    }
+
+    .songsList {
+        max-height: 250px;
+        overflow-y: scroll;
+    }
+
+        .songsList li {
+            width: 40%;
+            margin-bottom: 10px;
+            display: inline-table;
+            margin-right: 10%;
+        }
+
+    .accordion-heading .panel-heading {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .panel {
+        margin-bottom: 0;
+    }
+
+    #tagSongs .form-horizontal .control-label {
+        margin-bottom: 5px;
+    }
+
+    #tagSongs .label-checkbox.inline, .label-radio.inline {
+        margin-bottom: 5px;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #indexFolder #folders {
+        font-size: 16px;
+    }
+
+    #folders .col-md-6 {
+        margin-top: 7px;
+        cursor: pointer;
+    }
+
+    #indexFolder .songsList {
+        margin-top: 20px;
+    }
+
+    .panel-default {
+        margin-bottom: 20px;
+    }
+</style>
+
+@Muze.ContentHeader("fa-tag", @Music4Biz.Resources.Song.Tag_Songs)
+
+<div ng-controller="songsCtrl">
+    <div class="panel panel-default" id="filter-songs">
+        <div class="panel-heading row">
+            <div class="col-md-2">@Music4Biz.Resources.Song.Songs</div>
+            <div class="col-md-1 pull-right">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
+                    <div ng-click="IsShow = true" ng-show="IsShow == undefined">
+                        <i class="fa fa-chevron-up"></i>
+                    </div>
+                    <div ng-click="IsShow = undefined" ng-show="IsShow == true">
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        <div class="accordion-group">
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                    <div class="panel panel-heading">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">
+                                <div class="search-block">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" placeholder="search here..." ng-init="filter.keyword = ''" ng-model="filter.keyword" ng-change="filterChange()" style="margin-bottom: 12px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-sm-1">
+                                <div class="input-group">
+                                    <button class="btn btn-primary" ng-click="selectAllSong()">Select all</button>
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-sm-1">
+                                <div class="input-group">
+                                    <button class="btn btn-primary" ng-click="removeSelectedSongs()">Clear selected</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-body">
+                        <ul class="songsList" ng-show="folderSelected">
+                            <li><a class="btn btn-primary" ng-click="folderSelected = false" style="margin-bottom: 10px;"><i class="fa fa-chevron-left"></i>&nbsp;Back</a></li>
+
+                            <li ng-repeat="song in songs | filter: filterFunction">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <label class="label-checkbox inline">
+                                            <input type="checkbox" ng-model="song.Selected" ng-click="addSelectedSong(song)">
+                                            <span class="custom-checkbox"></span>
+                                            {{song.SongName}}
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2" @*ng-click="openPlaySongModal()"*@>
+                                        <a href="{{song.SongUrl}}" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=350,height=150,resizable=0'); return false;">
+<i class="fa fa-play btn btn-success btn-xs"></i></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div ng-show="!folderSelected" id="indexFolder">
+                            <div class="row" id="folders">
+                                <div ng-repeat="folder in folders">
+
+                                    <div class="col-md-6">
+                                        <a ng-click="openFolder(folder, true)"><i class="fa fa-folder"></i>&nbsp; {{folder}}</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <ul class="songsList">
+                                <li ng-repeat="song in songsIndexFolder | filter: filterFunction">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <label class="label-checkbox inline">
+                                                <input type="checkbox" ng-model="song.Selected" ng-click="addSelectedSong(song)">
+                                                <span class="custom-checkbox"></span>
+        {{song.SongName}}
+        </label>
+    </div>
+    <div class="col-md-2" ng-click="openPlaySongModal()">
+        <a href="{{song.SongUrl}}"><i class="fa fa-play btn btn-success btn-xs"></i></a>
+    </div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="panel panel-default" id="selectedSongs">
+    <div class="panel panel-heading row">
+        <div class="col-md-2">@Music4Biz.Resources.Song.SelectedSongs</div>
+        <div class="col-md-1 pull-right">
+            <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
+                <div ng-click="IsSelectedShow = true" ng-show="IsSelectedShow == undefined">
+                    <i class="fa fa-chevron-up"></i>
+                </div>
+                <div ng-click="IsSelectedShow = undefined" ng-show="IsSelectedShow == true">
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="accordion-group">
+        <div id="collapseTwo" class="accordion-body collapse in">
+            <div class="accordion-inner">
+                <div class="panel panel-body">
+                    <div class="row">
+                        <div class="col-md-3" ng-repeat="song in selectedSongs">
+                            <a ng-click="removeSelectedSong(song)" style="cursor: pointer"><i class="fa fa-remove"></i></a>
+                            &nbsp; {{song.SongName}}
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="panel panel-default" id="tagSongs">
+    <div class="panel panel-body">
+        <form class="form-horizontal no-margin form-border">
+            <div class="form-group row">
+                <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Performer</label>
+                <div class="col-lg-3">
+                    <select class="form-control" ng-model="performer" ng-options="performer.Name for performer in performers ">
+                        <option value="">Select Performer</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Publisher</label>
+                <div class="col-lg-3">
+                    <select class="form-control" ng-model="publisher" ng-options="publisher.Name for publisher in publishers ">
+                        <option value="">Select Publisher</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div ng-show="selectedSongs.length <= 1">
+                    <label class="col-md-2 control-label">Name</label>
+                    <div class="col-lg-3">
+                        <input class="form-control" type="text" placeholder="song name" ng-model="songName">
+                    </div>
+                </div>
+
+                <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Bpm</label>
+                <div class="col-lg-3">
+                    @*<input class="form-control" type="text" ng-model="bpm" placeholder="BPM">*@
+                    <select class="form-control" ng-model="bpm" ng-options="bpm.Name for bpm in bpms ">
+                        <option value="">Select Bpm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Packages</label>
+                <div class="col-md-8">
+                    <ul>
+                        <li class="repeat-li" ng-repeat="package in packages">
+                            <label class="label-checkbox inline">
+                                <input type="checkbox" ng-model="package.Selected">
+                                <span class="custom-checkbox"></span>
+        {{package.Name}}
+        </label>
+    </li>
+</ul>
+
+</div>
+</div>
+<div class="form-group row">
+    <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Atmospheres</label>
+    <div class="col-md-8">
+        <ul>
+            <li class="repeat-li" ng-repeat="atmosphere in atmospheres">
+                <label class="label-checkbox inline">
+                    <input type="checkbox" ng-model="atmosphere.Selected">
+                    <span class="custom-checkbox"></span>
+        {{atmosphere.Name}}
+        </label>
+    </li>
+</ul>
+
+</div>
+</div>
+<div class="form-group row">
+    <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Genres</label>
+    <div class="col-md-8">
+        <ul>
+            <li class="repeat-li" ng-repeat="genre in genres">
+                <label class="label-checkbox inline">
+                    <input type="checkbox" ng-model="genre.Selected">
+                    <span class="custom-checkbox"></span>
+        {{genre.Name}}
+        </label>
+    </li>
+</ul>
+
+</div>
+</div>
+<div class="form-group row">
+    <label class="col-md-2 control-label">@Music4Biz.Resources.Song.Nicknames</label>
+    <div class="col-md-8">
+        <ul>
+            <li class="repeat-li" ng-repeat="nickname in nicknames">
+                <label class="label-checkbox inline">
+                    <input type="checkbox" ng-model="nickname.Selected">
+                    <span class="custom-checkbox"></span>
+        {{nickname.Name}}
+        </label>
+    </li>
+</ul>
+
+</div>
+</div>
+<div class="form-group">
+    <label class="col-lg-2 control-label"></label>
+    <div class="col-lg-10">
+        <a class="btn btn-lg btn-success" ng-disabled="selectedSongs.length == 0" ng-click="tagSongs()"><i class="fa fa-plus"></i>&nbsp; @Music4Biz.Resources.Global.Save</a>
+    </div>
+</div>
+</form>
+</div>
+</div>
+
+
+        @Html.Partial("_PlaySongModal");
+
+        </div>

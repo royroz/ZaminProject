@@ -1,0 +1,100 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/App/Recommendation/RecommendationsController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Recommendation/RecommendationsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+<style>
+    #recommendations input {
+        margin-top: 5px;
+        margin-left: 13px;
+    }
+
+    #recommendations .row {
+        margin: 0;
+    }
+</style>
+
+
+@Muze.ContentHeader("fa-headphones", Music4Biz.Resources.Recommendations.Recommendation)
+
+
+<form class="form-horizontal no-margin form-border" ng-controller="recommendationsCtrl" id="recommendations">
+    <div class="panel-body">
+        <div class="form-group row">
+            <label class="col-md-2 control-label">@Music4Biz.Resources.Recommendations.Name</label>
+            <div class="col-md-4">
+                <input type="text" ng-model="recommendationName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-2">
+                <button class="btn btn-sm btn-default pull-right" ng-click="clearSelection()">@Music4Biz.Resources.Recommendations.ClearSelection</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">@Music4Biz.Resources.Recommendations.Atmospheres</label>
+            <div class="col-md-8">
+                <ul>
+                    <li class="repeat-li" ng-repeat="atmosphere in atmospheres">
+                        <label class="label-checkbox inline">
+                            <input type="checkbox" ng-model="atmosphere.Selected">
+                            <span class="custom-checkbox"></span>
+                            {{atmosphere.Name}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">@Music4Biz.Resources.Recommendations.Genres</label>
+            <div class="col-md-8">
+                <ul>
+                    <li class="repeat-li" ng-repeat="genre in genres">
+                        <label class="label-checkbox inline">
+                            <input type="checkbox" ng-model="genre.Selected">
+                            <span class="custom-checkbox"></span>
+                            {{genre.Name}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">@Music4Biz.Resources.Recommendations.Nicknames</label>
+            <div class="col-md-8">
+                <ul>
+                    <li class="repeat-li" ng-repeat="nickname in nicknames">
+                        <label class="label-checkbox inline">
+                            <input type="checkbox" ng-model="nickname.Selected">
+                            <span class="custom-checkbox"></span>
+                            {{nickname.Name}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">@Music4Biz.Resources.Recommendations.Bpm</label>
+            <div class="col-md-8">
+                <ul>
+                    <li class="repeat-li" ng-repeat="bpm in bpms">
+                        <label class="label-checkbox inline">
+                            <input type="checkbox" ng-model="bpm.Selected">
+                            <span class="custom-checkbox"></span>
+                            {{bpm.Name}}
+                        </label>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <a class="btn btn-lg btn-success" ng-disabled=" recommendationName == '' || recommendationName == undefined" ng-click="SaveRecommendation()"><i class="fa fa-plus"></i>&nbsp; @Music4Biz.Resources.Global.Save</a>
+            </div>
+        </div>
+    </div>
+</form>

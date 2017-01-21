@@ -1,0 +1,56 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/Portfolios/portfoliosCtrl.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/Portfolios/portfoliosService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/App/Directives/fileModel.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+
+
+
+@Muze.ContentHeader("fa fa-picture-o", "Portfolio Items")
+
+
+
+<div class="panel panel-default table-responsive portfolio" ng-controller="portfoliosCtrl">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Video</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="ui-sortable" ui-sortable="sortableItems" ng-model="items">
+            <tr ng-repeat="item in items">
+                <td>
+                    <span ng-hide="item.edit"><img ng-src="{{item.image}}" /></span>
+                    <span ng-show="item.edit"><input type="file" file-model="item.ImageFile" /></span>
+                </td>
+                <td>
+                    <a ng-show="item.video != null && !item.edit" ng-href="{{item.video}}" ta target="_blank">{{item.video}}</a>
+                    <a ng-show="item.edit"><input class="form-control" type="text" ng-model="item.video" /></a>
+                </td>
+                <td>
+                    <button class="btn btn-warning" ng-click="item.edit= true" ng-hide="item.edit"><i class="fa fa-edit"></i>&nbsp;Edit</button>
+                    <button class="btn btn-success" ng-click="saveItem(item)" ng-show="item.edit"><i class="fa fa-check"></i>&nbsp;Save</button>
+                    <button class="btn btn-danger" ng-click="deleteItem(item)"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
+                </td>
+            </tr>
+
+        </tbody>
+        <tbody>
+            <tr>
+                <td>
+                    <span><input type="file" file-model="newItem.ImageFile" /></span>
+                </td>
+                <td>
+                    <a><input class="form-control" type="text" ng-model="newItem.video" /></a>
+                </td>
+                <td>
+                    <button class="btn btn-success" ng-click="saveItem(newItem)"><i class="fa fa-plus"></i>&nbsp;Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,85 @@
+﻿<div id="checkPaymentModal" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>License check payment</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Bank Number</label>
+                        <div class="col-md-3">
+                            <select class="form-control" type="text" ng-model="check.Bank" ng-options="bank.Id + ' - ' + bank.Name for bank in banks"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Bank Branch Number</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" ng-model="check.Branch" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Check Number</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="text" ng-model="check.Number" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Check Expiration</label>
+                        <div class="col-md-3">
+                            <input class="form-control datepicker" type="text" id="checkExpiration" ng-model="check.Expiration" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Check Sum</label>
+                        <div class="col-md-3">
+                            <input class="form-control" type="number" ng-model="check.Sum" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">&nbsp;</label>
+                        <div class="col-md-2">
+                            <button class="btn btn-success" ng-click="addAnotherCheck()"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <hr />
+                <h4 ng-show="checks.length > 0">Checks Added</h4>
+                <table class="table table-striped" ng-show="checks.length > 0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Bank Number</th>
+                        <th>Bank Branch Number</th>
+                        <th>Check Number</th>
+                        <th>Check Expiration</th>
+                        <th>Check Sum</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="checkAdded in checks">
+                        <td>{{$index + 1}}</td>
+                        <td>{{checkAdded.Bank.Id}}</td>
+                        <td>{{checkAdded.Branch}}</td>
+                        <td>{{checkAdded.Number}}</td>
+                        <td>{{checkAdded.Expiration}}</td>
+                        <td>{{checkAdded.Sum}}</td>
+                        <td><i class="fa fa-times" ng-click="removeCheck($index)"></i></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Total: {{totalChecksSum}} Of: {{paymentSum}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success" ng-click="saveChecks()"><i class="fa fa-check"></i>&nbsp;Save</a>
+            </div>
+        </div>
+    </div>
+</div>
+

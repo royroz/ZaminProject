@@ -1,0 +1,135 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Clients/ClientUpdateController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Clients/ClientsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Shared/MetaDataService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<div ng-controller="clientUpdateCtrl">
+    <div ng-show="updateMode">@Muze.ContentHeader("fa-users", "Update Client")</div>
+    <div ng-hide="updateMode">@Muze.ContentHeader("fa-users", "Create Client")</div>
+
+
+    <div class="panel panel-default">
+
+        <div class="panel-body">
+            <form class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">First name</label>
+                    <div class="col-md-4">
+                        <input required type="text" class="form-control input-sm" placeholder="First name" ng-model="client.FirstName"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Last name</label>
+                    <div class="col-md-4">
+                        <input required type="text" class="form-control input-sm" placeholder="Last name" ng-model="client.LastName"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Email</label>
+                    <div class="col-md-4">
+                        <input required type="email" class="form-control input-sm" placeholder="Email" ng-model="client.Email"/>
+                        <div class="red" ng-show="showEmailExsists">
+                            המייל קיים במערכת
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-hide="updateMode">
+                    <label class="col-md-2 control-label">Password</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" placeholder="Password" ng-model="client.Password" ng-required="client.Id == null"/>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Business name</label>
+                    <div class="col-md-4">
+                        <input required type="text" class="form-control input-sm" placeholder="Business name" ng-model="client.BusinessName"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Business number</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" placeholder="Business number" ng-model="client.BusinessNumber"/>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="updateMode">
+                    <label class="col-md-2 control-label">License password</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" placeholder="Comments" ng-model="client.LicensePassword"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Cell phone</label>
+                    <div class="col-md-4">
+                        <input required type="text" class="form-control input-sm" placeholder="Cell phone" ng-model="client.CellPhone"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Phone</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" placeholder="Phone" ng-model="client.Phone"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Address</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control input-sm" placeholder="Address" ng-model="client.Address"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Comments</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control input-sm" placeholder="Comments" ng-model="client.Comments"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="updateMode">
+                    <label class="col-md-2 control-label">&nbsp;</label>
+                    <div class="col-md-4">
+                        <a href="/Licenses/AddLicense/{{client.Id}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Add License</a>
+                        &nbsp;
+                        <a href="/Services/AddServiceToClient/{{client.Id}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Add Service</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-md-4">
+                        <button type="submit" class="btn btn-success btn-lg" ng-click="updateClient(false)">
+                            <i class="fa fa-check"></i>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @* Change Password Warning Modal *@
+    <div id="passwordWarning" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">Warning</div>
+                <div class="modal-body">
+                    Changing the 'Licese Password' will apply for all licenses.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="updateClient(true)">Ok</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

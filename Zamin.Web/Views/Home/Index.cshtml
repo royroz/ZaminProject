@@ -1,0 +1,327 @@
+﻿@using Music4Biz.Consts
+@using Music4Biz.Resources
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/Charts/ChartsController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/Charts/ChartsService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<style>
+    #charts .bg-info {
+        background-color: #6bafbd;
+    }
+
+    #charts .bg-success {
+        background-color: #65cea7;
+    }
+
+    #charts .bg-warning {
+        background-color: #f3ce85;
+    }
+
+    #charts .panel.bg-success .panel-heading {
+        border-color: #3ec291;
+        background: rgba(20,20,20,.07);
+    }
+
+    #charts h3 {
+        margin-top: 0;
+    }
+
+    #charts .chart-style {
+        /*width: 250px;*/
+        height: 250px;
+        padding: 0;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        top: 20px;
+    }
+
+    #charts .refresh-button {
+        cursor: pointer;
+        color: rgba(0,0,0,.3);
+        margin-bottom: 10px;
+    }
+
+        #charts .refresh-button:hover {
+            color: #000;
+        }
+
+    #charts input {
+        width: 40%;
+        min-width: 14% !important;
+    }
+
+    .refreshChart {
+        margin-top: -5px;
+        margin-left: -8%;
+    }
+
+    #charts .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #charts .mail-input {
+        margin-top: 5px;
+        width: 109%;
+        color: #000;
+    }
+
+    #charts .invalid-mail {
+        color: red;
+    }
+
+    .send-mail-btn {
+        cursor: pointer;
+        color: rgba(0,0,0,.3);
+    }
+
+    .actions {
+        margin-top: 5px;
+    }
+
+    .marginTopTen {
+        margin-top: 10px;
+    }
+</style>
+
+<div ng-controller="chartsCtrl" id="charts">
+    <div class="padding-md">
+        @*<div class="row">
+                <div class="pull-right refresh-button"><a href="/Home/UpdateHomePageCharts"><i class="fa fa-2x fa-refresh"></i></a></div>
+            </div>*@
+        <div class="row">
+            <!---------------------------------------------Active Licenses Count----------------------------------------------->
+            <div class="col-sm-6 col-md-4">
+                <div class="panel-stat3 bg-danger">
+                    <h3>@Music4Biz.Resources.Charts.numOfActiveLicenses</h3>
+                    <h2 class="m-top-none">{{activeLicensesNum}}</h2>
+                    <div class="stat-icon">
+                        <i class="fa fa-users fa-3x"></i>
+                    </div>
+                    <div>
+                        <a class="btn btn-default" href="/Home/PrintActiveLicensesCount" target="_blank"><i class="fa fa-print"></i></a>
+                        <a class="btn btn-default" ng-click="openActiveLicensesEmailBox=!openActiveLicensesEmailBox"><i class="fa fa-envelope"></i></a>
+                        <a class="btn btn-default" href="/Home/ExcelActiveLicensesCount"><i class="fa fa-file-excel-o"></i></a>
+                    </div>
+                    <div class="mail-input row" ng-show="openActiveLicensesEmailBox==true">
+                        <input type="email" placeholder="Email address" ng-model="activeLicensesEmailAdress" />
+                        <a class="send-mail-btn" ng-click="sendActiveLicensesMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                    </div>
+                    <div class="pull-left row invalid-mail" ng-show="activeLicensesEmailAdressInvalid && openActiveLicensesEmailBox==true">
+                        כתובת מייל לא תקינה
+                    </div>
+                </div>
+            </div>
+
+            <!---------------------------------------------Trial Licenses Count----------------------------------------------->
+            <div class="col-sm-6 col-md-4">
+                @*<div class="panel-stat3 bg-info">
+                    <h3>@Music4Biz.Resources.Charts.numOfTrialLicenses</h3>
+                    <h2 class="m-top-none">{{trialLicensesNum}}</h2>
+                    <div class="stat-icon">
+                        <i class="fa fa-folder fa-3x"></i>
+                    </div>
+                    <div>
+                        <a class="btn btn-default" href="/Home/PrintTrialLicenses" target="_blank"><i class="fa fa-print"></i></a>
+                        <a class="btn btn-default" ng-click="openTrialLicensesEmailBox=!openTrialLicensesEmailBox"><i class="fa fa-envelope"></i></a>
+                        <a class="btn btn-default" href="/Home/ExcelTrialLicenses"><i class="fa fa-file-excel-o  "></i></a>
+                    </div>
+                    <div class="mail-input row" ng-show="openTrialLicensesEmailBox==true">
+                        <input type="email" placeholder="Email address" ng-model="trialLicensesEmailAdress" />
+                        <a class="send-mail-btn" ng-click="sendTrialLicensesMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                    </div>
+                    <div class="pull-left row invalid-mail" ng-show="trialLicensesEmailAdressInvalid && openTrialLicensesEmailBox==true">
+                        כתובת מייל לא תקינה
+                    </div>
+                </div>*@
+            </div>
+
+            <!---------------------------------------------SongsByPerformers----------------------------------------------->
+            <div class="col-sm-6 col-md-4">
+                <div class="panel-stat3 bg-warning">
+                    <h3>@Music4Biz.Resources.Charts.performersCharts</h3>
+                    <h2 class="m-top-none">&nbsp;</h2>
+                    <div class="stat-icon">
+                        <i class="fa fa-microphone fa-3x"></i>
+                    </div>
+                    <div>
+                        <a class="btn btn-default" ng-click="openSongByPerformersEmailBox=!openSongByPerformersEmailBox"><i class="fa fa-envelope"></i></a>
+                        <a class="btn btn-default" href="/Home/ExcelSongsByPerformersChart"><i class="fa fa-file-excel-o"></i></a>
+                    </div>
+                    <div class="mail-input row" ng-show="openSongByPerformersEmailBox==true">
+                        <input type="email" placeholder="Email address" ng-model="songsByPerformersEmailAdress" />
+                        <a class="send-mail-btn" ng-click="sendSongsByPerformersMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                    </div>
+                    <div class="pull-left row invalid-mail" ng-show="songsByPerformersEmailAdressInvalid && openSongByPerformersEmailBox==true">
+                        כתובת מייל לא תקינה
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------------------Incomes Chart----------------------------------------------->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <div class="row">
+                            <h4 class="col-md-2">@Music4Biz.Resources.Charts.incomes</h4>
+                            <div class="col-md-3 marginTopTen">
+                                @Music4Biz.Resources.Charts.FromDate
+                                <input id="fromDate" type="text" class="input-small monthPicker" ng-model="incomesFromDate" />
+                            </div>
+                            <div class="col-md-3 marginTopTen">
+                                @Music4Biz.Resources.Charts.ToDate
+                                <input id="toDate" type="text" class="input-small monthPicker" ng-model="incomesToDate" />
+                            </div>
+                            <a class="btn refreshChart col-md-1" ng-click="refreshIncomesChart()" style="margin-top: 7px;"><i class="fa fa-refresh pull-left"></i></a>
+                            <div class="col-md-3 pull-right">
+                                <a class="btn btn-default" ng-click="printIncomes()"><i class="fa fa-print"></i></a>
+                                <a class="btn btn-default" ng-click="openIncomesEmailBox=!openIncomesEmailBox"><i class="fa fa-envelope"></i></a>
+                                <a class="btn btn-default" ng-click="excelIncomes()"><i class="fa fa-file-excel-o"></i></a>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-9">&nbsp;</div>
+                            <div class="col-md-3">
+                                <div class="mail-input" ng-show="openIncomesEmailBox==true" style="width: 140%;">
+                                    <input type="email" placeholder="Email address" ng-model="incomesEmailAdress" />
+                                    <a class="send-mail-btn" ng-click="sendIncomesMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                                </div>
+                                <div class="row invalid-mail" ng-show="incomesEmailAdressInvalid && openIncomesEmailBox==true">
+                                    כתובת מייל לא תקינה
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="incomesChart" class="graph" style="height: 250px; padding: 0px; position: relative;" tabindex="0">
+                            <canvas class="flot-base" width="655" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 655px; height: 250px;"></canvas>
+                            <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
+                                <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 24px; text-align: center;">0</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 86px; text-align: center;">1</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 148px; text-align: center;">2</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 209px; text-align: center;">3</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 271px; text-align: center;">4</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 333px; text-align: center;">5</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 395px; text-align: center;">6</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 457px; text-align: center;">7</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 518px; text-align: center;">8</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 580px; text-align: center;">9</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 59px; top: 234px; left: 640px; text-align: center;">10</div>
+                                </div>
+                                <div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 222px; left: 8px; text-align: right;">0.0</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 178px; left: 8px; text-align: right;">2.5</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 134px; left: 8px; text-align: right;">5.0</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 91px; left: 8px; text-align: right;">7.5</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 47px; left: 2px; text-align: right;">10.0</div>
+                                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 3px; left: 2px; text-align: right;">12.5</div>
+                                </div>
+                            </div><canvas class="flot-overlay" width="655" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 655px; height: 250px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!---------------------------------------------PlayLists Chart----------------------------------------------->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <div class="row">
+                            <strong> @Music4Biz.Resources.Charts.playListChart</strong>
+                        </div>
+                        <div class="row actions">
+                            <div style="height: 34px;">
+                                @*<a class="btn btn-default" href="/Home/PrintPlayListsChart" target="_blank"><i class="fa fa-print"></i></a>
+                                <a class="btn btn-default" ng-click="openPlaylistsEmailBox=!openPlaylistsEmailBox"><i class="fa fa-envelope"></i></a>
+                                <a class="btn btn-default" href="/Home/ExcelPlayListsChart"><i class="fa fa-file-excel-o"></i></a>*@
+                            </div>
+                        </div>
+                        <div class="pull-left row mail-input" ng-show="openPlaylistsEmailBox==true">
+                            <input type="email" placeholder="Email address" ng-model="playlistsEmailAdress" />
+                            <a class="refresh-button" ng-click="sendPlaylistsMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                        </div>
+                        <div class="pull-left row invalid-mail" ng-show="playlistsEmailAdressInvalid && openPlaylistsEmailBox==true">
+                            כתובת מייל לא תקינה
+                        </div>
+
+                    </div>
+                    <div style="height: 300px;">
+                        <div id="playListChart" class="chart-style"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!---------------------------------------------Licenses Chart----------------------------------------------->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <div class="row">
+                            <strong>@Music4Biz.Resources.Charts.licenseChart</strong>
+                        </div>
+                        <div class="row actions">
+                            <div>
+                                <a class="btn btn-default" href="/Home/PrintLicensesChart" target="_blank"><i class=" fa fa-print"></i></a>
+                                <a class="btn btn-default" ng-click="openLicensesEmailBox=!openLicensesEmailBox"><i class="fa fa-envelope"></i></a>
+                                <a class="btn btn-default" href="/Home/ExcelLicensesChart"><i class="fa fa-file-excel-o"></i></a>
+                            </div>
+                        </div>
+
+
+                        <div class="pull-left row mail-input" ng-show="openLicensesEmailBox==true">
+                            <input type="email" placeholder="Email address" ng-model="licensesEmailAdress" />
+                            <a class="refresh-button" ng-click="sendLicensesMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                        </div>
+                        <div class="pull-left row invalid-mail" ng-show="licensesEmailAdressInvalid && openLicensesEmailBox==true">
+                            כתובת מייל לא תקינה
+                        </div>
+
+                    </div>
+                    <div style="height: 300px;">
+                        <div id="licenseChart" class="chart-style"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!---------------------------------------------Publisher Chart----------------------------------------------->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <div class="row">
+
+                            <strong> @Music4Biz.Resources.Charts.publishersCharts</strong>
+                        </div>
+                        <div class="row actions">
+                            <div>
+                                <a class="btn btn-default" href="/Home/PrintSongsByPublisherChart" target="_blank"><i class="fa fa-print"></i></a>
+                                <a class="btn btn-default" ng-click="openSongByPublisherEmailBox=!openSongByPublisherEmailBox"><i class="fa fa-envelope"></i></a>
+                                <a class="btn btn-default" href="/Home/ExcelSongsByPublisherChart"><i class="fa fa-file-excel-o"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="pull-left row mail-input" ng-show="openSongByPublisherEmailBox==true">
+                            <input type="email" placeholder="Email address" ng-model="songsByPublisherEmailAdress" />
+                            <a class="refresh-button" ng-click="sendSongsByPublishersMail()"><i class="fa fa-arrow-circle-o-right"></i></a>
+                        </div>
+                        <div class="pull-left row invalid-mail" ng-show="songsByPublisherEmailAdressInvalid && openSongByPublisherEmailBox==true">
+                            כתובת מייל לא תקינה
+                        </div>
+                    </div>
+                    <div style="height: 300px;">
+                        <div id="songsPublisher" class="chart-style"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

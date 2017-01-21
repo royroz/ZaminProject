@@ -1,0 +1,33 @@
+﻿@using Music4Biz.Consts
+@section Scripts
+    {
+    <script src="@Url.Content("~/Scripts/App/PlayerHelp/PlayerHelpController.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+    <script src="@Url.Content("~/Scripts/App/PlayerHelp/PlayerHelpService.js?v=" + GlobalConsts.ScriptsVersion)"></script>
+}
+<style>
+    textarea {
+        border-radius: 10px;
+        outline: none;
+    }
+
+</style>
+
+@Muze.ContentHeader("fa-info-circle", Music4Biz.Resources.Global.PlayerHelp)
+
+<div ng-controller="playerHelpCtrl" class="panel panel-default table-responsive">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">Text</div>
+            <div class="col-md-7">
+                @*<textarea ng-model="playerHelp.Text"></textarea>*@
+                <textarea style="width: 100%; min-height: 300px;" class="control-label textarea" id="helpText" ></textarea>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success" ng-click="savePlayerHelp()"><i class="fa fa-plus"></i>&nbsp; @Music4Biz.Resources.Global.Save</button>
+            </div>
+        </div>
+    </div>
+</div>

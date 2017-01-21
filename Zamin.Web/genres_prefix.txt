@@ -1,0 +1,8 @@
+1- party
+2- jazz
+3- hiphop	
+4- country
+5- vocals
+6-classic	
+7- pop	
+8- rock
