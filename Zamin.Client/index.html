@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Music4biz website</title>
+    <title>Zamin website</title>
     <link href="/Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/Content/css/bootstrap-rtl.min.css" rel="stylesheet" />
     <link href="http://fonts.googleapis.com/earlyaccess/opensanshebrewcondensed.css" rel="stylesheet" />
@@ -31,13 +31,13 @@
                             <a href="#/">&nbsp;דף הבית&nbsp;&nbsp;</a>
                         </li>
                         <li class="col-md-3" ng-class="{'active-tab':isActive('/libraries')}">
-                            <a href="#libraries">&nbsp;ספריות מוסיקה&nbsp;&nbsp;</a>
+                            <a href="#libraries">&nbsp;קורסים&nbsp;&nbsp;</a>
                         </li>
                         <li class="col-md-3" ng-class="{'active-tab':isActive('/portfolio')}">
-                            <a href="#portfolio">&nbsp;תיק עבודות&nbsp;&nbsp;</a>
+                            <a href="#portfolio">&nbsp;גלריה&nbsp;&nbsp;</a>
                         </li>
                         <li class="col-md-3" ng-class="{'active-tab':isActive('/businessMusic')}">
-                            <a href="#businessMusic">&nbsp;מוסיקה לעסקים&nbsp;&nbsp;</a>
+                            <a href="#businessMusic">&nbsp;מי אנחנו?&nbsp;&nbsp;</a>
                         </li>
                         <li class="col-md-3 menu-login" ng-class="{'active-tab':isActive('/login')}" ng-show="!logedIn">
                             <a href="#login">&nbsp; כניסה למשתמשים&nbsp;&nbsp;</a>
@@ -45,7 +45,7 @@
                     </ul>
                 </div>
                 <div id="login" class="row" ng-show="!logedIn">
-                    <div class="col-xs-7"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/logo1.png" /></div>
+                    <div class="col-xs-7"><img src="Images/logo1.png" /></div>
                     <div class="col-xs-5 pointer" ng-click="loginModal()">
                         <a style="color: #000000">
                             <b>כניסה למשתמשים</b>
@@ -148,13 +148,10 @@
                     <div class="col-md-2 col-height" id="contact-us">
                         <div class="row">
                             <div>
-                                <a href="/pdfs/Eula.pdf" target="_blank">תקנון ותנאי שימוש</a>
+                                <a href="" target="_blank">תקנון ותנאי שימוש</a>
                             </div>
                             <div>
-                                <a href="/pdfs/PrivecyPolicy.pdf" target="_blank">מדיניות הגנת פרטיות</a>
-                            </div>
-                            <div>
-                                <a href="/pdfs/Instructions.pdf" target="_blank">הוראות והתקנה</a>
+                                <a href="" target="_blank">מדיניות הגנת פרטיות</a>
                             </div>
                             <div>
                                 <a href="/pdfs/Faq.pdf" target="_blank">שאלות ותשובות</a>
@@ -171,10 +168,10 @@
                     <div class="col-md-2 col-height" id="contact-us">
                         <div class="row">
                             <div>
-                                <a>גני התערוכה, מרכז הירידים, תל-אביב</a>  
+                                <a>גני התערוכה, מרכז הירידים, תל-אביב</a>
                             </div>
                             <div>
-                                <a href="mailto:info@music4.biz" target="_blank" ng-hide="location == '/libraries'">info@music4.biz</a>
+                                <a href="mailto:info@music4.biz" target="_blank" ng-hide="location == '/libraries'">zaminproject@gmail.com</a>
                                 <a href="mailto:nissim@music4.biz" target="_blank" ng-show="location == '/libraries'">nissim@music4.biz</a>
                             </div>
                             <div>
