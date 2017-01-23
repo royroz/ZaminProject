@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Zamin.Models.Membership;
 using Zamin.Repositories;
+using Zamin.Repositories.CFMembership;
 using Zamin.Repositories.Users;
 
 namespace Zamin.Repositories.Users
@@ -25,13 +26,19 @@ namespace Zamin.Repositories.Users
 
         public User GetUser(string userName)
         {
-            return DataContext.Users.Include(u => u.Roles).SingleOrDefault(u => u.Username == userName);
+            return DataContext.Users.SingleOrDefault(u => u.Username == userName);
         }
 
         public User GetUserById(int userId)
         {
             return
                 DataContext.Users.FirstOrDefault(u => u.UserId == userId);
+        }
+
+        public bool IsWebsiteUserExsist(string userName, string password)
+        {
+            return
+                DataContext.WebsiteUsers.Any(u => u.Username == userName && Crypto.HashPassword(password) == u.Password);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Zamin.Repositories
 
 
        public DbSet<User> Users { get; set; }
-       public DbSet<Role> Roles { get; set; }
+       public DbSet<WebsiteUser> WebsiteUsers { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

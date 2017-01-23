@@ -13,5 +13,7 @@ namespace Zamin.Repositories.Users
     {
         User GetUser(string userName);
         User GetUserById(int userId);
+
+        bool IsWebsiteUserExsist(string userName, string password);
     }
 }

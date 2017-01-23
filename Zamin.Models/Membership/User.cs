@@ -49,12 +49,6 @@ namespace Zamin.Models.Membership
         public DateTime? ResetPasswordExpirationDate { get; set; }
         //----------------//
 
-        private ICollection<Role> _roles;
-        public ICollection<Role> Roles
-        {
-            get { return _roles ?? (_roles = new Collection<Role>()); }
-            set { _roles = value; }
-        }
 
 
     }

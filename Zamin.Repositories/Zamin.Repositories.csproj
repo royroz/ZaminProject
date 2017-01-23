@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CFMembership\CodeFirstMembershipProvider.cs" />
-    <Compile Include="CFMembership\CodeFirstRoleProvider.cs" />
     <Compile Include="CFMembership\Crypto.cs" />
     <Compile Include="CFMembership\WebSecurity.cs" />
     <Compile Include="Infratructure\DataContext.cs" />

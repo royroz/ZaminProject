@@ -39,6 +39,11 @@ namespace Zamin.Server.Controllers
             };
         }
 
+        public JsonResult WebsiteLogin(string userName, string password)
+        {
+            var exists = UOW.UsersRepository.IsWebsiteUserExsist(userName, password);
+        }
+
         public JsonResult LogOff()
         {
             FormsAuthentication.SignOut();
