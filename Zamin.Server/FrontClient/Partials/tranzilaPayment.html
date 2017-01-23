@@ -1,0 +1,25 @@
+﻿<div class="row tranzila-payment">
+    <div class="iframe-header">
+        <br/>
+        <div class="row">
+            <div class="col-xs-6">מחיר חבילה</div>
+            <div class="col-xs-6 text-left">{{sum | number: 2}} &#8362;</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">מע"מ {{(VAT - 1)*100 | number : 0}}%</div>
+            <div class="col-xs-6 text-left">
+                {{(VAT - 1)*sum | number : 2 }} &#8362;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">סה"כ לתשלום</div>
+            <div class="col-xs-6 text-left">{{sum*VAT| number : 2 }} &#8362;</div>
+        </div>
+        <br />
+    </div>
+
+
+    <iframe ng-src="{{iframeUrl}}"></iframe>
+</div>
+

@@ -1,0 +1,40 @@
+﻿<div id="portfolio">
+    <div class="bg-text">
+        תכנון נכון של כל מרכיבי ההפקה
+        ביחד עם הצוות שלנו יניב עבורכם את מיקסום
+        הפוטנציאל הדרוש להצלחת הפרויקט
+    </div>
+    <div class="portfolio">
+        <div class="row t-a-c" style="    margin-bottom: 1%;">
+            <h2>בין לקוחותינו</h2>
+        </div>
+        <div class="row" style="position: relative;">
+            <img class="scroll-left" src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/scroll-left.png" ng-click="showNext()" />
+            <img class="scroll-right" src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/scroll-right.png" ng-click="showPrev()" />
+            <!----------------------portfolio images------------------>
+            <div class="col-xs-12" id="portfolio-images">
+                <div class="row">
+                    <div class="row-height">
+                        <div class="col-xs-3 col-height col-middle" ng-repeat="image in images track by $index" ng-show="$index <= maxIndex && $index > maxIndex - 8">
+                            <img ng-src="{{image.image}}" ng-click="playMovie(image.video)" ng-class="{'pointer': image.video != ''}" />
+                            <br />
+                            <a class="videoLink" ng-show="image.video != ''" ng-click="playMovie(image.video)">לצפייה לחץ כאן</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--------- video modal ------------>
+        <div id="video-modal" class="modal fade">
+            <div class="modal-dialog">
+
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-2x"></i></span></button>
+
+                <div class="modal-body">
+                    <iframe width="90%" ng-src="{{video}}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
