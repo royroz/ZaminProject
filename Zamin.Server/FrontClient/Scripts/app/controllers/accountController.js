@@ -52,7 +52,7 @@
             $scope.businessNumberExists = false;
             $scope.passwordTooShort = false;
             $scope.wrongPassword = false;
-            if ($scope.signupInfo.FullName == undefined || $scope.signupInfo.BusinessName == undefined || $scope.signupInfo.Email == undefined || $scope.signupInfo.Password == undefined || $scope.signupInfo.CellPhone == undefined) {
+            if ($scope.signupInfo.FullName == undefined ||  $scope.signupInfo.Email == undefined || $scope.signupInfo.Password == undefined || $scope.signupInfo.CellPhone == undefined) {
                 return;
             }
             if ($scope.signupInfo.Password !== $scope.signupInfo.ConfirmPassword) {
@@ -66,11 +66,6 @@
             }
 
             showLoader();
-            var price = $scope.signupInfo.PriceListItem.Price;
-
-            if ($scope.signupInfo.isDiskOnKey) {
-                price += 100;
-            }
             accountService.signUp($scope.signupInfo).then(function (response) {
                 if (response.message === "user name exists") {
                     $scope.emailExists = true;
@@ -80,7 +75,6 @@
                     $scope.isLogedIn = true;
                     $scope.userName = response.userName;
                     $rootScope.$broadcast("userSingedUp", response.userName);
-                    $location.path("tranzilaPayment/" + price + "/" + $scope.signupInfo.PriceListItem.Id + "/" + $scope.signupInfo.Nickname + "/" + $scope.signupInfo.isDiskOnKey);
                     //$location.path("account");
                 }
                 hideLoader();

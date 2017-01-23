@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Zamin.Models;
 using Zamin.Repositories.CFMembership;
 
 namespace Zamin.Server.Controllers
@@ -42,6 +43,15 @@ namespace Zamin.Server.Controllers
         public JsonResult WebsiteLogin(string userName, string password)
         {
             var exists = UOW.UsersRepository.IsWebsiteUserExsist(userName, password);
+              return new JsonResult()
+            {
+                Data = new
+                {
+                    Success = true,
+                    //UserId = user.UserId,
+                    //userName = user.Username,
+                }
+            };
         }
 
         public JsonResult LogOff()
@@ -61,5 +71,44 @@ namespace Zamin.Server.Controllers
             }
             return Json(userName, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SignUp(WebsiteUser websiteUser)
+        {
+            var isUserExists = UOW.UsersRepository.IsEmailExists(websiteUser.Email);
+            if (isUserExists)
+            {
+                return new JsonResult()
+                {
+                    Data = new
+                    {
+                        message = "user name exists"
+                    }
+                };
+            }
+
+
+
+            websiteUser.Password = Crypto.HashPassword(websiteUser.Password);
+            websiteUser.CreateDate = DateTime.Now;
+            websiteUser.Active = true;
+
+
+
+            UOW.UsersRepository.AddOrUpdateUser(websiteUser);
+            FormsAuthentication.SetAuthCookie(websiteUser.Email, true);
+
+            //create payment request
+                                             
+                return new JsonResult()
+            {
+                Data = new
+                {
+                    message = true,
+                    userName = websiteUser.Email
+                }
+            };
+        }
+
+
     }
 }

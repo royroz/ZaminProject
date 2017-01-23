@@ -25,7 +25,7 @@ namespace Zamin.Repositories.Migrations
                 MembershipCreateStatus Status;
                 Membership.CreateUser(adminUserName, "1234", "admin@admin.com", null, null, true, out Status);
 
-                var adminUser = context.Users.Single(u => u.Username == adminUserName);
+                var adminUser = context.Users.Single(u => u.Email == adminUserName);
                 adminUser.Active = true;
                 context.SaveChanges();
             }

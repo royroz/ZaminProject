@@ -41,30 +41,30 @@ namespace Zamin.Repositories.CFMembership
             get { return User.Identity.IsAuthenticated; }
         }
 
-        public static MembershipCreateStatus Register(string Username, string Password, string Email, bool IsApproved,
-                                                      string FirstName, string LastName)
-        {
-            MembershipCreateStatus CreateStatus;
-            Membership.CreateUser(Username, Password, Email, null, null, IsApproved, Guid.NewGuid(), out CreateStatus);
+        //public static MembershipCreateStatus Register(string Username, string Password, string Email, bool IsApproved,
+        //                                              string FirstName, string LastName)
+        //{
+        //    MembershipCreateStatus CreateStatus;
+        //    Membership.CreateUser(Username, Password, Email, null, null, IsApproved, Guid.NewGuid(), out CreateStatus);
 
-            if (CreateStatus == MembershipCreateStatus.Success)
-            {
-                using (DataContext Context = new DataContext())
-                {
-                    User User = Context.Users.FirstOrDefault(Usr => Usr.Username == Username);
-                    User.FirstName = FirstName;
-                    User.LastName = LastName;
-                    Context.SaveChanges();
-                }
+        //    if (CreateStatus == MembershipCreateStatus.Success)
+        //    {
+        //        using (DataContext Context = new DataContext())
+        //        {
+        //            User User = Context.Users.FirstOrDefault(Usr => Usr.Username == Username);
+        //            User.FirstName = FirstName;
+        //            User.LastName = LastName;
+        //            Context.SaveChanges();
+        //        }
 
-                if (IsApproved)
-                {
-                    FormsAuthentication.SetAuthCookie(Username, false);
-                }
-            }
+        //        if (IsApproved)
+        //        {
+        //            FormsAuthentication.SetAuthCookie(Username, false);
+        //        }
+        //    }
 
-            return CreateStatus;
-        }
+        //    return CreateStatus;
+        //}
 
         public static Boolean Login(string Username, string Password, bool persistCookie = false)
         {

@@ -8,6 +8,7 @@ using Zamin.Models.Membership;
 using Zamin.Repositories;
 using Zamin.Repositories.CFMembership;
 using Zamin.Repositories.Users;
+using Zamin.Models;
 
 namespace Zamin.Repositories.Users
 {
@@ -38,7 +39,17 @@ namespace Zamin.Repositories.Users
         public bool IsWebsiteUserExsist(string userName, string password)
         {
             return
-                DataContext.WebsiteUsers.Any(u => u.Username == userName && Crypto.HashPassword(password) == u.Password);
+                DataContext.WebsiteUsers.Any(u => u.Email == userName && Crypto.HashPassword(password) == u.Password);
+        }
+
+        public bool IsEmailExists(string email)
+        {
+            return DataContext.Users.Any(u => u.Email == email);
+        }
+        public bool AddOrUpdateUser(WebsiteUser user)
+        {
+            DataContext.WebsiteUsers.Add(user);
+            return Save();
         }
     }
 }

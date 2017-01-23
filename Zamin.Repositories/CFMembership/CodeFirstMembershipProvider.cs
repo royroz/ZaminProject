@@ -94,7 +94,7 @@ namespace Zamin.Repositories.CFMembership
 
             using (DataContext Context = new DataContext())
             {
-                if (Context.Users.Where(Usr => Usr.Username == username).Any())
+                if (Context.Users.Where(Usr => Usr.Email == username).Any())
                 {
                     status = MembershipCreateStatus.DuplicateUserName;
                     return null;
@@ -108,18 +108,20 @@ namespace Zamin.Repositories.CFMembership
 
                 User NewUser = new User
                 {
-                    Username = username,
-                    Password = HashedPassword,
-                    IsApproved = isApproved,
+                    
                     Email = email,
-                    CreateDate = DateTime.UtcNow,
-                    LastPasswordChangedDate = DateTime.UtcNow,
-                    PasswordFailuresSinceLastSuccess = 0,
-                    LastLoginDate = DateTime.UtcNow,
-                    LastActivityDate = DateTime.UtcNow,
-                    LastLockoutDate = DateTime.UtcNow,
-                    IsLockedOut = false,
-                    LastPasswordFailureDate = DateTime.UtcNow
+                    Password = HashedPassword,
+                    //Username = username,
+                    //IsApproved = isApproved,
+                    
+                    //CreateDate = DateTime.UtcNow,
+                    //LastPasswordChangedDate = DateTime.UtcNow,
+                    //PasswordFailuresSinceLastSuccess = 0,
+                    //LastLoginDate = DateTime.UtcNow,
+                    //LastActivityDate = DateTime.UtcNow,
+                    //LastLockoutDate = DateTime.UtcNow,
+                    //IsLockedOut = false,
+                    //LastPasswordFailureDate = DateTime.UtcNow
                 };
 
                 Context.Users.Add(NewUser);

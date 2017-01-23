@@ -15,5 +15,7 @@ namespace Zamin.Repositories.Users
         User GetUserById(int userId);
 
         bool IsWebsiteUserExsist(string userName, string password);
+        bool IsEmailExists(string email);
+        bool AddOrUpdateUser(WebsiteUser user);
     }
 }
