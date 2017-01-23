@@ -21,5 +21,7 @@ namespace Zamin.Models
         public String LastName { get; set; }
 
         public String Phone { get; set; }
+        
+
     }
 }
