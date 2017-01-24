@@ -21,11 +21,16 @@ namespace Zamin.Models.Membership
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool Active { get; set; }
-
-  
-
-
-
+        public string Username { get; set; }
+        public bool IsApproved { get; set; }
+        public bool IsLockedOut { get; set; }
+        public DateTime? LastLoginDate { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastPasswordChangedDate { get; set; }
+        public DateTime? LastLockoutDate { get; set; }
+        public DateTime? LastActivityDate { get; set; }
+        public DateTime? LastPasswordFailureDate { get; set; }
+        public int PasswordFailuresSinceLastSuccess { get; set; }
     }
 
 }

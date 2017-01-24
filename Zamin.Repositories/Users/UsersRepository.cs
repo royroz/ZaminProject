@@ -27,13 +27,13 @@ namespace Zamin.Repositories.Users
 
         public User GetUser(string userName)
         {
-            return DataContext.Users.SingleOrDefault(u => u.Username == userName);
+            return DataContext.Users.SingleOrDefault(u => u.Email == userName);
         }
 
         public User GetUserById(int userId)
         {
             return
-                DataContext.Users.FirstOrDefault(u => u.UserId == userId);
+                DataContext.Users.FirstOrDefault(u => u.Id == userId);
         }
 
         public bool IsWebsiteUserExsist(string userName, string password)

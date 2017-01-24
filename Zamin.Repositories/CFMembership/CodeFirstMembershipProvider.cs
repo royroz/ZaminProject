@@ -127,7 +127,7 @@ namespace Zamin.Repositories.CFMembership
                 Context.Users.Add(NewUser);
                 Context.SaveChanges();
                 status = MembershipCreateStatus.Success;
-                return new MembershipUser(Membership.Provider.Name, NewUser.Username, NewUser.UserId, NewUser.Email,
+                return new MembershipUser(Membership.Provider.Name, NewUser.Username, NewUser.Id, NewUser.Email,
                                           null, null, NewUser.IsApproved, NewUser.IsLockedOut, NewUser.CreateDate.Value,
                                           NewUser.LastLoginDate.Value, NewUser.LastActivityDate.Value,
                                           NewUser.LastPasswordChangedDate.Value, NewUser.LastLockoutDate.Value);
@@ -203,7 +203,7 @@ namespace Zamin.Repositories.CFMembership
                         User.LastActivityDate = DateTime.UtcNow;
                         Context.SaveChanges();
                     }
-                    return new MembershipUser(Membership.Provider.Name, User.Username, User.UserId, User.Email, null,
+                    return new MembershipUser(Membership.Provider.Name, User.Username, User.Id, User.Email, null,
                                               null, User.IsApproved, User.IsLockedOut, User.CreateDate.Value,
                                               User.LastLoginDate.Value, User.LastActivityDate.Value,
                                               User.LastPasswordChangedDate.Value, User.LastLockoutDate.Value);
@@ -236,7 +236,7 @@ namespace Zamin.Repositories.CFMembership
                         User.LastActivityDate = DateTime.UtcNow;
                         Context.SaveChanges();
                     }
-                    return new MembershipUser(Membership.Provider.Name, User.Username, User.UserId, User.Email, null,
+                    return new MembershipUser(Membership.Provider.Name, User.Username, User.Id, User.Email, null,
                                               null, User.IsApproved, User.IsLockedOut, User.CreateDate.Value,
                                               User.LastLoginDate.Value, User.LastActivityDate.Value,
                                               User.LastPasswordChangedDate.Value, User.LastLockoutDate.Value);
@@ -391,7 +391,7 @@ namespace Zamin.Repositories.CFMembership
                            .Take(pageSize);
                 foreach (User user in Users)
                 {
-                    MembershipUsers.Add(new MembershipUser(Membership.Provider.Name, user.Username, user.UserId,
+                    MembershipUsers.Add(new MembershipUser(Membership.Provider.Name, user.Username, user.Id,
                                                            user.Email, null, null, user.IsApproved, user.IsLockedOut,
                                                            user.CreateDate.Value, user.LastLoginDate.Value,
                                                            user.LastActivityDate.Value,
@@ -416,7 +416,7 @@ namespace Zamin.Repositories.CFMembership
                            .Take(pageSize);
                 foreach (User user in Users)
                 {
-                    MembershipUsers.Add(new MembershipUser(Membership.Provider.Name, user.Username, user.UserId,
+                    MembershipUsers.Add(new MembershipUser(Membership.Provider.Name, user.Username, user.Id,
                                                            user.Email, null, null, user.IsApproved, user.IsLockedOut,
                                                            user.CreateDate.Value, user.LastLoginDate.Value,
                                                            user.LastActivityDate.Value,
@@ -437,7 +437,7 @@ namespace Zamin.Repositories.CFMembership
                     Context.Users.OrderBy(Usrn => Usrn.Username).Skip(pageIndex * pageSize).Take(pageSize);
                 foreach (User user in Users)
                 {
-                    MembershipUsers.Add(new MembershipUser(Membership.Provider.Name, user.Username, user.UserId,
+                    MembershipUsers.Add(new MembershipUser(Membership.Provider.Name, user.Username, user.Id,
                                                            user.Email, null, null, user.IsApproved, user.IsLockedOut,
                                                            user.CreateDate.Value, user.LastLoginDate.Value,
                                                            user.LastActivityDate.Value,
@@ -469,7 +469,7 @@ namespace Zamin.Repositories.CFMembership
 
             using (DataContext Context = new DataContext())
             {
-                if (Context.Users.Where(Usr => Usr.Username == userName).Any())
+                if (Context.Users.Where(Usr => Usr.Email == userName).Any())
                 {
                     throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
                 }
@@ -482,19 +482,19 @@ namespace Zamin.Repositories.CFMembership
 
                 User NewUser = new User
                 {
-                    Username = userName,
+                    Email = userName,
                     Password = hashedPassword,
-                    IsApproved = !requireConfirmationToken,
-                    Email = string.Empty,
-                    CreateDate = DateTime.UtcNow,
-                    LastPasswordChangedDate = DateTime.Now,
-                    PasswordFailuresSinceLastSuccess = 0,
-                    LastLoginDate = DateTime.UtcNow,
-                    LastActivityDate = DateTime.UtcNow,
-                    LastLockoutDate = DateTime.UtcNow,
-                    IsLockedOut = false,
-                    LastPasswordFailureDate = DateTime.Now,
-                    ConfirmationToken = token
+                    //IsApproved = !requireConfirmationToken,
+                  //  Email = string.Empty,
+                    //CreateDate = DateTime.UtcNow,
+                    //LastPasswordChangedDate = DateTime.Now,
+                    //PasswordFailuresSinceLastSuccess = 0,
+                    //LastLoginDate = DateTime.UtcNow,
+                    //LastActivityDate = DateTime.UtcNow,
+                    //LastLockoutDate = DateTime.UtcNow,
+                    //IsLockedOut = false,
+                    //LastPasswordFailureDate = DateTime.Now,
+                    //ConfirmationToken = token
                 };
 
                 Context.Users.Add(NewUser);

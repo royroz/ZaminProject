@@ -115,46 +115,46 @@ namespace Zamin.Repositories.CFMembership
             return (int)user.ProviderUserKey;
         }
 
-        public static string CreateAccount(string userName, string password)
-        {
-            return CreateAccount(userName, password, requireConfirmationToken: false);
-        }
+        //public static string CreateAccount(string userName, string password)
+        //{
+        //    return CreateAccount(userName, password, requireConfirmationToken: false);
+        //}
 
-        public static string CreateAccount(string userName, string password, bool requireConfirmationToken = false)
-        {
-            CodeFirstMembershipProvider CodeFirstMembership = Membership.Provider as CodeFirstMembershipProvider;
-            return CodeFirstMembership.CreateAccount(userName, password, requireConfirmationToken);
-        }
+        //public static string CreateAccount(string userName, string password, bool requireConfirmationToken = false)
+        //{
+        //    CodeFirstMembershipProvider CodeFirstMembership = Membership.Provider as CodeFirstMembershipProvider;
+        //    return CodeFirstMembership.CreateAccount(userName, password, requireConfirmationToken);
+        //}
 
-        public static string CreateUserAndAccount(string userName, string password)
-        {
-            return CreateUserAndAccount(userName, password, propertyValues: null, requireConfirmationToken: false);
-        }
+        //public static string CreateUserAndAccount(string userName, string password)
+        //{
+        //    return CreateUserAndAccount(userName, password, propertyValues: null, requireConfirmationToken: false);
+        //}
 
-        public static string CreateUserAndAccount(string userName, string password, bool requireConfirmation)
-        {
-            return CreateUserAndAccount(userName, password, propertyValues: null,
-                                        requireConfirmationToken: requireConfirmation);
-        }
+        //public static string CreateUserAndAccount(string userName, string password, bool requireConfirmation)
+        //{
+        //    return CreateUserAndAccount(userName, password, propertyValues: null,
+        //                                requireConfirmationToken: requireConfirmation);
+        //}
 
-        public static string CreateUserAndAccount(string userName, string password, IDictionary<string, object> values)
-        {
-            return CreateUserAndAccount(userName, password, propertyValues: values, requireConfirmationToken: false);
-        }
+        //public static string CreateUserAndAccount(string userName, string password, IDictionary<string, object> values)
+        //{
+        //    return CreateUserAndAccount(userName, password, propertyValues: values, requireConfirmationToken: false);
+        //}
 
-        public static string CreateUserAndAccount(string userName, string password, object propertyValues = null,
-                                                  bool requireConfirmationToken = false)
-        {
-            CodeFirstMembershipProvider CodeFirstMembership = Membership.Provider as CodeFirstMembershipProvider;
+        //public static string CreateUserAndAccount(string userName, string password, object propertyValues = null,
+        //                                          bool requireConfirmationToken = false)
+        //{
+        //    CodeFirstMembershipProvider CodeFirstMembership = Membership.Provider as CodeFirstMembershipProvider;
 
-            IDictionary<string, object> values = null;
-            if (propertyValues != null)
-            {
-                values = new RouteValueDictionary(propertyValues);
-            }
+        //    IDictionary<string, object> values = null;
+        //    if (propertyValues != null)
+        //    {
+        //        values = new RouteValueDictionary(propertyValues);
+        //    }
 
-            return CodeFirstMembership.CreateUserAndAccount(userName, password, requireConfirmationToken, values);
-        }
+        //    return CodeFirstMembership.CreateUserAndAccount(userName, password, requireConfirmationToken, values);
+        //}
 
         public static List<MembershipUser> FindUsersByEmail(string Email, int PageIndex, int PageSize)
         {

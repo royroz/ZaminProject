@@ -34,8 +34,8 @@ namespace Zamin.Server.Controllers
                 Data = new
                 {
                     Success = true,
-                    UserId = user.UserId,
-                    userName = user.Username,
+                    Id = user.Id,
+                    userName = user.Email,
                 }
             };
         }
