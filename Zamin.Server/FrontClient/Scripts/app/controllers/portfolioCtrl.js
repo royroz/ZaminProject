@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('portfolioCtrl', function ($scope, $location, $sce, $rootScope, portfolioService) {
         $scope.maxIndex = 7;
         $scope.video = '';

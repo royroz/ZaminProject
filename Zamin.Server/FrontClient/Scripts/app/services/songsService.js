@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite').factory('songsService', function($q, $http, $rootScope,consts) {
+﻿angular.module('zamin').factory('songsService', function($q, $http, $rootScope,consts) {
     return {
         getSongsFromBucket: function() {
             var deferred = $q.defer();

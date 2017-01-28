@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('librariesCtrl', function ($scope, $location, $rootScope) {
         $scope.index = 1;
         $scope.interval = undefined;

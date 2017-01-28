@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite').factory('userService', function ($q, $http, consts) {
+﻿angular.module('zamin').factory('userService', function ($q, $http, consts) {
     return {
         isLogedIn: function () {
             var deferred = $q.defer();

@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('homeCtrl', function ($scope, $location, $rootScope) {
         $scope.getBgHeight = function () {
             var img = new Image();

@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('userCtrl', function ($scope, $location, $rootScope, $routeParams, userService, songsService) {
 
         $scope.userName = "";

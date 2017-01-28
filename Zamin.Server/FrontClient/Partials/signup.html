@@ -1,47 +1,60 @@
-﻿<div id="signUp" ng-show="signUp">
+
+<div id="signUp" ng-show="signUp">
     <h2>
         הרשמה
     </h2>
     <form name="signupForm" novalidate>
         <div class="form-group row">
-            <label class="col-md-2 control-label">שם מלא*</label>
+            <label class="col-md-2 control-label">שם פרטי*</label>
             <div class="col-md-3">
-                <input type="text" class="form-control" ng-model="signupInfo.FullName" name="fullName" ng-required="true" maxlength="180" />
-                <div style="color: red; font-size: 12px;" ng-show="(signupForm.fullName.$dirty && signupForm.fullName.$invalid) || (signupFormSubmitted && signupForm.fullName.$invalid)">
-                    <span ng-show="signupForm.fullName.$error.required"><b>אנא הכנס שם </b></span>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="form-group row">
-            <label class="col-md-2 control-label">שם בית העסק*</label>
-            <div class="col-md-3 ">
-                <input type="text" class="form-control" ng-model="signupInfo.BusinessName" name="businessName" ng-required="true" maxlength="180" />
-                <div style="color: red; font-size: 12px;" ng-show="(signupForm.businessName.$dirty && signupForm.businessName.$invalid) || (signupFormSubmitted && signupForm.businessName.$invalid)">
-                    <span ng-show="signupForm.businessName.$error.required"><b>אנא הכנס שם בית עסק</b></span>
+                <input type="text" class="form-control" ng-model="signupInfo.FirstName" name="FirstName" ng-required="true" maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.fullName.$dirty && signupForm.FirstName.$invalid) || (signupFormSubmitted && signupForm.FirstName.$invalid)">
+                    <span ng-show="signupForm.FirstName.$error.required"><b>אנא הכנס שם פרטי</b></span>
                 </div>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-2 control-label">מספר בית העסק/ח.פ*</label>
+            <label class="col-md-2 control-label">שם משפחה*</label>
             <div class="col-md-3 ">
-                <input type="text" class="form-control" ng-model="signupInfo.BusinessNumber" name="businessNumber" ng-required="true" maxlength="180" />
-                <div style="color: red; font-size: 12px;" ng-show="(signupForm.businessNumber.$dirty && signupForm.businessNumber.$invalid) || (signupFormSubmitted && signupForm.businessNumber.$invalid)">
-                    <span ng-show="signupForm.businessNumber.$error.required"><b>אנא הכנס מספר בית עסק</b></span>
-                </div>
-                <div style="color: red; font-size: 12px;" ng-show="businessNumberExists">
-                    <span><b>בית העסק כבר קיים במערכת</b></span>
+                <input type="text" class="form-control" ng-model="signupInfo.LastName" name="LastName" ng-required="true" maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.LastName.$dirty && signupForm.LastName.$invalid) || (signupFormSubmitted && signupForm.LastName.$invalid)">
+                    <span ng-show="signupForm.LastName.$error.required"><b>אנא הכנס שם משפחה</b></span>
                 </div>
             </div>
-        </div> -->
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">תאריך לידה*</label>
+            <div class="col-md-3 ">
+                <input type="text" class="form-control" ng-model="signupInfo.BirthdayDate" name="BirthdayDate" ng-required="true" maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.BirthdayDate.$dirty && signupForm.BirthdayDate.$invalid) || (signupFormSubmitted && signupForm.BirthdayDate.$invalid)">
+                    <span ng-show="signupForm.BirthdayDate.$error.required"><b>אנא הכנס מספר בית עסק</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-2 control-label">מין*</label>
+            <div class="col-md-3 ">
+                <label>
+                    <input type="radio" value="true" ng-model="signupInfo.isMale"> זכר
+                </label>
+                <label>
+                    <input type="radio" value="false" ng-model="signupInfo.isMale"> נקבה
+                </label>
+                <!-- <div style="color: red; font-size: 12px;" ng-show="(signupForm.isMale.$dirty && signupForm.isMale.$invalid) || (signupFormSubmitted && signupForm.isMale.$invalid)">
+                    <span ng-show="signupForm.isMale.$error.required"><b>אנא הזן מין</b></span>
+                </div> -->
+            </div>
+        </div>
+
         <div class="form-group row">
             <label class="col-md-2 control-label">Email*</label>
             <div class="col-md-3 ">
-                <input type="email" class="form-control" ng-model="signupInfo.Email" name="email" maxlength="250" required />
-                <div style="color: red; font-size: 12px;" ng-show="(signupForm.email.$dirty && signupForm.email.$invalid) || (signupFormSubmitted && signupForm.email.$invalid)">
-                    <span ng-show="signupForm.email.$error.required"><b>אנא הכנס אימייל</b></span>
+                <input type="email" class="form-control" ng-model="signupInfo.Email" name="Email" maxlength="250" required />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.Email.$dirty && signupForm.Email.$invalid) || (signupFormSubmitted && signupForm.Email.$invalid)">
+                    <span ng-show="signupForm.Email.$error.required"><b>אנא הכנס אימייל</b></span>
                 </div>
-                <div style="color: red; font-size: 12px;" ng-show="(signupForm.email.$dirty && signupForm.email.$invalid) || (signupFormSubmitted && signupForm.email.$invalid)">
-                    <span ng-show="signupForm.email.$error.email"><b>אימייל לא תקין</b></span>
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.Email.$dirty && signupForm.Email.$invalid) || (signupFormSubmitted && signupForm.Email.$invalid)">
+                    <span ng-show="signupForm.Email.$error.email"><b>אימייל לא תקין</b></span>
                 </div>
                 <div style="color: red; font-size: 12px;" ng-show="emailExists">
                     <span><b>אימייל קיים במערכת</b></span>
@@ -78,22 +91,16 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="form-group row">
-            <label class="col-md-2 control-label">מספר טלפון</label>
-            <div class="col-md-3 ">
-                <input type="text" class="form-control" ng-model="signupInfo.Phone" />
-            </div>
-        </div> -->
         <div class="form-group row">
             <label class="col-md-2 control-label">מספר נייד*</label>
             <div class="col-md-3 ">
-                <input type="text" class="form-control" ng-model="signupInfo.CellPhone" name="cellPhone" required maxlength="180" />
-                <div style="color: red; font-size: 12px;" ng-show="(signupForm.cellPhone.$dirty && signupForm.cellPhone.$invalid) || (signupFormSubmitted && signupForm.cellPhone.$invalid)">
-                    <span ng-show="signupForm.cellPhone.$error.required"><b>אנא הכנס מספר נייד</b></span>
+                <input type="text" class="form-control" ng-model="signupInfo.Phone" name="Phone" required maxlength="180" />
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.Phone.$dirty && signupForm.Phone.$invalid) || (signupFormSubmitted && signupForm.Phone.$invalid)">
+                    <span ng-show="signupForm.Phone.$error.required"><b>אנא הכנס מספר נייד</b></span>
                 </div>
-                <!--<div style="color: red; font-size: 12px;" ng-show="(signupForm.cellPhone.$dirty && signupForm.cellPhone.$invalid) || (signupFormSubmitted && signupForm.cellPhone.$invalid)">
-                    <span ng-show="!signupForm.cellPhone.$valid && !signupForm.cellPhone.$error.required"><b>מספר לא תקין</b></span>
-                </div>-->
+                <div style="color: red; font-size: 12px;" ng-show="(signupForm.Phone.$dirty && signupForm.Phone.$invalid) || (signupFormSubmitted && signupForm.Phone.$invalid)">
+                    <span ng-show="!signupForm.Phone.$valid && !signupForm.Phone.$error.required"><b>מספר לא תקין</b></span>
+                </div>
             </div>
 
         </div>
@@ -113,16 +120,7 @@
             </div>
         </div> -->
 
-        <!-- <div class="form-group row">
-            <label class="col-md-2 control-label">&nbsp;</label>
-            <div class="col-md-3 ">
-                <label>
-                    <input type="checkbox" ng-model="signupInfo.isDiskOnKey"> להזמנת דיסק.און.קי סמן כאן
-                </label>
-            </div>
-        </div> -->
-
-        <div class="form-group row">
+              <div class="form-group row">
             <label class="col-md-2 control-label">&nbsp;</label>
             <div class="col-md-3">
                 <button type="submit" ng-click="signUp();signupFormSubmitted = true;" id="purchaseBtn">

@@ -1,25 +1,25 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('accountCtrl', function ($scope, $rootScope, $routeParams, $location, userService, accountService, licenseService) {
         $scope.licenses = [];
 
     $scope.signupInfo = {
-        isDiskOnKey: false
+        isMale: false
     };
         $scope.wrongPassword = false;
         $scope.passwordTooShort = false;
         $scope.emailExists = false;
-        $scope.businessNumberExists = false;
+        // $scope.businessNumberExists = false;
         $scope.logedIn = false;
 
 
-        $scope.priceItemId = $routeParams.priceItemId;
-        $scope.pricesitems = [];
-        $scope.priceListItemSelected = {};
+        // $scope.priceItemId = $routeParams.priceItemId;
+        // $scope.pricesitems = [];
+        // $scope.priceListItemSelected = {};
         $scope.currentUser = {};
 
-        $scope.nickname = "";
-        $scope.comments = "";
-        $scope.licenseToRenew = undefined;
+        // $scope.nickname = "";
+        // $scope.comments = "";
+        // $scope.licenseToRenew = undefined;
 
         $scope.isLogedIn = function () {
             userService.isLogedIn().then(function (response) {
@@ -48,11 +48,11 @@
         }
 
         $scope.signUp = function () {
-            $scope.emailExists = false;
-            $scope.businessNumberExists = false;
+          $scope.emailExists = false;
+            // $scope.businessNumberExists = false;
             $scope.passwordTooShort = false;
             $scope.wrongPassword = false;
-            if ($scope.signupInfo.FullName == undefined ||  $scope.signupInfo.Email == undefined || $scope.signupInfo.Password == undefined || $scope.signupInfo.CellPhone == undefined) {
+            if ($scope.signupInfo.FirstName == undefined || $scope.signupInfo.LastName == undefined || $scope.signupInfo.Email == undefined || $scope.signupInfo.Password == undefined || $scope.signupInfo.Phone == undefined) {
                 return;
             }
             if ($scope.signupInfo.Password !== $scope.signupInfo.ConfirmPassword) {
@@ -69,8 +69,6 @@
             accountService.signUp($scope.signupInfo).then(function (response) {
                 if (response.message === "user name exists") {
                     $scope.emailExists = true;
-                } else if (response.message === "business number exists") {
-                    $scope.businessNumberExists = true;
                 } else if (response.message === true) {
                     $scope.isLogedIn = true;
                     $scope.userName = response.userName;
@@ -190,8 +188,9 @@
             });
         }
 
+
         // $scope.getCurrentUser();
-        // $scope.changeBg();
+        $scope.changeBg();
         // $scope.getPriceList();
         // $scope.isLogedIn();
     });

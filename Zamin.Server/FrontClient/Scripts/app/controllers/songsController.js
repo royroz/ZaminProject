@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('songsCtrl', function ($scope, $location, $rootScope, songsService) {
 
         //$scope.songs = [];

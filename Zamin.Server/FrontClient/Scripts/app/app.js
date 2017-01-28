@@ -1,10 +1,10 @@
-﻿var app = angular.module('music4BizWebsite', ['ngRoute']);
+﻿var app = angular.module('zamin', ['ngRoute']);
 app.constant("consts", {
     //production
     //serverUrl: 'http://admin.music4.biz/'
     //dev
    // serverUrl: 'http://music4biz/'
-    serverUrl: 'http://zaminClient/'
+    serverUrl: 'http://zamin/'
 });
 app.config([
     '$routeProvider',

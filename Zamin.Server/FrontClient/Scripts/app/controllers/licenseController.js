@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite')
+﻿angular.module('zamin')
     .controller('licenseCtrl', function ($scope, $routeParams, $location, $sce, licenseService) {
         $scope.upgradeOptions = [];
         $scope.extensionsOptions = [];

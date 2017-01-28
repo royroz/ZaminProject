@@ -1,4 +1,4 @@
-﻿angular.module('music4BizWebsite').factory('licenseService', function ($q, $http, $rootScope, consts) {
+﻿angular.module('zamin').factory('licenseService', function ($q, $http, $rootScope, consts) {
     return {
         getUpgradeOptions: function (licenseSalesForceId) {
             var deferred = $q.defer();

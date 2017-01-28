@@ -10,7 +10,7 @@
     <link href="/FrontClient/Content/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/FrontClient/Content/css/main.css" rel="stylesheet" />
 </head>
-<body class="container" ng-app="music4BizWebsite" ng-cloak>
+<body class="container" ng-app="zamin" ng-cloak>
     <div ng-controller="userCtrl">
         <header>
             <!------------------------------------------------ header --------------------------------------------------->
@@ -27,19 +27,22 @@
 
                 <div id="navbar" class="row navbar-collapse collapse pull-right">
                     <ul class="nav navbar-nav">
-                        <li class="col-md-3" ng-class="{'active-tab':isActive('/')}">
+                        <li class="col-md-2" ng-class="{'active-tab':isActive('/')}">
                             <a href="#/">&nbsp;דף הבית&nbsp;&nbsp;</a>
                         </li>
-                        <li class="col-md-3" ng-class="{'active-tab':isActive('/libraries')}">
+                        <li class="col-md-2" ng-class="{'active-tab':isActive('/libraries')}">
                             <a href="#libraries">&nbsp;קורסים&nbsp;&nbsp;</a>
                         </li>
-                        <li class="col-md-3" ng-class="{'active-tab':isActive('/portfolio')}">
+                        <li class="col-md-2" ng-class="{'active-tab':isActive('/portfolio')}">
                             <a href="#portfolio">&nbsp;גלריה&nbsp;&nbsp;</a>
                         </li>
-                        <li class="col-md-3" ng-class="{'active-tab':isActive('/businessMusic')}">
+                        <li class="col-md-2" ng-class="{'active-tab':isActive('/businessMusic')}">
                             <a href="#businessMusic">&nbsp;מי אנחנו?&nbsp;&nbsp;</a>
                         </li>
-                        <li class="col-md-3 menu-login" ng-class="{'active-tab':isActive('/login')}" ng-show="!logedIn">
+                        <li class="col-md-2" ng-class="{'active-tab':isActive('/signup')}">
+                            <a href="#signup">&nbsp;הרשמה&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="col-md-2 menu-login" ng-class="{'active-tab':isActive('/login')}" ng-show="!logedIn">
                             <a href="#login">&nbsp; כניסה למשתמשים&nbsp;&nbsp;</a>
                         </li>
                     </ul>
@@ -139,10 +142,10 @@
                     <div class="col-md-2 col-height" id="who-are-we">
                         <div>מי אנחנו?</div>
                         <p>
-                            ״מוסיקה לעסקים״ חרטה על דגלה לייצר עולם שלם של תוכן מוסיקלי עבור עסקים.<br />
-                            אצלנו תמצא/י את הפתרון האולטימטיבי בין אם הצורך הוא מוסיקת רקע לבית הקפה שלך או בין אם את/ה מפיקים פרסומת או עורכים תוכניות.<br />
-                            כל סוגי המוסיקה, כל ההפקות, יצירות מיוחדות, גרסאות כיסוי איכותיות ויצירות מקוריות.
-                        <p />
+                           זמין הינו פרוייקט ייחודי ....<br />
+                          כאן תוכלו למצוא את כל המידע הנחוץ ......<br />
+                      
+                        </p>
                     </div>
                     <div class="col-md-1 col-height footer-line"></div>
                     <div class="col-md-2 col-height" id="contact-us">
@@ -168,14 +171,14 @@
                     <div class="col-md-2 col-height" id="contact-us">
                         <div class="row">
                             <div>
-                                <a>גני התערוכה, מרכז הירידים, תל-אביב</a>
+                                <a>כתובת המשרדים</a>
                             </div>
                             <div>
-                                <a href="mailto:info@music4.biz" target="_blank" ng-hide="location == '/libraries'">zaminproject@gmail.com</a>
+                                <a href="mailto:zaminProject@gmail.com" target="_blank" ng-hide="location == '/libraries'">zaminProject@gmail.com</a>
                                 <a href="mailto:nissim@music4.biz" target="_blank" ng-show="location == '/libraries'">nissim@music4.biz</a>
                             </div>
                             <div>
-                                <a href="tel:036733369" target="_blank">03-6733369</a>
+                                <a href="tel:0548055075" target="_blank">054-8055075</a>
                             </div>
                         </div>
                     </div>

@@ -1,14 +1,15 @@
-﻿angular.module('music4BizWebsite').factory('accountService', function ($q, $http, $rootScope,consts) {
+﻿angular.module('zamin').factory('accountService', function ($q, $http, $rootScope,consts) {
     return {
+
         signUp: function(signupInfo) {
             var deferred = $q.defer();
             $.ajax({
                 type: "POST",
-                url: consts.serverUrl + 'Website/SignUp',
+                url: consts.serverUrl + 'Account/SignUp',
                 xhrFields: {
                     withCredentials: true
                 },
-                data: { signUpWebModel: signupInfo },
+                data: { WebsiteUser: signupInfo },
                 crossDomain: true
             }).done(function(response) {
                 deferred.resolve(response);
@@ -64,7 +65,7 @@
             return deferred.promise;
         },
         purchaseLicenseRequest: function(priceListId, renew, licenseId) {
-            
+
             var deferred = $q.defer();
             $.ajax({
                 type: "POST",
