@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zamin.Enums
+namespace Zamin.Models.General
 {
-    public enum UserType
+    public class Tag
     {
-        Parent, Teacher, Guide
+        public int Id { get; set; }
+        public string TagName { get; set; }
+
     }
 }

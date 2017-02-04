@@ -55,8 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Content\Activity.cs" />
+    <Compile Include="Content\Article.cs" />
     <Compile Include="Content\Course.cs" />
+    <Compile Include="Content\GalleryImage.cs" />
     <Compile Include="Content\Lesson.cs" />
+    <Compile Include="Content\LessonPlan.cs" />
+    <Compile Include="Content\Poster.cs" />
+    <Compile Include="Content\Video.cs" />
+    <Compile Include="General\CourseCategory.cs" />
+    <Compile Include="General\Presentation.cs" />
+    <Compile Include="General\Tag.cs" />
+    <Compile Include="General\WrittenLessonPlan.cs" />
     <Compile Include="Membership\User.cs" />
     <Compile Include="OperationStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

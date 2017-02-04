@@ -61,6 +61,7 @@
     <Compile Include="DirectoriesEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserType.cs" />
+    <Compile Include="VideoType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

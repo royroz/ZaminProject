@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Zamin.Models.General;
 
 namespace Zamin.Models.Content
 {
@@ -11,6 +12,12 @@ namespace Zamin.Models.Content
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public int CourseCategoryId { get; set; }
+
+        [ForeignKey("CourseCategoryId")]
+        public CourseCategory CourseCategory { get; set; }
+
         private ICollection<Lesson> _lessons;
         public ICollection<Lesson> Lessons
         {
@@ -19,6 +26,13 @@ namespace Zamin.Models.Content
         }
         public bool IsAuthorizedContent { get; set; }
 
+        private ICollection<Tag> _tags;
+        public ICollection<Tag> Tags
+        {
+            get { return _tags ?? (_tags = new List<Tag>()); }
+            set { _tags = value; }
+        }
+        public int NumOfLikes { get; set; }
     }
 
 }

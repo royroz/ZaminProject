@@ -35,7 +35,7 @@ namespace Zamin.Models
             get { return (UserType)UserTypeId; }
             set { UserTypeId = (int)value; }
         }
-        public bool Active { get; set; }
+        public bool IsActive { get; set; }
 
 
         private ICollection<Lesson> _lessons;
@@ -46,6 +46,7 @@ namespace Zamin.Models
         }
          
         public DateTime? CreateDate { get; set; }
+        public DateTime? LastLogin { get; set; }
         
 
     }

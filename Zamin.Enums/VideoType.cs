@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Zamin.Enums
 {
-    public enum UserType
+    public enum VideoType
     {
-        Parent, Teacher, Guide
+        General , YouTube , Youth 
     }
 }
