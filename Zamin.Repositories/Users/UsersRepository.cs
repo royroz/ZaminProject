@@ -44,7 +44,7 @@ namespace Zamin.Repositories.Users
 
         public bool IsEmailExists(string email)
         {
-            return DataContext.Users.Any(u => u.Email == email);
+            return DataContext.WebsiteUsers.Any(u => u.Email == email);
         }
         public bool AddOrUpdateUser(WebsiteUser user)
         {
