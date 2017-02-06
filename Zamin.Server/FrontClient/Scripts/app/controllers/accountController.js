@@ -67,9 +67,9 @@
 
             showLoader();
             accountService.signUp($scope.signupInfo).then(function (response) {
-                if (response.message === "user name exists") {
+                if (response.data.message === "user name exists") {
                     $scope.emailExists = true;
-                } else if (response.message === true) {
+                } else if (response.data.message === true) {
                     $scope.isLogedIn = true;
                     $scope.userName = response.userName;
                     $rootScope.$broadcast("userSingedUp", response.userName);
