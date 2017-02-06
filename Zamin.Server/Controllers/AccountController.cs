@@ -92,7 +92,7 @@ namespace Zamin.Server.Controllers
 
             websiteUser.Password = Crypto.HashPassword(websiteUser.Password);
             websiteUser.CreateDate = DateTime.Now;
-            websiteUser.Active = true;
+            websiteUser.IsActive = true;
 
 
 
