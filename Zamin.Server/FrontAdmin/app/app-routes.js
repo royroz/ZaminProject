@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('slice')
+    .module('zamin')
     .config(config);
 
   function config($urlRouterProvider) {

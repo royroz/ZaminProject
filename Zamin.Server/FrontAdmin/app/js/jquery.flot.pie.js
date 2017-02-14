@@ -6,7 +6,7 @@ Licensed under the MIT license.
 The plugin assumes that each series has a single data value, and that each
 value is a positive integer or zero.  Negative numbers don't make sense for a
 pie chart, and have unpredictable results.  The values do NOT need to be
-passed in as percentages; the plugin will calculate the total and per-slice
+passed in as percentages; the plugin will calculate the total and per-zamin
 percentages internally.
 
 * Created by Brian Medendorp
@@ -41,9 +41,9 @@ The plugin supports these options:
 				threshold: 0-1 for the percentage value at which to hide labels (if they're too small)
 			},
 			combine: {
-				threshold: 0-1 for the percentage value at which to combine slices (if they're too small)
-				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#CCC'), if null, the plugin will automatically use the color of the first slice to be combined
-				label: any text value of what the combined slice should be labeled
+				threshold: 0-1 for the percentage value at which to combine zamins (if they're too small)
+				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#CCC'), if null, the plugin will automatically use the color of the first zamin to be combined
+				label: any text value of what the combined zamin should be labeled
 			}
 			highlight: {
 				opacity: 0-1
@@ -201,13 +201,13 @@ More detail and specific examples can be found in the included HTML file.
 				data[i].data = [value];
 			}
 
-			// Sum up all the slices, so we can calculate percentages for each
+			// Sum up all the zamins, so we can calculate percentages for each
 
 			for (var i = 0; i < data.length; ++i) {
 				total += data[i].data[0][1];
 			}
 
-			// Count the number of slices with percentages below the combine
+			// Count the number of zamins with percentages below the combine
 			// threshold; if it turns out to be just one, we won't combine.
 
 			for (var i = 0; i < data.length; ++i) {
@@ -264,7 +264,7 @@ More detail and specific examples can be found in the included HTML file.
 
 			// WARNING: HACK! REWRITE THIS CODE AS SOON AS POSSIBLE!
 
-			// When combining smaller slices into an 'other' slice, we need to
+			// When combining smaller zamins into an 'other' zamin, we need to
 			// add a new series.  Since Flot gives plugins no way to modify the
 			// list of series, the pie plugin uses a hack where the first call
 			// to processDatapoints results in a call to setData with the new
@@ -279,7 +279,7 @@ More detail and specific examples can be found in the included HTML file.
 
 			// To fix this we'll set the flag back to false here in draw, when
 			// all series have been processed, so the next sequence of calls to
-			// processDatapoints once again starts out with a slice-combine.
+			// processDatapoints once again starts out with a zamin-combine.
 			// This is really a hack; in 0.9 we need to give plugins a proper
 			// way to modify series before any processing begins.
 
@@ -306,7 +306,7 @@ More detail and specific examples can be found in the included HTML file.
 				centerLeft += options.series.pie.offset.left;
 			}
 
-			var slices = plot.getData(),
+			var zamins = plot.getData(),
 				attempts = 0;
 
 			// Keep shrinking the pie's radius until drawPie returns true,
@@ -329,7 +329,7 @@ More detail and specific examples can be found in the included HTML file.
 			}
 
 			if (plot.setSeries && plot.insertLegend) {
-				plot.setSeries(slices);
+				plot.setSeries(zamins);
 				plot.insertLegend();
 			}
 
@@ -386,24 +386,24 @@ More detail and specific examples can be found in the included HTML file.
 				ctx.scale(1, options.series.pie.tilt);
 				//ctx.rotate(startAngle); // start at top; -- This doesn't work properly in Opera
 
-				// draw slices
+				// draw zamins
 
 				ctx.save();
 				var currentAngle = startAngle;
-				for (var i = 0; i < slices.length; ++i) {
-					slices[i].startAngle = currentAngle;
-					drawSlice(slices[i].angle, slices[i].color, true);
+				for (var i = 0; i < zamins.length; ++i) {
+					zamins[i].startAngle = currentAngle;
+					drawzamin(zamins[i].angle, zamins[i].color, true);
 				}
 				ctx.restore();
 
-				// draw slice outlines
+				// draw zamin outlines
 
 				if (options.series.pie.stroke.width > 0) {
 					ctx.save();
 					ctx.lineWidth = options.series.pie.stroke.width;
 					currentAngle = startAngle;
-					for (var i = 0; i < slices.length; ++i) {
-						drawSlice(slices[i].angle, options.series.pie.stroke.color, false);
+					for (var i = 0; i < zamins.length; ++i) {
+						drawzamin(zamins[i].angle, options.series.pie.stroke.color, false);
 					}
 					ctx.restore();
 				}
@@ -420,7 +420,7 @@ More detail and specific examples can be found in the included HTML file.
 					return drawLabels();
 				} else return true;
 
-				function drawSlice(angle, color, fill) {
+				function drawzamin(angle, color, fill) {
 
 					if (angle <= 0 || isNaN(angle)) {
 						return;
@@ -457,20 +457,20 @@ More detail and specific examples can be found in the included HTML file.
 					var currentAngle = startAngle;
 					var radius = options.series.pie.label.radius > 1 ? options.series.pie.label.radius : maxRadius * options.series.pie.label.radius;
 
-					for (var i = 0; i < slices.length; ++i) {
-						if (slices[i].percent >= options.series.pie.label.threshold * 100) {
-							if (!drawLabel(slices[i], currentAngle, i)) {
+					for (var i = 0; i < zamins.length; ++i) {
+						if (zamins[i].percent >= options.series.pie.label.threshold * 100) {
+							if (!drawLabel(zamins[i], currentAngle, i)) {
 								return false;
 							}
 						}
-						currentAngle += slices[i].angle;
+						currentAngle += zamins[i].angle;
 					}
 
 					return true;
 
-					function drawLabel(slice, startAngle, index) {
+					function drawLabel(zamin, startAngle, index) {
 
-						if (slice.data[0][1] == 0) {
+						if (zamin.data[0][1] == 0) {
 							return true;
 						}
 
@@ -479,16 +479,16 @@ More detail and specific examples can be found in the included HTML file.
 						var lf = options.legend.labelFormatter, text, plf = options.series.pie.label.formatter;
 
 						if (lf) {
-							text = lf(slice.label, slice);
+							text = lf(zamin.label, zamin);
 						} else {
-							text = slice.label;
+							text = zamin.label;
 						}
 
 						if (plf) {
-							text = plf(text, slice);
+							text = plf(text, zamin);
 						}
 
-						var halfAngle = ((startAngle + slice.angle) + startAngle) / 2;
+						var halfAngle = ((startAngle + zamin.angle) + startAngle) / 2;
 						var x = centerLeft + Math.round(Math.cos(halfAngle) * radius);
 						var y = centerTop + Math.round(Math.sin(halfAngle) * radius) * options.series.pie.tilt;
 
@@ -515,7 +515,7 @@ More detail and specific examples can be found in the included HTML file.
 							var c = options.series.pie.label.background.color;
 
 							if (c == null) {
-								c = slice.color;
+								c = zamin.color;
 							}
 
 							var pos = "top:" + labelTop + "px;left:" + labelLeft + "px;";
@@ -571,16 +571,16 @@ More detail and specific examples can be found in the included HTML file.
 			return c;
 		}
 
-		function findNearbySlice(mouseX, mouseY) {
+		function findNearbyzamin(mouseX, mouseY) {
 
-			var slices = plot.getData(),
+			var zamins = plot.getData(),
 				options = plot.getOptions(),
 				radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius,
 				x, y;
 
-			for (var i = 0; i < slices.length; ++i) {
+			for (var i = 0; i < zamins.length; ++i) {
 
-				var s = slices[i];
+				var s = zamins[i];
 
 				if (s.pie.show) {
 
@@ -656,7 +656,7 @@ More detail and specific examples can be found in the included HTML file.
 			var offset = plot.offset();
 			var canvasX = parseInt(e.pageX - offset.left);
 			var canvasY =  parseInt(e.pageY - offset.top);
-			var item = findNearbySlice(canvasX, canvasY);
+			var item = findNearbyzamin(canvasX, canvasY);
 
 			if (options.grid.autoHighlight) {
 
@@ -670,7 +670,7 @@ More detail and specific examples can be found in the included HTML file.
 				}
 			}
 
-			// highlight the slice
+			// highlight the zamin
 
 			if (item) {
 				highlight(item.series, eventname);
@@ -787,20 +787,20 @@ More detail and specific examples can be found in the included HTML file.
 				},
 				label: {
 					show: "auto",
-					formatter: function(label, slice) {
-						return "<div style='font-size:x-small;text-align:center;padding:2px;color:" + slice.color + ";'>" + label + "<br/>" + Math.round(slice.percent) + "%</div>";
+					formatter: function(label, zamin) {
+						return "<div style='font-size:x-small;text-align:center;padding:2px;color:" + zamin.color + ";'>" + label + "<br/>" + Math.round(zamin.percent) + "%</div>";
 					},	// formatter function
 					radius: 1,	// radius at which to place the labels (based on full calculated radius if <=1, or hard pixel value)
 					background: {
 						color: null,
 						opacity: 0
 					},
-					threshold: 0	// percentage at which to hide the label (i.e. the slice is too narrow)
+					threshold: 0	// percentage at which to hide the label (i.e. the zamin is too narrow)
 				},
 				combine: {
-					threshold: -1,	// percentage at which to combine little slices into one larger slice
-					color: null,	// color to give the new slice (auto-generated if null)
-					label: "Other"	// label to give the new slice
+					threshold: -1,	// percentage at which to combine little zamins into one larger zamin
+					color: null,	// color to give the new zamin (auto-generated if null)
+					label: "Other"	// label to give the new zamin
 				},
 				highlight: {
 					//color: "#fff",		// will add this functionality once parseColor is available

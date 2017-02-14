@@ -40,7 +40,7 @@
             type: 'pie',
             width : '2em',
             height : '2em',
-            sliceColors: [ Colors.byName('success'), Colors.byName('gray-light')]
+            zaminColors: [ Colors.byName('success'), Colors.byName('gray-light')]
           };
         
         }
