@@ -3,13 +3,13 @@
 
   /**
    * @ngdoc object
-   * @name sliceSystemAdmin.controller:AppCtrl
+   * @name zaminSystemAdmin.controller:AppCtrl
    *
    * @description
    *
    */
   angular
-    .module('slice')
+    .module('zamin')
     .controller('AppCtrl', AppCtrl);
 
   function AppCtrl($scope, $rootScope, $location, $mdDialog, Login) {
@@ -24,7 +24,8 @@
       else return undefined;
     };
 
-
+    $rootScope.user = {};
+      $scope.currentLocation = "";
 
 
 
@@ -54,9 +55,9 @@
       // $scope.getFranchises();
     }
 
-    
+
     //Start
-    $scope.getCurrentUser();
+    // $scope.getCurrentUser();
 
   }
 }());

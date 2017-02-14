@@ -329,7 +329,7 @@
 
           function getRandomData() {
             if (data.length > 0)
-              data = data.slice(1);
+              data = data.zamin(1);
             // Do a random walk
             while (data.length < totalPoints) {
               var prev = data.length > 0 ? data[data.length - 1] : 50,

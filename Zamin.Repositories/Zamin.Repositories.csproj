@@ -79,9 +79,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zamin.Consts\Zamin.Consts.csproj">
+      <Project>{f2f70b63-2e64-4c43-93e9-51f51099e0b9}</Project>
+      <Name>Zamin.Consts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zamin.Enums\Zamin.Enums.csproj">
       <Project>{D54B87F9-6F6F-4B73-80EA-F6580A899D8F}</Project>
       <Name>Zamin.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zamin.Helper\Zamin.Helpers.csproj">
+      <Project>{4e2ee0d0-7d78-49a6-a9c5-cfdaf4d4803f}</Project>
+      <Name>Zamin.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Zamin.Models\Zamin.Models.csproj">
       <Project>{197746c4-95cf-414c-8131-d2f2eb26a167}</Project>
