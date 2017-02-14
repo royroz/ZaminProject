@@ -1,0 +1,41 @@
+﻿<div id="businessSizeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <div type="button" class="close" data-dismiss="modal">&times;</div>
+            בחר את שטח בית העסק
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <label class="col-md-5 control-label">גודל העסק</label>
+                <div class="col-md-5">
+                    <select class="form-control" ng-model="priceListItemSelected" name="priceItem" ng-options="item.Text for item in pricesitems track by item.Id" required></select>
+                    <div style="color: red; font-size: 12px;" ng-show="formSubmitted && priceListItemSelected.Id == undefined">
+                        <b>אנא בחר את שטח בית העסק</b>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <label class="col-md-5 control-label">כינוי
+                (שם הסניף)
+                </label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" ng-model="nickname"/>
+                 </div>
+            </div>
+            <br/>
+            <div class="row">
+                <label class="col-md-5 control-label">הערות</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" ng-model="comments" />
+                  </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--<div ng-show="currentUser.TranzilaToken != null && currentUser.TranzilaToken != ''">התשלום יבוצע מכרטיס שמסתיים בספרות {{currentUser.Ccno}} </div>-->
+            <a ng-click="tranzilaPayment(priceListItemSelected, nickname, comments)" class="btn btn-success">לתשלום</a>
+            <a class="btn btn-default" data-dismiss="modal">ביטול</a>
+        </div>
+    </div>
+</div>
+

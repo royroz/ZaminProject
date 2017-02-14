@@ -1,0 +1,26 @@
+﻿<div id="login-page" class="row" ng-show="!logedIn">
+    <div class="row">
+        <div class="col-md-6">
+            <form name="loginForm" novalidate>
+                <div class="row">
+                    <input type="text" placeholder="שם משתמש" ng-model="email" required/>
+                </div>
+                <div class="row">
+                    <input type="password" placeholder="סיסמא" ng-model="password" required/>
+                </div>
+                <div class="invalid-username" ng-show="showInvalidUserNameMessage">שם משתמש או סיסמא לא נכונים</div>
+                <div class="row remember-me">
+                    <input type="checkbox" id="remember-me-input" ng-model="rememberMe"/>
+                    <label for="remember-me-input"><span>זכור אותי</span></label>
+                </div>
+                <div class="row" id="remember-me">
+                    <a ng-click="forgotPasswordModal()">שכחת סיסמא? </a>
+                </div>
+                <div class="row login-btn" ng-click="login()">כניסה</div>
+            </form>
+        </div>
+    </div>
+
+    <!------------------ Modal --------------------->
+    
+</div>

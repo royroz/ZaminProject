@@ -1,0 +1,56 @@
+﻿<div id="account">
+    <div ng-show="licenses.length > 0">
+        <h2>פרטי חשבון</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        רישיון
+                    </th>
+                    <th>
+                      (שם הסניף)  כינוי
+                    </th>
+                    <th>
+                        שם משתמש
+                    </th>
+                    <th>
+                        תאריך יצירה
+                    </th>
+                    <th>
+                        פעיל עד
+                    </th>
+                    <th>הערות</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="license in licenses">
+                    <td>{{license.PriceListName}}</td>
+                    <td>{{license.Nickname}}</td>
+                    <td>{{license.Username}}</td>
+                    <td>{{license.StartDate}}</td>
+                    <td ng-show="license.Active">{{license.EndDate}}</td>
+                    <td ng-show="!license.Active">לא פעיל</td>
+                    <td>{{license.Comments}}</td>
+                    <td>
+                        <a ng-show="!license.Active" ng-click="renewLicense(license)"><button>חידוש</button></a>
+                        <a ng-show="license.Active && license.ShowExtend" ng-click="extendLicense(license)"><button>הארכה</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="licenses.length == 0 && logedIn">
+        <br />
+        <h3>לא קיימים רשיונות לחשבון זה</h3>
+        <br />
+        <br />
+    </div>
+
+    <div style="margin-bottom: 50px;">
+        <a ng-click="openPriceListModal()"><button>הוסף רישיון</button></a>
+    </div>
+    <ng-include src="'Partials/_businessSizeModal.html'"></ng-include>
+    
+  
+</div>
