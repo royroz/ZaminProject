@@ -1,0 +1,11 @@
+﻿<div class="license">
+    <h2>שדרוג חבילה</h2>
+    <ul>
+        <li ng-repeat="package in upgradeOptions">
+            {{package.Name}} &nbsp; - &nbsp;
+            {{package.PriceRatio}} &#x20aa
+            &nbsp;
+            <button class="pull-left" ng-click="upgradePackage(package.Id, package.PriceRatio)">שדרג</button>
+        </li>
+    </ul>
+</div>

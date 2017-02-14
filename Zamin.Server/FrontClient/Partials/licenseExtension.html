@@ -1,0 +1,13 @@
+﻿<div class="license">
+    <h2>הארכת חבילה בשנה</h2>
+    <ul>
+        <li ng-repeat="package in extensionsOptions track by $index">
+            <div ng-class="{bold: $first}">
+                {{package.Name}} &nbsp; - &nbsp;
+                {{package.PriceRatio}} &#x20aa
+                &nbsp;
+                <button class="pull-left" ng-click="extendPackage(package.Id, package.PriceRatio)"><span ng-show="!$first">שדרג ו</span>הארך</button>
+            </div>
+        </li>
+    </ul>
+</div>
