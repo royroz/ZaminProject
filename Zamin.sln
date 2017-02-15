@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zamin.Models", "Zamin.Models\Zamin.Models.csproj", "{197746C4-95CF-414C-8131-D2F2EB26A167}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zamin.Helpers", "Zamin.Help
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zamin.Consts", "Zamin.Consts\Zamin.Consts.csproj", "{F2F70B63-2E64-4C43-93E9-51F51099E0B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zamin.WebModels", "Zamin.WebModels\Zamin.WebModels.csproj", "{50B44827-D5D7-41F0-A81E-9FCD68FC1909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{F2F70B63-2E64-4C43-93E9-51F51099E0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2F70B63-2E64-4C43-93E9-51F51099E0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2F70B63-2E64-4C43-93E9-51F51099E0B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B44827-D5D7-41F0-A81E-9FCD68FC1909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B44827-D5D7-41F0-A81E-9FCD68FC1909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B44827-D5D7-41F0-A81E-9FCD68FC1909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B44827-D5D7-41F0-A81E-9FCD68FC1909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

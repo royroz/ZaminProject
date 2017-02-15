@@ -33,6 +33,8 @@ namespace Zamin.Models.Content
             set { _tags = value; }
         }
         public int NumOfLikes { get; set; }
+
+        public string ImageFileName { get; set; }
     }
 
 }

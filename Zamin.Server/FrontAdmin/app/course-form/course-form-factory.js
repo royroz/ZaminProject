@@ -29,17 +29,10 @@
     CourseFormBase.create = function(course) {
       var fd = new FormData();
       fd.append("Name", course.Name);
-      if(course.ManagerName != undefined) fd.append("ManagerName", course.ManagerName);
-      fd.append("ImageFile", franchise.ImageFile);
       if(course.Description != undefined) fd.append("Description", course.Description);
-
-
-
-      if (course.GalleryFiles != undefined) {
-        course.GalleryFiles.forEach(function(file, index) {
-          fd.append("GalleryFiles[" + index + "]", file);
-        });
-      }
+      if(course.ImageFile != undefined) fd.append("ImageFile", course.ImageFile);
+      fd.append("CourseCategoryId", course.CourseCategoryId);
+      if(course.IsAuthorizedContent != undefined) fd.append("IsAuthorizedContent", course.IsAuthorizedContent);
 
       return $http({
         method: "POST",

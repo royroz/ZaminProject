@@ -43,59 +43,32 @@ namespace Zamin.Helpers
                 }
             }
 
-            public static List<string> GetFileFromFolder(string folder)
-            {
-                if (Directory.Exists(Consts.GlobalConsts.ServerDirectory + folder))
-                {
-                    var list = Directory.GetFiles(Consts.GlobalConsts.ServerDirectory + folder);
-                    var files = list.Select(item => item.Replace(Consts.GlobalConsts.ServerDirectory, Consts.GlobalConsts.ServerUrl)).ToList();
-                    return files;
-                }
-                return new List<string>();
-            }
-            public static void DeleteFile(string url)
-            {
-                var fileToDelete = url.Replace(Consts.GlobalConsts.ServerUrl, Consts.GlobalConsts.ServerDirectory);
-                File.Delete(fileToDelete);
-            }
+            //public static List<string> GetFileFromFolder(string folder)
+            //{
+            //    if (Directory.Exists(Consts.GlobalConsts.ServerDirectory + folder))
+            //    {
+            //        var list = Directory.GetFiles(Consts.GlobalConsts.ServerDirectory + folder);
+            //        var files = list.Select(item => item.Replace(Consts.GlobalConsts.ServerDirectory, Consts.GlobalConsts.ServerUrl)).ToList();
+            //        return files;
+            //    }
+            //    return new List<string>();
+            //}
+            //public static void DeleteFile(string url)
+            //{
+            //    var fileToDelete = url.Replace(Consts.GlobalConsts.ServerUrl, Consts.GlobalConsts.ServerDirectory);
+            //    File.Delete(fileToDelete);
+            //}
 
             private static string GetDirectoryName(DirectoriesEnum directoriesEnum)
             {
                 var directoryName = Consts.GlobalConsts.ServerDirectory;
                 switch (directoriesEnum)
                 {
-                    case DirectoriesEnum.Categories:
-                        directoryName += Consts.DirectoriesConsts.CategoriesFolder;
+                    case DirectoriesEnum.Courses:
+                        directoryName += Consts.DirectoriesConsts.CoursesFolder;
                         break;
-                    case DirectoriesEnum.Items:
-                        directoryName += Consts.DirectoriesConsts.ItemsFolder;
-                        break;
-                    case DirectoriesEnum.Franchises:
-                        directoryName += Consts.DirectoriesConsts.FranchiseFolder;
-                        break;
-                    case DirectoriesEnum.FranchiseGalleryFolder:
-                        directoryName += Consts.DirectoriesConsts.FranchiseGalleryFolder;
-                        break;
-                    case DirectoriesEnum.FranchiseCoverFolder:
-                        directoryName += Consts.DirectoriesConsts.FranchiseCoverFolder;
-                        break;
-                    case DirectoriesEnum.FranchisePizzaCategoryFolder:
-                        directoryName += Consts.DirectoriesConsts.FranchisePizzaCategoryFolder;
-                        break;
-                    case DirectoriesEnum.Branches:
-                        directoryName += Consts.DirectoriesConsts.BranchesFolder;
-                        break;
-                    case DirectoriesEnum.Combos:
-                        directoryName += Consts.DirectoriesConsts.CombosFolder;
-                        break;
-                    case DirectoriesEnum.Pizzas:
-                        directoryName += Consts.DirectoriesConsts.PizzasFolder;
-                        break;
-                    case DirectoriesEnum.Toppings:
-                        directoryName += Consts.DirectoriesConsts.ToppingsFolder;
-                        break;
-                    case DirectoriesEnum.QuarterTopping:
-                        directoryName += Consts.DirectoriesConsts.QuarterToppingFolder;
+                    case DirectoriesEnum.Posters:
+                        directoryName += Consts.DirectoriesConsts.PostersFolder;
                         break;
                 }
                 return directoryName;
