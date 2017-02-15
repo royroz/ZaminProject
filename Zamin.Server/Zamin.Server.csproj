@@ -180,7 +180,9 @@
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -224,6 +226,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+    <None Include="Properties\PublishProfiles\Zamin.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zamin.Enums\Zamin.Enums.csproj">
