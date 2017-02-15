@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zamin.Enums
+namespace Zamin.WebModes
 {
-    public enum DirectoriesEnum
+    public class Class1
     {
-        Courses,Posters
     }
 }

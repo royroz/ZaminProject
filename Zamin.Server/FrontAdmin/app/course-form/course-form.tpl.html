@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h3 ng-show="editMode">
         עריכה -
-        {{CourseOriginal.Name}}
+        {{::course.Name}}
       </h3>
       <h3 ng-hide="editMode">
          יצירת קורס
@@ -34,12 +34,14 @@
           <div class="row form-group">
             <label class="col-sm-1 control-label"> קטגוריה</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" ng-model="course.Category">
+              <md-select ng-model="course.CourseCategoryId" placeholder="בחר קטגוריה">
+                <md-option ng-value="category.Id" ng-repeat="category in categories">{{ category.Name }}</md-option>
+              </md-select>
             </div>
             <div class="col-sm-1"></div>
             <label class="col-sm-1 control-label">האם תוכן חופשי לגישה?</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" ng-model="course.IsAuthorizedContent">
+                <md-checkbox ng-model="course.IsAuthorizedContent" aria-label=""></md-checkbox>
             </div>
           </div>
           <br/>

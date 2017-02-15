@@ -17,8 +17,9 @@ namespace Zamin.Models.Content
         public int CourseId { get; set; }
 
         [ForeignKey("CourseId")]
-        public Course course { get; set; }
-        public string NameAndNumber { get; set; }
+        public Course Course { get; set; }
+        public string Name { get; set; }
+
         private ICollection<Tag> _tags;
 
         public ICollection<Tag> Tags
@@ -28,7 +29,7 @@ namespace Zamin.Models.Content
         }
 
         public string Description { get; set; }
-        public string FileUrl { get; set; }
+        public string VideoUrl { get; set; }
         public bool IsAuthorizedContent { get; set; }
         public int NumOfLikes { get; set; }
         public int NumOfViews { get; set; }

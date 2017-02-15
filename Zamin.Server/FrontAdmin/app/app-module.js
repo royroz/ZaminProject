@@ -68,7 +68,7 @@
       function($compileProvider, $provide, $httpProvider, $locationProvider,$qProvider) {
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|geo|tel):/);
         $httpProvider.interceptors.push('errorInterceptor');
-        $qProvider.errorOnUnhandledRejections(false);
+        // $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
       }
     ]);

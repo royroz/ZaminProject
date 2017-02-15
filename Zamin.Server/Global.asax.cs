@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Zamin.Server.App_Start;
 
 namespace Zamin.Server
 {
@@ -19,6 +20,8 @@ namespace Zamin.Server
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            AutoMapperConfig.BuildMap();
         }
     }
 }

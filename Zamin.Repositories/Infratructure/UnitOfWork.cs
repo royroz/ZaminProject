@@ -17,6 +17,12 @@ namespace Zamin.Repositories
             get { return _usersRepository ?? (_usersRepository = new UsersRepository(DataContext)); }
         }
 
+        private ICourseRepository _courseRepository;
+        public ICourseRepository CourseRepository
+        {
+            get { return _courseRepository ?? (_courseRepository = new CourseRepository(DataContext)); }
+        }
+
       
     }
 }

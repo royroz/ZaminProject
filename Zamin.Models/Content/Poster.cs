@@ -10,7 +10,7 @@ namespace Zamin.Models.Content
     public class Poster
     {
         public int Id { get; set; }
-        public string ImageUrl { get; set; }
+        public string ImageFileName { get; set; }
         private ICollection<Tag> _tags;
 
         public ICollection<Tag> Tags
