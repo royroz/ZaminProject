@@ -1,0 +1,69 @@
+<div class="content-wrapper">
+  <h3>
+    <i class="fa fa-briefcase"></i>
+    &nbsp;
+    שיווק
+  </h3>
+<md-card>
+  <md-card-header>
+    <h4>
+        שליחת הודעה ללקוחות
+</h4>
+  </md-card-header>
+  <md-card-content>
+    <form name="messageForm" novalidate="">
+      <div layout="row">
+        <div class="col-md-1">כותרת</div>
+        <div class="col-md-4">
+          <input class="form-control" ng-model="mesTitle" placeholder="כותרת" name="mesTitle" md-select-on-focus required="" />
+          <div layout="row" ng-if="messageForm.$submitted ">
+            <span class="Errmes" ng-show="messageForm.mesTitle.$error.required">נא למלא שדה זה</span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div layout="row">
+        <div class="col-md-1">תוכן ההודעה</div>
+        <div class="col-md-4">
+          <textarea class="form-control" ng-model="mestoclient" placeholder=" הודעה" name="message" md-select-on-focus required=""></textarea>
+          <div layout="row" ng-if="messageForm.$submitted ">
+            <span class="Errmes" ng-show="messageForm.message.$error.required">נא למלא שדה זה</span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div layout="row">
+        <md-button type="submit" ng-click="sendMessageToClients(messageForm.$valid)" class="md-raised md-primary">שלח</md-button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>
+<hr />
+
+<md-card>
+  <md-card-header>
+    <h4>
+      שליחת לינק ללקוח
+</h4>
+  </md-card-header>
+  <md-card-content>
+    <form name="linkForm" novalidate="">
+      <div layout="row">
+        <div class="col-md-1"> מספר טלפון</div>
+        <div class=" col-md-4">
+          <input class="form-control" type="tel" name="phone" ng-model="phone" placeholder="טלפון הלקוח" required>
+        </div>
+      </div>
+      <div layout="row" ng-if="linkForm.$submitted">
+        <span class="Errmes" ng-show="linkForm.phone.$error.required"> נא להכניס טלפון</span>
+      </div>
+      <br />
+      <div layout="row">
+        <md-button type="submit" ng-click="sendLink(linkForm.$valid)" class="md-raised md-primary">שלח</md-button>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>
+</div>

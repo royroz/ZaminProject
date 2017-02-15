@@ -60,11 +60,28 @@
           <span class="ng-binding"> קטגוריות</span>
         </a>
       </li>
-
-      <li ng-class="{'active' : currentLocation == 'combo'}">
-        <a href="#combo" md-ink-ripple="md-ink-ripple">
+      <li class="nav-heading">
+        <span>דף מדריכים</span>
+      </li>
+      <li ng-class="{'active' : currentLocation == 'interestingVideos'}">
+        <a href="#interestingVideos" md-ink-ripple="md-ink-ripple">
+          <em class="fa fa-bars"></em>
+          <span class="ng-binding">סירטונים מעניינים</span>
+        </a>
+      </li>
+      <li ng-class="{'active' : currentLocation == 'teensVideos'}">
+        <a href="#teensVideos" md-ink-ripple="md-ink-ripple">
+          <em class="fa fa-bars"></em>
+          <span class="ng-binding">סירטונים לנוער</span>
+        </a>
+      </li>
+      <li class="nav-heading">
+        <span>דף הורים</span>
+      </li>
+      <li ng-class="{'active' : currentLocation == 'course'}">
+        <a href="#course" md-ink-ripple="md-ink-ripple">
           <em class="fa fa-graduation-cap"></em>
-          <span class="ng-binding"> קורסים</span>
+          <span class="ng-binding"> קורסים ושיעורים</span>
         </a>
       </li>
       <li class="nav-heading">
