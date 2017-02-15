@@ -34,7 +34,11 @@
       'mdPickers',
       'user',
       'userForm',
-      'marketing'
+      'marketing',
+      'categories',
+      'course',
+      'courseForm',
+      'interestingVideos'
     ]).constant("consts", {
       serverUrl: 'http://zamin/'
     }).factory('errorInterceptor', ['$q', '$rootScope', '$location', 'consts', function($q, $rootScope, $location, consts) {

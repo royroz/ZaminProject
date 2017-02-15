@@ -1,0 +1,127 @@
+<form class="custom-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 ng-show="editMode">
+        עריכה -
+        {{CourseOriginal.Name}}
+      </h3>
+      <h3 ng-hide="editMode">
+         יצירת קורס
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="row form-group">
+            <label class="col-sm-1 control-label">שם הקורס</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" ng-model="course.Name">
+            </div>
+            <div class="col-sm-1"></div>
+            <label class="col-sm-1 control-label"> תיאור</label>
+            <div class="col-sm-4">
+              <textarea class="form-control" ng-model="course.Description"></textarea>
+            </div>
+          </div>
+          <!-- <div class="row form-group">
+            <label class="col-sm-2 control-label"> תיאור</label>
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="franchise.Description">
+            </div>
+          </div> -->
+
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-1 control-label"> קטגוריה</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" ng-model="course.Category">
+            </div>
+            <div class="col-sm-1"></div>
+            <label class="col-sm-1 control-label">האם תוכן חופשי לגישה?</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" ng-model="course.IsAuthorizedContent">
+            </div>
+          </div>
+          <br/>
+
+          <br/>
+          <div class="row form-group">
+            <label class="col-sm-1 control-label">רשימת תגיות</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" ng-model="course.Tags">
+            </div>
+          </div>
+          <br/>
+          <br/>
+          <hr />
+          <br/>
+          <h3>תמונות</h3>
+          <div class="row form-group">
+            <label class="col-sm-1 control-label">תמונה לקורס</label>
+            <div class="col-sm-10">
+              <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{course.ImageUrl}}?v={{version}}" ng-show="course.ImageFile == undefined" />
+              <img class="imageThumbnail" ngf-src="course.ImageFile" />
+              <div ngf-select ng-model="course.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+                <button class="btn btn-primary" type="file">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>
+        סניפים
+        <md-button class="md-fab md-primary" title="הוספה" ng-click="addItem()">
+          <i class="fa fa-plus"></i>
+        </md-button>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="mda-list">
+        <div class="mda-list-item card" ng-repeat="branch in franchise.Branches track by $index">
+
+          <md-button class="md-fab  md-fab-top-right  md-danger" title="מחיקה" ng-click="deleteDialog(branch, $index, $event)">
+            <i class="fa fa-times"></i>
+          </md-button>
+
+          <div class="col-sm-3 thumbnail-large">
+            <img class="mda-list-item-img" src="{{branch.ImageUrl}}" onerror="imgError(this)" ng-show="branch.ImageFile == undefined">
+            <img class="mda-list-item-img" ngf-thumbnail="branch.ImageFile" />
+            <div class="thumbnail-hover thumbnail-img" ng-hide="branch.ImageUrl == undefined && branch.ImageFile == undefined" ngf-select ng-model="branch.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
+              <i class="fa fa-pencil fa-3x"></i>
+            </div>
+            <div class="thumbnail-add thumbnail-img" ng-show="branch.ImageUrl == undefined && branch.ImageFile == undefined" ngf-select  ngf-max-size="20MB" ng-model="branch.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'">
+              <i class="fa fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <div class="row form-group">
+              <label class="col-sm-2 control-label">שם</label>
+              <div class="col-sm-5">
+                <input class="form-control" type="text" ng-model="branch.Name">
+              </div>
+            </div>
+            <div class="row form-group">
+              <label class="col-sm-2 control-label">כתובת</label>
+              <div class="col-sm-5">
+                  <input class="form-control" ng-model="branch.GooglePlaceAddress" g-places-autocomplete>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <button class="btn btn-lg btn-success" ng-click="save()">
+    שמור
+  </button>
+</form>
