@@ -10,22 +10,25 @@ namespace Zamin.Server.Controllers
     {
         public JsonResult SendPushNotificationToClients(int userType, string message, string title)
         {
-            var appUsers = UOW.UsersRepository.GetUsersToSendPush(franchiseId);
-            var success = true;
-            foreach (var user in appUsers)
-            {
-                success = Helpers.PushHelper.SendSingle(user.PushToken, message, title);
-            }
-            return Json(success);
+            //var appUsers = UOW.UsersRepository.GetUsersToSendPush(franchiseId);
+            //var success = true;
+            //foreach (var user in appUsers)
+            //{
+            //    success = Helpers.PushHelper.SendSingle(user.PushToken, message, title);
+            //}
+            //return Json(success);
+            return Json(true);
         }
 
         public JsonResult SendAppLinkToCustomer(int franchiseId, string phoneNumber)
         {
-            var appInstalationLink = UOW.FranchiseRepository.GetAppInstalationLink(franchiseId);
+            //var appInstalationLink = UOW.FranchiseRepository.GetAppInstalationLink(franchiseId);
 
 
-            var success = Helpers.SmsHelper.SendAppLink(franchiseId, phoneNumber, appInstalationLink);
-            return Json(success);
+            //var success = Helpers.SmsHelper.SendAppLink(franchiseId, phoneNumber, appInstalationLink);
+            //return Json(success);
+            return Json(true);
+
         }
     }
 }
