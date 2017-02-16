@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Zamin website</title>
     <link href="/FrontClient/Content/css/bootstrap.min.css" rel="stylesheet" />
@@ -8,8 +10,11 @@
     <!--<link href="/Content/css/accordionImageMenu.css" rel="stylesheet" />-->
     <link href="/FrontClient/Content/css/galleriffic-2.css" rel="stylesheet" />
     <link href="/FrontClient/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/FrontClient/Content/css/slick.css" />
     <link href="/FrontClient/Content/css/main.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 </head>
+
 <body class="container" ng-app="zamin" ng-cloak>
     <div ng-controller="userCtrl">
         <header>
@@ -31,7 +36,8 @@
                             <a href="#/">&nbsp;דף הבית&nbsp;&nbsp;</a>
                         </li>
                         <li class="col-md-2" ng-class="{'active-tab':isActive('/libraries')}">
-                            <a href="#libraries">&nbsp;הורים&nbsp;&nbsp;</a> <!--parents-->
+                            <a href="#libraries">&nbsp;הורים&nbsp;&nbsp;</a>
+                            <!--parents-->
                         </li>
                         <li class="col-md-2" ng-class="{'active-tab':isActive('/libraries')}">
                             <a href="#teachers">&nbsp;מורים&nbsp;&nbsp;</a>
@@ -148,8 +154,9 @@
                     <div class="col-md-2 col-height" id="who-are-we">
                         <div>מי אנחנו?</div>
                         <p>
-                           זמין הינו פרוייקט ייחודי ....<br />
-                          כאן תוכלו למצוא את כל המידע הנחוץ ......<br />
+                            זמין הינו פרוייקט ייחודי ....
+                            <br /> כאן תוכלו למצוא את כל המידע הנחוץ ......
+                            <br />
 
                         </p>
                     </div>
@@ -166,9 +173,9 @@
                                 <a href="/pdfs/Faq.pdf" target="_blank">שאלות ותשובות</a>
                             </div>
                             <div class="row">
-                                <a class="col-xs-4" href="http://facebook.com"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/facebook.png"/></a>
-                                <a class="col-xs-4" href="#"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/youtube.png"/></a>
-                                <a class="col-xs-4" href="#"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/twitter.png"/></a>
+                                <a class="col-xs-4" href="http://facebook.com"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/facebook.png" /></a>
+                                <a class="col-xs-4" href="#"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/youtube.png" /></a>
+                                <a class="col-xs-4" href="#"><img src="http://d3u7v1yn0ub2hw.cloudfront.net/Images/twitter.png" /></a>
                             </div>
 
                         </div>
@@ -232,6 +239,7 @@
     <script src="Scripts/lib/jquery.cookie.js"></script>
     <script src="Scripts/lib/jquery.cookies.2.2.0.min.js"></script>
     <script src="Scripts/lib/soundjs-0.6.0.min.js"></script>
+    <script src="Scripts/lib/slick.min.js"></script>
     <script src="/FrontClient/Scripts/lib/bootstrap.min.js"></script>
 
     <script src="/FrontClient/Scripts/app/app.js"></script>
@@ -247,6 +255,8 @@
     <script src="/FrontClient/Scripts/app/controllers/portfolioCtrl.js"></script>
     <script src="/FrontClient/Scripts/app/services/portfolioService.js"></script>
     <script src="/FrontClient/Scripts/app/controllers/homeCtrl.js"></script>
+    <script src="/FrontClient/Scripts/app/controllers/mediaCtrl.js"></script>
 
 </body>
+
 </html>

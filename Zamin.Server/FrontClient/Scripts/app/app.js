@@ -65,6 +65,10 @@ app.config([
             .when('/login', {
                 templateUrl: 'Partials/login.html',
                 controller: 'userCtrl'
+            })
+            .when('/media', {
+                templateUrl: 'Partials/media.html',
+                controller: 'mediaCtrl'
             });
     }
 ]);
