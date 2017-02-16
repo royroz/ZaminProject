@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zamin.Models.General
+namespace Zamin.WebModels
 {
-    public class Tag
+    public class TagWebModel
     {
         public int Id { get; set; }
         public string TagName { get; set; }
-        public bool Active { get; set; }
     }
 }

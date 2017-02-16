@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   /**
@@ -21,7 +21,7 @@
         method: "GET",
         url: consts.serverUrl + "Course/GetCourse",
         params: {
-          id: courseId
+          courseId: courseId
         }
       });
     };
@@ -29,10 +29,10 @@
     CourseFormBase.create = function(course) {
       var fd = new FormData();
       fd.append("Name", course.Name);
-      if(course.Description != undefined) fd.append("Description", course.Description);
-      if(course.ImageFile != undefined) fd.append("ImageFile", course.ImageFile);
-      fd.append("CourseCategoryId", course.CourseCategoryId);
-      if(course.IsAuthorizedContent != undefined) fd.append("IsAuthorizedContent", course.IsAuthorizedContent);
+      if (course.Description != undefined) fd.append("Description", course.Description);
+      if (course.ImageFile != undefined) fd.append("ImageFile", course.ImageFile);
+      if (course.CourseCategory != undefined) fd.append("CourseCategoryId", course.CourseCategory.Id);
+      if (course.IsAuthorizedContent != undefined) fd.append("IsAuthorizedContent", course.IsAuthorizedContent);
 
       return $http({
         method: "POST",
@@ -47,23 +47,11 @@
 
     CourseFormBase.update = function(course) {
       var fd = new FormData();
-      fd.append("Id", course.Id);
       fd.append("Name", course.Name);
-
-      fd.append("ImageFile", course.ImageFile);
-              if(course.Description != undefined) fd.append("Description", course.Description);
-
-      if (course.GalleryFiles != undefined) {
-        course.GalleryFiles.forEach(function(file, index) {
-          fd.append("GalleryFiles[" + index + "]", file);
-        });
-      }
-      if (course.GalleryUrlsToDelete != undefined) {
-        course.GalleryUrlsToDelete.forEach(function(file, index) {
-          fd.append("GalleryUrlsToDelete[" + index + "]", file);
-        });
-      }
-
+      if (course.Description != undefined) fd.append("Description", course.Description);
+      if (course.ImageFile != undefined) fd.append("ImageFile", course.ImageFile);
+      if (course.CourseCategory != undefined) fd.append("CourseCategoryId", course.CourseCategory.Id);
+      if (course.IsAuthorizedContent != undefined) fd.append("IsAuthorizedContent", course.IsAuthorizedContent);
 
       return $http({
         method: "POST",
@@ -77,13 +65,17 @@
     };
 
 
-    CourseFormBase.deleteLesson = function(lessonId) {
+    CourseFormBase.getCategories = function() {
       return $http({
-        method: "POST",
-        url: consts.serverUrl + "Lesson/DeleteLesson",
-        data: {
-          id: lessonId
-        }
+        method: "GET",
+        url: consts.serverUrl + "Category/GetCategories"
+      });
+    }
+
+    CourseFormBase.getTags = function() {
+      return $http({
+        method: "GET",
+        url: consts.serverUrl + "Tag/GetTags"
       });
     }
     return CourseFormBase;

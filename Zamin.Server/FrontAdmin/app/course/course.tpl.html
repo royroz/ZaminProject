@@ -15,6 +15,12 @@
                 <th>#</th>
                 <th>שם</th>
                 <th>
+                  תיאור
+                </th>
+                <th>
+                  קטגוריה
+                </th>
+                <th>
                   תמונה
                 </th>
                 <th></th>
@@ -23,22 +29,28 @@
             <tbody>
               <tr ng-repeat="course in courses track by $index">
                 <td>{{$index+1}}</td>
-                <td class="col-xs-5">
+                <td >
                   {{course.Name}}
                   <br />
-                  ({{course.BranchesCount}} סניפים)
+                שיעורים
                 </td>
                 <td>
-                  <img class="imageThumbnail" onerror="imgError(this)"  ng-src="{{course.ImageUrl}}?v={{version}}"/>
+                  {{course.Description}}
                 </td>
                 <td>
-                  <a href="#course-form/{{fren.Id}}" class="mb-sm btn btn-warning" type="button" title="עריכה" ng-click="setCurrentCoursesById(course.Id)">
+                {{course.CourseCategoryName}}
+                </td>
+                <td>
+                  <img class="imageThumbnail" onerror="imgError(this)"  ng-src="{{course.ImageUrl}}"/>
+                </td>
+                <td>
+                  <a href="#course-form/{{course.Id}}" class="mb-sm btn btn-warning" type="button" title="עריכה" ng-click="setCurrentCoursesById(course.Id)">
                     <i class="fa fa-pencil"></i>
                   </a>
                   <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(fren, $index, $event)">
                     <i class="fa fa-trash-o"></i>
                   </button>
-                  <a href="#lesson/{{course.Id}}" class=" mb-sm btn btn-primary" type="button" ng-click="setCurrentCourseById(course.Id)">סניפים&nbsp;<i class="fa fa-chevron-left"></i></a>
+                  <a href="#lesson/{{course.Id}}" class=" mb-sm btn btn-primary" type="button" ng-click="setCurrentCourseById(course.Id)">שיעורים&nbsp;<i class="fa fa-chevron-left"></i></a>
                 </td>
               </tr>
             </tbody>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zamin.Models;
 using Zamin.Models.Content;
+using Zamin.Models.General;
 using Zamin.Models.Membership;
 
 
@@ -20,6 +21,10 @@ namespace Zamin.Repositories
         public DbSet<WebsiteUser> WebsiteUsers { get; set; }
         public  DbSet<Course>Course { get; set; }
         public DbSet<Lesson> Lesson { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<CourseCategory> CourseCategories { get; set; }
 
 
 

@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 using Zamin.Enums;
 using Zamin.Helpers;
 using Zamin.Models.Content;
 using Zamin.WebModels;
 
+
 namespace Zamin.Repositories
 {
-    class CourseRepository : RepositoryBase<DataContext>, ICourseRepository
+    public class CourseRepository : RepositoryBase<DataContext>, ICourseRepository
     {
         public CourseRepository()
         {
@@ -25,7 +27,7 @@ namespace Zamin.Repositories
 
         public List<Course> GetCourses()
         {
-            return DataContext.Course.ToList();
+            return DataContext.Course.Include(c=>c.CourseCategory).Where(c=>c.Active).ToList();
         }
 
         public Course GetCourse(int courseId)
@@ -40,6 +42,7 @@ namespace Zamin.Repositories
             //Save image file
             var fileName = Guid.NewGuid()+ ".png";
             dbModel.ImageFileName = fileName;
+            dbModel.Active = true;
             FileHelper.SaveFile(course.ImageFile, DirectoriesEnum.Courses, fileName);
 
             DataContext.Course.Add(dbModel);
@@ -50,7 +53,7 @@ namespace Zamin.Repositories
         {
             var course = DataContext.Course.FirstOrDefault(c => c.Id == courseId);
             if (course == null) return false;
-            DataContext.Course.Remove(course);
+            course.Active = false;
             return Save();
         }
     }

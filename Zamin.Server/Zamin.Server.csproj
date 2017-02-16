@@ -174,9 +174,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarketingController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,8 +229,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Category\" />
     <Folder Include="Views\Course\" />
     <Folder Include="Views\Marketing\" />
+    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -236,6 +240,10 @@
     <None Include="Properties\PublishProfiles\Zamin.pubxml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Zamin.Consts\Zamin.Consts.csproj">
+      <Project>{F2F70B63-2E64-4C43-93E9-51F51099E0B9}</Project>
+      <Name>Zamin.Consts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zamin.Enums\Zamin.Enums.csproj">
       <Project>{d54b87f9-6f6f-4b73-80ea-f6580a899d8f}</Project>
       <Name>Zamin.Enums</Name>
