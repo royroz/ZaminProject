@@ -1,4 +1,4 @@
-(function () {
+(function() {
   'use strict';
 
   angular
@@ -9,9 +9,16 @@
     $stateProvider
       .state('categories', {
         url: '/categories',
-        templateUrl: 'categories/categories.tpl.html',
-        controller: 'CategoriesCtrl',
-        controllerAs: 'categories'
+        views: {
+          'mainView': {
+            templateUrl: 'categories/categories.tpl.html',
+            controller: 'CategoriesCtrl',
+            controllerAs: 'categories'
+          },
+          'layoutView': {
+            templateUrl: 'partials/layoutView.html'
+          }
+        }
       });
   }
 }());

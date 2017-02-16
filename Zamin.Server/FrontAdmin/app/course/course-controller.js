@@ -49,6 +49,6 @@
     }
 
 
-   $scope.getAll();
+  //  $scope.getAll();
   }
 }());

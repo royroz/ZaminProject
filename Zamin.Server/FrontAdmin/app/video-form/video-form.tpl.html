@@ -1,0 +1,51 @@
+<form class="custom-form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 ng-show="editMode">
+        עריכה -
+        {{::video.Name}}
+      </h3>
+      <h3 ng-hide="editMode">
+      הוספת וידיאו
+      </h3>
+    </div>
+
+    <div class="panel-body">
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">שם</label>
+        <div class="col-sm-3">
+          <input class="form-control" ng-model="video.Name" placeholder="שם">
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">תיאור</label>
+        <div class="col-sm-3">
+          <textarea class="form-control" ng-model="video.Description" placeholder="תיאור"></textarea>
+        </div>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">תגיות</label>
+        <md-select class="col-sm-3" ng-model="video.Tags" name="Tag" placeholder="תגיות" multiple>
+          <md-option ng-value="top" ng-repeat="tag in tags">{{ tag.Name }}</md-option>
+        </md-select>
+      </div>
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">סוג וידיאו</label>
+        <md-select class="col-sm-3" ng-model="video.Type" name="Type" placeholder="סוג וידיאו">
+          <md-option ng-value="top" ng-repeat="Type in Types">{{ tag.Name }}</md-option>
+        </md-select>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-sm-1 control-label">האם תוכן חופשי?</label>
+        <div class="col-sm-3">
+          <md-checkbox ng-model="video.IsAuthorizedContent" aria-label=""></md-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <md-button ng-click="save()" class="btn-primary">
+      שמור
+    </md-button>
+  </div>
+</form>
