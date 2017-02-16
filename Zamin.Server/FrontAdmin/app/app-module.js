@@ -38,7 +38,8 @@
       'categories',
       'course',
       'courseForm',
-      'interestingVideos'
+      'interestingVideos',
+      'videoForm'
     ]).constant("consts", {
       serverUrl: 'http://zamin/'
     }).factory('errorInterceptor', ['$q', '$rootScope', '$location', 'consts', function($q, $rootScope, $location, consts) {
@@ -68,7 +69,7 @@
       function($compileProvider, $provide, $httpProvider, $locationProvider,$qProvider) {
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|geo|tel):/);
         $httpProvider.interceptors.push('errorInterceptor');
-        // $qProvider.errorOnUnhandledRejections(false);
+        $qProvider.errorOnUnhandledRejections(false);
         $locationProvider.hashPrefix('');
       }
     ]);
