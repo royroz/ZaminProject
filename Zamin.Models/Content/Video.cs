@@ -25,9 +25,7 @@ namespace Zamin.Models.Content
             get { return _tags ?? (_tags = new List<Tag>()); }
             set { _tags = value; }
         }
-
-        public string Titel { get; set; }
-       
+   
         public DateTime? CreateDate { get; set; }
 
         public string Description { get; set; }
