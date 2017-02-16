@@ -1,0 +1,55 @@
+<header>
+  <md-toolbar class="main-header md-tall md-warn md-hue-3" layout="row" dir="rtl">
+    <div class="logo" ng-click="goTo('home')"  ng-class="{'active' : currentLocation == 'home'}">
+      <img src="Images/logo.png" />
+    </div>
+
+          <md-menu-bar flex>
+            <md-menu ng-click="goTo('media')" ng-class="{'active' : currentLocation == 'media'}">
+              תוכן
+            </md-menu>
+            <md-menu>
+              הורים
+            </md-menu>
+            <md-menu>
+              מורים
+            </md-menu>
+            <md-menu>
+              מדריכים
+            </md-menu>
+    
+      <md-menu>
+            <span ng-click="$mdOpenMenu()">
+              אודות
+            </span>
+            <md-menu-content>
+              <md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('bold', $event)">
+                  Bold
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('italic', $event)">
+                  Italic
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('underline', $event)">
+                  Underline
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="ctrl.sampleAction('strikethrough', $event)">
+                  Strikethrough
+                </md-button>
+              </md-menu-item>
+              <md-menu-divider></md-menu-divider>
+              <md-menu-item><md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button></md-menu-item>
+            </md-menu-content>
+          </md-menu>
+        </md-menu-bar>
+        <!-- <h2 class="md-toolbar-tools">
+    <span class="md-flex">Toolbar: tall with actions pin to the bottom (md-warn md-hue-3)</span>
+  </h2>-->
+  </md-toolbar>
+</header>
