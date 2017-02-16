@@ -1,0 +1,17 @@
+<div id="media">
+  <br /><br />
+    <div id="videos">
+        <div ng-repeat="video in videos" class="text-center" style="outline: none;">
+            <div class="iframe-container">
+
+                <iframe ng-src="{{video.iframe}}" frameborder="0" allowfullscreen></iframe>
+                <div class="iframe-overlay">
+                    <div ng-click="openVideoModal(video.iframe)" class="iframe-btn">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <ng-include src="'Partials/videoDialog.html'"></ng-include>
+</div>
