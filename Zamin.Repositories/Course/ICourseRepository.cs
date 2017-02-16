@@ -14,5 +14,6 @@ namespace Zamin.Repositories
         Course GetCourse(int courseId);
         bool CreateCourse(CourseWebModel course);
         bool DeleteCourse(int courseId);
+        bool UpdateCourse(CourseWebModel course);
     }
 }

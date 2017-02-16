@@ -26,17 +26,23 @@
       });
     };
 
-    CourseFormBase.create = function(course) {
+    CourseFormBase.save = function(course) {
       var fd = new FormData();
+      fd.append("Id", course.Id);
       fd.append("Name", course.Name);
       if (course.Description != undefined) fd.append("Description", course.Description);
       if (course.ImageFile != undefined) fd.append("ImageFile", course.ImageFile);
-      if (course.CourseCategory != undefined) fd.append("CourseCategoryId", course.CourseCategory.Id);
+      if (course.CourseCategoryId != undefined) fd.append("CourseCategoryId", course.CourseCategoryId);
       if (course.IsAuthorizedContent != undefined) fd.append("IsAuthorizedContent", course.IsAuthorizedContent);
+
+      course.Tags.forEach(function(tag, index) {
+        fd.append("Tags[" + index + "].Id", tag.Id);
+        fd.append("Tags[" + index + "].TagName", tag.TagName);
+      });
 
       return $http({
         method: "POST",
-        url: consts.serverUrl + "Course/CreateCourse",
+        url: consts.serverUrl + "Course/SaveCourse",
         data: fd,
         headers: {
           'Content-Type': undefined
@@ -45,24 +51,6 @@
       });
     };
 
-    CourseFormBase.update = function(course) {
-      var fd = new FormData();
-      fd.append("Name", course.Name);
-      if (course.Description != undefined) fd.append("Description", course.Description);
-      if (course.ImageFile != undefined) fd.append("ImageFile", course.ImageFile);
-      if (course.CourseCategory != undefined) fd.append("CourseCategoryId", course.CourseCategory.Id);
-      if (course.IsAuthorizedContent != undefined) fd.append("IsAuthorizedContent", course.IsAuthorizedContent);
-
-      return $http({
-        method: "POST",
-        url: consts.serverUrl + "Course/UpdateCourse",
-        data: fd,
-        headers: {
-          'Content-Type': undefined
-        },
-        transformRequest: angular.identity
-      });
-    };
 
 
     CourseFormBase.getCategories = function() {

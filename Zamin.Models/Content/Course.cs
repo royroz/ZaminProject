@@ -32,6 +32,13 @@ namespace Zamin.Models.Content
             get { return _tags ?? (_tags = new List<Tag>()); }
             set { _tags = value; }
         }
+
+        private ICollection<Course> _courses;
+        public ICollection<Course> Courses
+        {
+            get { return _courses ?? (_courses = new List<Course>()); }
+            set { _courses = value; }
+        }
         public int NumOfLikes { get; set; }
 
         public string ImageFileName { get; set; }
