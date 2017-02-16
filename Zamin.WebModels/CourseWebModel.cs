@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -27,5 +28,7 @@ namespace Zamin.WebModels
         public string ImageUrl { get; set; }
 
         public HttpPostedFileBase ImageFile { get; set; }
+
+        public List<TagWebModel> Tags { get; set; }
     }
 }

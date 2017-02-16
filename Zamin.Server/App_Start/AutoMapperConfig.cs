@@ -19,7 +19,8 @@ namespace Zamin.Server.App_Start
                 cfg.CreateMap<Course, CourseWebModel>()
                     .ForMember(d=>d.CourseCategoryName, o=>o.MapFrom(s=>s.CourseCategory.CategoryName))
                     .ForMember(d => d.ImageUrl, o => o.MapFrom(s => GlobalConsts.ServerUrl + DirectoriesConsts.CoursesFolder +"/"+ s.ImageFileName));
-                cfg.CreateMap<CourseWebModel, Course>();
+                cfg.CreateMap<CourseWebModel, Course>()
+                    .ForMember(d=>d.Tags, o=>o.Ignore());
 
 
                 cfg.CreateMap<CourseCategoryWebModel, CourseCategory>();

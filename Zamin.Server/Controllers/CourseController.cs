@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using System.Web;
 using System.Web.Mvc;
 using Zamin.Models.Content;
@@ -26,9 +27,11 @@ namespace Zamin.Server.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateCourse(CourseWebModel course)
+        public JsonResult SaveCourse(CourseWebModel course)
         {
-            var success = UOW.CourseRepository.CreateCourse(course);
+            var success = false;
+            success = course.Id == 0 ? UOW.CourseRepository.CreateCourse(course) : UOW.CourseRepository.UpdateCourse(course);
+
             return Json(success);
         }
 

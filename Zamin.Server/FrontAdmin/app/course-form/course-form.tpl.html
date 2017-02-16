@@ -1,4 +1,4 @@
-<form class="custom-form">
+<form class="custom-form" name="courseForm" novalidate="">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 ng-show="editMode">
@@ -15,7 +15,10 @@
           <div class="row form-group">
             <label class="col-sm-1 control-label">שם הקורס</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" ng-model="course.Name">
+              <input class="form-control" type="text" name="name" ng-model="course.Name" required="">
+              <div  class="errorMessage" ng-messages="courseForm.name.$error" ng-show="courseForm.$submitted">
+                <div ng-message="required" ng-show="courseForm.name.$error.required"> שדה זה הוא חובה.</div>
+              </div>
             </div>
             <div class="col-sm-1"></div>
             <label class="col-sm-1 control-label"> תיאור</label>
@@ -23,25 +26,21 @@
               <textarea class="form-control" ng-model="course.Description"></textarea>
             </div>
           </div>
-          <!-- <div class="row form-group">
-            <label class="col-sm-2 control-label"> תיאור</label>
-            <div class="col-sm-5">
-              <input class="form-control" type="text" ng-model="franchise.Description">
-            </div>
-          </div> -->
-
           <br/>
           <div class="row form-group">
             <label class="col-sm-1 control-label"> קטגוריה</label>
             <div class="col-sm-4">
-              <md-select ng-model="course.CourseCategoryId" placeholder="בחר קטגוריה">
+              <md-select ng-model="course.CourseCategoryId" placeholder="בחר קטגוריה" name="category" required>
                 <md-option ng-value="category.Id" ng-repeat="category in categories">{{ category.CategoryName }}</md-option>
               </md-select>
+              <div class="errorMessage" ng-messages="courseForm.category.$error" ng-show="courseForm.$submitted">
+                <div ng-message="required" ng-show="courseForm.category.$error.required"> שדה זה הוא חובה.</div>
+              </div>
             </div>
             <div class="col-sm-1"></div>
             <label class="col-sm-1 control-label">האם תוכן חופשי לגישה?</label>
             <div class="col-sm-4">
-                <md-checkbox ng-model="course.IsAuthorizedContent" aria-label=""></md-checkbox>
+              <md-checkbox ng-model="course.IsAuthorizedContent" aria-label=""></md-checkbox>
             </div>
           </div>
           <br/>
@@ -50,17 +49,16 @@
           <div class="row form-group">
             <label class="col-sm-1 control-label">רשימת תגיות</label>
             <div class="col-sm-4">
-              <md-chips ng-model="course.Tags" md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" md-require-match="true">
-          <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.TagName" placeholder="בחר תגיות">
-            <span md-highlight-text="searchText">{{item.TagName}}</span>
-          </md-autocomplete>
-          <md-chip-template>
-            <span>
+              <md-chips ng-model="course.Tags" md-autocomplete-snap="" md-transform-chip="transformChip($chip)" md-require-match="true">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.TagName" placeholder="בחר תגיות">
+                  <span md-highlight-text="searchText">{{item.TagName}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <span>
               <strong>{{$chip.TagName}}</strong>
             </span>
-          </md-chip-template>
-        </md-chips>
-
+                </md-chip-template>
+              </md-chips>
             </div>
           </div>
           <br/>
@@ -71,7 +69,7 @@
           <div class="row form-group">
             <label class="col-sm-1 control-label">תמונה לקורס</label>
             <div class="col-sm-10">
-              <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{course.ImageUrl}}?v={{version}}" ng-show="course.ImageFile == undefined" />
+              <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{course.ImageUrl}}" ng-show="course.ImageFile == undefined" />
               <img class="imageThumbnail" ngf-src="course.ImageFile" />
               <div ngf-select ng-model="course.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
                 <button class="btn btn-primary" type="file">
@@ -80,60 +78,11 @@
               </div>
             </div>
           </div>
-
-
-
-
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>
-        סניפים
-        <md-button class="md-fab md-primary" title="הוספה" ng-click="addItem()">
-          <i class="fa fa-plus"></i>
-        </md-button>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <div class="mda-list">
-        <div class="mda-list-item card" ng-repeat="branch in franchise.Branches track by $index">
-
-          <md-button class="md-fab  md-fab-top-right  md-danger" title="מחיקה" ng-click="deleteDialog(branch, $index, $event)">
-            <i class="fa fa-times"></i>
-          </md-button>
-
-          <div class="col-sm-3 thumbnail-large">
-            <img class="mda-list-item-img" src="{{branch.ImageUrl}}" onerror="imgError(this)" ng-show="branch.ImageFile == undefined">
-            <img class="mda-list-item-img" ngf-thumbnail="branch.ImageFile" />
-            <div class="thumbnail-hover thumbnail-img" ng-hide="branch.ImageUrl == undefined && branch.ImageFile == undefined" ngf-select ng-model="branch.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
-              <i class="fa fa-pencil fa-3x"></i>
-            </div>
-            <div class="thumbnail-add thumbnail-img" ng-show="branch.ImageUrl == undefined && branch.ImageFile == undefined" ngf-select  ngf-max-size="20MB" ng-model="branch.ImageFile" ngf-pattern="'image/*'" ngf-accept="'image/*'">
-              <i class="fa fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <div class="col-sm-9">
-            <div class="row form-group">
-              <label class="col-sm-2 control-label">שם</label>
-              <div class="col-sm-5">
-                <input class="form-control" type="text" ng-model="branch.Name">
-              </div>
-            </div>
-            <div class="row form-group">
-              <label class="col-sm-2 control-label">כתובת</label>
-              <div class="col-sm-5">
-                  <input class="form-control" ng-model="branch.GooglePlaceAddress" g-places-autocomplete>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <button class="btn btn-lg btn-success" ng-click="save()">
+  <button type="submit" class="btn btn-lg btn-success" ng-click="save(courseForm.$valid)">
     שמור
   </button>
 </form>

@@ -13,17 +13,22 @@
     .controller('CourseFormCtrl', CourseFormCtrl);
 
   function CourseFormCtrl($scope, $location, $stateParams, $state, CourseForm) {
-    $scope.course = {};
+    $scope.course = {
+      Tags: []
+    };
     $scope.categories = [];
     $scope.tags = [];
     $scope.editMode = $state.current.name == 'courseFormUpdate';
 
     $scope.save = function(valid) {
       if (!valid) return;
-      CourseForm.create($scope.course).then(function(response) {
+      showLoader();
+      CourseForm.save($scope.course).then(function(response) {
+        hideLoader();
         if (response.data) {
           $location.path("course");
         }
+
       })
     }
     $scope.getCourse = function() {
@@ -31,6 +36,7 @@
       CourseForm.getCourse($stateParams.courseId).then(function(response) {
         $scope.course = response.data;
         hideLoader();
+        console.log($scope.course);
       });
     }
 
@@ -54,6 +60,16 @@
     $scope.searchText = "";
     $scope.selectedItem = undefined;
 
+    $scope.transformChip = function(chip) {
+      // If it is an object, it's already a known chip
+      if (angular.isObject(chip)) {
+        return chip;
+      }
+
+      // Otherwise, create a new one
+      //    return { name: chip, type: 'new' }
+    }
+
     $scope.querySearch = function(query) {
       var results = query ? $scope.tags.filter(createFilterFor(query)) : [];
       return results;
@@ -67,6 +83,7 @@
           (tag.TagName.indexOf(lowercaseQuery) === 0);
       };
     }
+
 
 
     //Start
