@@ -63,6 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category\CategoryRepository.cs" />
+    <Compile Include="Category\ICategoryRepository.cs" />
     <Compile Include="CFMembership\CodeFirstMembershipProvider.cs" />
     <Compile Include="CFMembership\Crypto.cs" />
     <Compile Include="CFMembership\WebSecurity.cs" />
@@ -75,6 +77,8 @@
     <Compile Include="Infratructure\UnitOfWorkBase.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag\ITagRepository.cs" />
+    <Compile Include="Tag\TagRepository.cs" />
     <Compile Include="Users\IUsersRepository.cs" />
     <Compile Include="Users\UsersRepository.cs" />
   </ItemGroup>

@@ -18,5 +18,6 @@ namespace Zamin.Models.General
             get { return _courses ?? (_courses = new List<Course>()); }
             set { _courses = value; }
         }
+        public bool Active { get; set; }
     }
 }

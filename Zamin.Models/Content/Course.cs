@@ -35,6 +35,8 @@ namespace Zamin.Models.Content
         public int NumOfLikes { get; set; }
 
         public string ImageFileName { get; set; }
+
+        public bool Active { get; set; }
     }
 
 }

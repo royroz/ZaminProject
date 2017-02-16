@@ -35,7 +35,7 @@
             <label class="col-sm-1 control-label"> קטגוריה</label>
             <div class="col-sm-4">
               <md-select ng-model="course.CourseCategoryId" placeholder="בחר קטגוריה">
-                <md-option ng-value="category.Id" ng-repeat="category in categories">{{ category.Name }}</md-option>
+                <md-option ng-value="category.Id" ng-repeat="category in categories">{{ category.CategoryName }}</md-option>
               </md-select>
             </div>
             <div class="col-sm-1"></div>
@@ -50,7 +50,17 @@
           <div class="row form-group">
             <label class="col-sm-1 control-label">רשימת תגיות</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" ng-model="course.Tags">
+              <md-chips ng-model="course.Tags" md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" md-require-match="true">
+          <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.TagName" placeholder="בחר תגיות">
+            <span md-highlight-text="searchText">{{item.TagName}}</span>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>
+              <strong>{{$chip.TagName}}</strong>
+            </span>
+          </md-chip-template>
+        </md-chips>
+
             </div>
           </div>
           <br/>

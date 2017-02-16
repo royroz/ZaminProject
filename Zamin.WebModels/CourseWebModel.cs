@@ -15,6 +15,8 @@ namespace Zamin.WebModels
         public string Description { get; set; }
 
         public int CourseCategoryId { get; set; }
+
+        public string CourseCategoryName { get; set; }
         
         public bool IsAuthorizedContent { get; set; }
 
