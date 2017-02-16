@@ -39,7 +39,9 @@
       'course',
       'courseForm',
       'interestingVideos',
-      'videoForm'
+      'videoForm',
+      'tags',
+      'posters'
     ]).constant("consts", {
       serverUrl: 'http://zamin/'
     }).factory('errorInterceptor', ['$q', '$rootScope', '$location', 'consts', function($q, $rootScope, $location, consts) {

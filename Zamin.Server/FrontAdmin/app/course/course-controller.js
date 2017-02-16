@@ -23,7 +23,6 @@
       });
     }
 
-
     $scope.deleteDialog = function(itemToDelete, index, ev) {
       $scope.itemToDelete = itemToDelete;
       $scope.itemToDelete.index = index;
@@ -49,6 +48,6 @@
     }
 
 
-  //  $scope.getAll();
+   $scope.getAll();
   }
 }());
