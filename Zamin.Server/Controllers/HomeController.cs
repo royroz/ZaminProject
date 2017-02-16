@@ -11,11 +11,11 @@ namespace Zamin.Server.Controllers
         // GET: Home
         public RedirectResult Index()
         {
-            return Redirect("Http://Zamin/FrontClient/index.html");
+            return Redirect("Http://Zamin.muze.co.il/FrontClient/index.html");
         }
         public RedirectResult Admin()
         {
-            return Redirect("Http://Zamin/FrontAdmin/build/app/index.html");
+            return Redirect("Http://Zamin.muze.co.il/FrontAdmin/index.html");
         }
     }
 }
