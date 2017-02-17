@@ -23,12 +23,12 @@
       };
 
 
-      CourseBase.delete = function(franchiseId) {
+      CourseBase.delete = function(courseId) {
         return $http({
           method: "POST",
           url: consts.serverUrl + "Course/DeleteCourse",
           data: {
-            id: courseId
+            courseId: courseId
           }
         });
       };

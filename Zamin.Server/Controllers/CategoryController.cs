@@ -11,11 +11,36 @@ namespace Zamin.Server.Controllers
     public class CategoryController : BaseController
     {
         // GET: Category
-        public ActionResult GetCategories()
+        public JsonResult GetCategories()
         {
-            var tags = UOW.CategoryRepository.GetCategories();
-            var webModels = tags.Select(AutoMapper.Mapper.Map<CourseCategory, CourseCategoryWebModel>);
+            var categories = UOW.CategoryRepository.GetCategories();
+            var webModels = categories.Select(AutoMapper.Mapper.Map<CourseCategory, CourseCategoryWebModel>);
             return Json(webModels, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult SaveCategory(CourseCategoryWebModel category)
+        {
+            var success = -1;
+            //if success == -1 
+            success = category.Id == 0 ? UOW.CategoryRepository.CreateCategory(category) : UOW.CategoryRepository.UpdateCategory(category);
+            return new JsonResult()
+            {
+                Data = new
+                {
+                    Success = success != -1,
+                    Id = success
+                }
+            };
+
+        }
+
+        [HttpPost]
+        public JsonResult DeleteCategory(int categoryId)
+        {
+            var success = UOW.CategoryRepository.DeleteCategory(categoryId);
+            return Json(success);
+        }
+
     }
 }

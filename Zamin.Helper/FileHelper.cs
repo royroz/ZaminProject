@@ -70,6 +70,15 @@ namespace Zamin.Helpers
                     case DirectoriesEnum.Posters:
                         directoryName += Consts.DirectoriesConsts.PostersFolder;
                         break;
+                    case DirectoriesEnum.Presentations:
+                        directoryName += Consts.DirectoriesConsts.LessonPlansPresentationsFolder;
+                        break;
+                    case DirectoriesEnum.WrittenLessonPlans:
+                        directoryName += Consts.DirectoriesConsts.LessonPlansWrittenFolder;
+                        break;
+                    case DirectoriesEnum.ImageGallery:
+                        directoryName += Consts.DirectoriesConsts.ImageGallery;
+                        break;
                 }
                 return directoryName;
             }

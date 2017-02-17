@@ -20,9 +20,9 @@
               <tr ng-repeat="category in categories track by $index">
                 <td>{{$index+1}}</td>
                 <td class="col-xs-5">
-                  <span ng-hide="category.edit">{{category.Name}}</span>
+                  <span ng-hide="category.edit">{{category.CategoryName}}</span>
                   <span ng-show="category.edit">
-                <input class="mda-form-control" ng-model="category.Name" >
+                <input class="mda-form-control" ng-model="category.CategoryName" >
               </span>
                 </td>
                 <td>
@@ -35,7 +35,7 @@
               <tr ng-show="newCategory != undefined">
                 <td></td>
                 <td class="col-xs-5">
-                  <input class="mda-form-control" ng-model="newCategory.Name" placeholder="שם">
+                  <input class="mda-form-control" ng-model="newCategory.CategoryName" placeholder="שם">
                 </td>
                 <td>
                   <button class="mb-sm btn btn-success" type="button" title="שמירה" ng-click="create()"><i class="fa fa-check"></i></button>

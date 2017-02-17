@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CourseCategoryWebModel.cs" />
     <Compile Include="CourseWebModel.cs" />
+    <Compile Include="PosterWebModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagWebModel.cs" />
   </ItemGroup>

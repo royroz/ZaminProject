@@ -11,6 +11,8 @@ namespace Zamin.Models.Content
     {
         public int Id { get; set; }
         public string ImageFileName { get; set; }
+
+        public string Description { get; set; }
         private ICollection<Tag> _tags;
 
         public ICollection<Tag> Tags
@@ -22,5 +24,6 @@ namespace Zamin.Models.Content
         public int NumOfViews { get; set; }
         public int NumOfDownloads { get; set; }
         public bool IsAuthorizedContent { get; set; }
+        public bool Active { get; set; }
     }
 }

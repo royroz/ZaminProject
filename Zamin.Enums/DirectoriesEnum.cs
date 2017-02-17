@@ -8,6 +8,6 @@ namespace Zamin.Enums
 {
     public enum DirectoriesEnum
     {
-        Courses,Posters
+        Courses,Posters,Presentations,WrittenLessonPlans ,ImageGallery
     }
 }

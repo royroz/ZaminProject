@@ -21,6 +21,7 @@ namespace Zamin.Repositories
         public DbSet<WebsiteUser> WebsiteUsers { get; set; }
         public  DbSet<Course>Course { get; set; }
         public DbSet<Lesson> Lesson { get; set; }
+        public DbSet<Poster> Poster { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
 

@@ -23,6 +23,8 @@ namespace Zamin.WebModels
 
         public int NumOfLikes { get; set; }
 
+        public int NumOfViews { get; set; }
+
         public string ImageUrl { get; set; }
 
         public HttpPostedFileBase ImageFile { get; set; }

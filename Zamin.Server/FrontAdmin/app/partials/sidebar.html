@@ -22,7 +22,7 @@
             <!-- Name and Job-->
             <div class="user-block-info">
 
-              <h3 class="user-block-name">{{user.FranchiseName}}</h3>
+              <h3 class="user-block-name">נועם סופר</h3>
             </div>
           </div>
         </div>
@@ -45,13 +45,19 @@
           <span class="ng-binding">משתמשים</span>
         </a>
       </li>
-      <li class="nav-heading">
-        <span>תפריט ניהול תוכן</span>
-      </li>
       <li ng-class="{'active' : currentLocation == 'pizza'}">
         <a href="" md-ink-ripple="md-ink-ripple">
           <em class="fa fa-bar-chart-o"></em>
           <span class="ng-binding">סטטיסטיקות</span>
+        </a>
+      </li>
+      <li class="nav-heading">
+        <span>תפריט ניהול תוכן</span>
+      </li>
+      <li ng-class="{'active' : currentLocation == 'tags'}">
+        <a href="#tags" md-ink-ripple="md-ink-ripple">
+          <em class="fa fa-tags"></em>
+          <span class="ng-binding"> תגיות</span>
         </a>
       </li>
       <li ng-class="{'active' : currentLocation == 'categories'}">
@@ -65,13 +71,13 @@
       </li>
       <li ng-class="{'active' : currentLocation == 'posters'}">
         <a href="#posters" md-ink-ripple="md-ink-ripple">
-          <em class="fa fa-bars"></em>
+          <em class="fa fa-file-powerpoint-o"></em>
           <span class="ng-binding">פוסטרים</span>
         </a>
       </li>
-      <li ng-class="{'active' : currentLocation == 'interestingVideos'}">
-        <a href="#interestingVideos" md-ink-ripple="md-ink-ripple">
-          <em class="fa fa-bars"></em>
+      <li ng-class="{'active' : currentLocation == 'lesson-plan'}">
+        <a href="#lesson-plan" md-ink-ripple="md-ink-ripple">
+          <em class="fa fa-book"></em>
           <span class="ng-binding">מערכי שיעור</span>
         </a>
       </li>
@@ -81,13 +87,13 @@
       </li>
       <li ng-class="{'active' : currentLocation == 'interestingVideos'}">
         <a href="#interesting-videos" md-ink-ripple="md-ink-ripple">
-          <em class="fa fa-bars"></em>
+          <em class="fa fa-youtube"></em>
           <span class="ng-binding">סירטונים מעניינים</span>
         </a>
       </li>
       <li ng-class="{'active' : currentLocation == 'teensVideos'}">
         <a href="#teens-Videos" md-ink-ripple="md-ink-ripple">
-          <em class="fa fa-bars"></em>
+          <em class="fa fa-youtube"></em>
           <span class="ng-binding">סירטונים לנוער</span>
         </a>
       </li>
