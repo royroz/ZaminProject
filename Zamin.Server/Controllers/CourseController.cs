@@ -14,7 +14,7 @@ namespace Zamin.Server.Controllers
 
         public JsonResult GetCourses()
         {
-            var course = UOW.CourseRepository.GetCourses();
+            var course = UOW.CourseRepository.GetPosters();
             var webModels = course.Select(AutoMapper.Mapper.Map<Course, CourseWebModel>);
             return Json(webModels, JsonRequestBehavior.AllowGet);
         }
@@ -36,7 +36,6 @@ namespace Zamin.Server.Controllers
         }
 
         [HttpPost]
-
         public JsonResult DeleteCourse(int courseId)
         {
             var success = UOW.CourseRepository.DeleteCourse(courseId);

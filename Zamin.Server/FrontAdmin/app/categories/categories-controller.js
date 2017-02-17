@@ -30,23 +30,44 @@
 
 
     //---------------Post functions--------------------
-    $scope.create = function() {
+    $scope.create = function(ev) {
       showLoader();
-      Categories.create($scope.newCategory).then(function(response) {
+      Categories.update($scope.newCategory).then(function(response) {
         if (response.data.Success) {
-          $scope.newCategory.Id = response.data.CategoryId;
+          $scope.newCategory.Id = response.data.Id;
           $scope.categories.push(angular.copy($scope.newCategory));
           $scope.newCategory = undefined;
+
+        }
+        else{
+          $scope.errorMassage = "לא ניתן ליצור 2 קטגוריות בעלות אותו שם!";
+          $mdDialog.show({
+            targetEvent: ev,
+            templateUrl: 'errorDialog.html',
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose: true
+          });
         }
         hideLoader();
       });
     }
 
-    $scope.update = function(category) {
+    $scope.update = function(category,ev) {
       showLoader();
       Categories.update(category).then(function(response) {
         if (response.data) {
           category.edit = false;
+        }
+        else{
+          $scope.errorMassage = "לא ניתן לעדכן, עליך לשנות את שם הקטגוריה";
+          $mdDialog.show({
+            targetEvent: ev,
+            templateUrl: 'errorDialog.html',
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose: true
+          });
         }
         hideLoader();
       });
@@ -87,6 +108,6 @@
 
 
     //-----------------------Start------------------
-    // $scope.getCategories();
+    $scope.getCategories();
   }
 }());

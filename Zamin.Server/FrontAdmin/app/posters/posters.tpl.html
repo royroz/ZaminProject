@@ -1,0 +1,74 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>
+    פוסטרים
+    </h3>
+  </div>
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>
+                  תיאור
+                </th>
+                <th>
+                  כמות הורדות
+                </th>
+                <th>
+                  אנשים שאהבו
+                </th>
+                <th>
+                  תאריך העלאה
+                </th>
+                <th>
+                  תמונה
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="poster in posters track by $index">
+                <td>{{$index+1}}</td>
+
+                <td>
+                  {{poster.Description}}
+                </td>
+                <td>
+                  {{poster.NumOfDownloads}}
+                </td>
+                <td>
+                  {{poster.NumOfLikes}}
+                </td>
+                <td>
+                  {{poster.CreatedDate}}
+                </td>
+                <td>
+                  <img class="imageThumbnail" onerror="imgError(this)" ng-src="{{poster.ImageUrl}}" />
+                </td>
+                <td>
+                  <a href="#poster-form/{{poster.Id}}" class="mb-sm btn btn-warning" type="button" title="עריכה" ng-click="setCurrentPosterById(poster.Id)">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                  <button class="mb-sm btn btn-danger" type="button" title="מחיקה" ng-click="deleteDialog(poster, $index, $event)">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<a href="#poster-form" class="md-button md-fab md-fab-bottom-right md-primary" title="הוספה">
+  <i class="fa fa-plus"></i>
+</a>

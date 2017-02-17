@@ -178,6 +178,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarketingController.cs" />
+    <Compile Include="Controllers\PosterController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,6 +233,7 @@
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Course\" />
     <Folder Include="Views\Marketing\" />
+    <Folder Include="Views\Poster\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>

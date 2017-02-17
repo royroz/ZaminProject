@@ -18,26 +18,26 @@
     CategoriesBase.getAll = function() {
       return $http({
         method: "GET",
-        url: consts.serverUrl + "Categories/GetCategories"
+        url: consts.serverUrl + "Category/GetCategories"
       });
     };
 
-    CategoriesBase.create = function(category) {
-      return $http({
-        method: "POST",
-        url: consts.serverUrl + "Categories/CreateCategory",
-        data: {
-          webModel: category
-        }
-      });
-    };
+    // CategoriesBase.create = function(category) {
+    //   return $http({
+    //     method: "POST",
+    //     url: consts.serverUrl + "Category/SaveCategory",
+    //     data: {
+    //       webModel: category
+    //     }
+    //   });
+    // };
 
     CategoriesBase.update = function(category) {
       return $http({
         method: "POST",
-        url: consts.serverUrl + "Categories/UpdateCategory",
+        url: consts.serverUrl + "Category/SaveCategory",
         data: {
-          webModel: category
+          category: category
         }
       });
     };
@@ -45,9 +45,9 @@
     CategoriesBase.delete = function(categoryId) {
       return $http({
         method: "POST",
-        url: consts.serverUrl + "Categories/Deletecategory",
+        url: consts.serverUrl + "Category/DeleteCategory",
         data: {
-          id: categoryId
+          categoryId: categoryId
         }
       });
     };

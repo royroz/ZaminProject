@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zamin.Repositories.Category;
+﻿using Zamin.Repositories.Category;
 using Zamin.Repositories.Users;
 
 //using Zamin.Repositories.Users;
@@ -36,6 +31,11 @@ namespace Zamin.Repositories
             get { return _tagRepository ?? (_tagRepository = new TagRepository(DataContext)); }
         }
 
+        private IPosterRepository _posterRepository;
+        public IPosterRepository PosterRepository
+        {
+            get { return _posterRepository ?? (_posterRepository = new PosterRepository(DataContext)); }
+        }
       
     }
 }
