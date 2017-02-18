@@ -26,7 +26,7 @@ namespace Zamin.Repositories
 
         }
 
-        public List<Course> GetPosters()
+        public List<Course> GetCourses()
         {
             return DataContext.Course.Include(c => c.CourseCategory).Where(c => c.Active).ToList();
         }

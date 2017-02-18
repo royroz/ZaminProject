@@ -7,10 +7,10 @@ using System.Data.Entity;
 using Zamin.Models.Membership;
 using Zamin.Repositories;
 using Zamin.Repositories.CFMembership;
-using Zamin.Repositories.Users;
 using Zamin.Models;
 
-namespace Zamin.Repositories.Users
+
+namespace Zamin.Repositories
 {
     public class UsersRepository : RepositoryBase<DataContext>, IUsersRepository
     {

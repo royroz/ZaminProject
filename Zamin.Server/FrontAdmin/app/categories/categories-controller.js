@@ -37,7 +37,14 @@
           $scope.newCategory.Id = response.data.Id;
           $scope.categories.push(angular.copy($scope.newCategory));
           $scope.newCategory = undefined;
-
+          $scope.errorMassage = "קטגוריה חדשה נשמרה בהצלחה!";
+          $mdDialog.show({
+            targetEvent: ev,
+            templateUrl: 'errorDialog.html',
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose: true
+          });
         }
         else{
           $scope.errorMassage = "לא ניתן ליצור 2 קטגוריות בעלות אותו שם!";
@@ -56,7 +63,15 @@
     $scope.update = function(category,ev) {
       showLoader();
       Categories.update(category).then(function(response) {
-        if (response.data) {
+        if (response.data.Success) {
+          $scope.errorMassage = "העדכון התבצע בהצלחה";
+          $mdDialog.show({
+            targetEvent: ev,
+            templateUrl: 'errorDialog.html',
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose: true
+          });
           category.edit = false;
         }
         else{
@@ -68,6 +83,7 @@
             preserveScope: true,
             clickOutsideToClose: true
           });
+            category.edit = false;
         }
         hideLoader();
       });
@@ -77,6 +93,7 @@
     $scope.deleteDialog = function(itemToDelete, index, ev) {
       $scope.itemToDelete = itemToDelete;
       $scope.itemToDelete.index = index;
+      $scope.itemToDelete.Name=itemToDelete.CategoryName;
       $mdDialog.show({
         targetEvent: ev,
         templateUrl: 'deleteDialog.html',

@@ -83,6 +83,8 @@
     <Compile Include="Tag\TagRepository.cs" />
     <Compile Include="Users\IUsersRepository.cs" />
     <Compile Include="Users\UsersRepository.cs" />
+    <Compile Include="WebUser\IWebUserRepository.cs" />
+    <Compile Include="WebUser\WebUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

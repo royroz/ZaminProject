@@ -37,10 +37,19 @@
           $scope.newTag.Id = response.data.Id;
           $scope.tags.push(angular.copy($scope.newTag));
           $scope.newTag = undefined;
+          $scope.errorMassage = "תגית חדשה נשמרה בהצלחה!";
+          $mdDialog.show({
+            targetEvent: ev,
+            templateUrl: 'errorDialog.html',
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose: true
+          });
+
 
         }
         else{
-          $scope.errorMassage = "לא ניתן ליצור 2 קטגוריות בעלות אותו שם!";
+          $scope.errorMassage = "לא ניתן ליצור 2 תגיות בעלות אותו שם!";
           $mdDialog.show({
             targetEvent: ev,
             templateUrl: 'errorDialog.html',
@@ -56,8 +65,16 @@
     $scope.update = function(tag,ev) {
       showLoader();
       Tags.update(tag).then(function(response) {
-        if (response.data) {
+        if (response.data.Success) {
           tag.edit = false;
+          $scope.errorMassage = "העדכון התבצע בהצלחה";
+          $mdDialog.show({
+            targetEvent: ev,
+            templateUrl: 'errorDialog.html',
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose: true
+          });
         }
         else{
           $scope.errorMassage = "לא ניתן לעדכן, עליך לשנות את שם התגית";
@@ -68,6 +85,7 @@
             preserveScope: true,
             clickOutsideToClose: true
           });
+        tag.edit = false;
         }
         hideLoader();
       });
@@ -77,6 +95,7 @@
     $scope.deleteDialog = function(itemToDelete, index, ev) {
       $scope.itemToDelete = itemToDelete;
       $scope.itemToDelete.index = index;
+      $scope.itemToDelete.Name=itemToDelete.TagName;
       $mdDialog.show({
         targetEvent: ev,
         templateUrl: 'deleteDialog.html',

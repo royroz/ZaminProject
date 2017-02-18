@@ -180,6 +180,7 @@
     <Compile Include="Controllers\MarketingController.cs" />
     <Compile Include="Controllers\PosterController.cs" />
     <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Controllers\WebsiteUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +236,7 @@
     <Folder Include="Views\Marketing\" />
     <Folder Include="Views\Poster\" />
     <Folder Include="Views\Tag\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
