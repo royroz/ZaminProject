@@ -14,7 +14,7 @@ namespace Zamin.Server.Controllers
 
         public JsonResult GetCourses()
         {
-            var course = UOW.CourseRepository.GetPosters();
+            var course = UOW.CourseRepository.GetCourses();
             var webModels = course.Select(AutoMapper.Mapper.Map<Course, CourseWebModel>);
             return Json(webModels, JsonRequestBehavior.AllowGet);
         }

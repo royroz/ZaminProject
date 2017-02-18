@@ -51,7 +51,18 @@ namespace Zamin.Repositories
 
         public int UpdateTag(TagWebModel tag)
         {
-            throw new NotImplementedException();
+            var dbModel = DataContext.Tags.SingleOrDefault(t => t.Id == tag.Id);
+            if (dbModel == null) return -1;
+            AutoMapper.Mapper.Map(tag, dbModel);
+
+            dbModel.Active = true;
+            var success = Save();
+
+            if (!success) return -1;
+
+            return tag.Id;
+
+    
         }
     }
 }

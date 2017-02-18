@@ -18,7 +18,7 @@
     UserBase.getAllUsers = function() {
       return $http({
         method: "GET",
-        url: consts.serverUrl + "User/GetAllUsers",
+        url: consts.serverUrl + "WebsiteUser/GetAllWebsiteUsers",
       });
     };
 

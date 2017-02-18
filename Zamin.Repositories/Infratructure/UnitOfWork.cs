@@ -1,5 +1,5 @@
 ﻿using Zamin.Repositories.Category;
-using Zamin.Repositories.Users;
+
 
 //using Zamin.Repositories.Users;
 
@@ -36,6 +36,11 @@ namespace Zamin.Repositories
         {
             get { return _posterRepository ?? (_posterRepository = new PosterRepository(DataContext)); }
         }
-      
+
+        private IWebUserRepository _webUserRepository;
+        public IWebUserRepository WebUserRepository
+        {
+            get { return _webUserRepository ?? (_webUserRepository = new WebUserRepository(DataContext)); }
+        }
     }
 }

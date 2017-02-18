@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Zamin.Models;
 //using Zamin.Models.Membership;
 
-namespace Zamin.Repositories.Users
+namespace Zamin.Repositories
 {
     public interface IUsersRepository : IDisposable
     {

@@ -28,7 +28,7 @@ namespace Zamin.Server.Controllers
             {
                 Data = new
                 {
-                    Success = success != -1,
+                    Success = success != -1, 
                     Id = success
                 }
             };

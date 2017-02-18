@@ -10,7 +10,7 @@ namespace Zamin.Repositories
 {
     public interface ICourseRepository : IDisposable
     {
-        List<Course> GetPosters();
+        List<Course> GetCourses();
         Course GetCourse(int courseId);
         bool CreateCourse(CourseWebModel course);
         bool DeleteCourse(int courseId);
